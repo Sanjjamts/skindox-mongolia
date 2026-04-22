@@ -33,7 +33,7 @@
 
   /* ── NAV ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: sticky; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -91,7 +91,7 @@
 
   /* ── HERO ── */
   .hero {
-    margin-top: 64px;
+    margin-top: 0;
     min-height: 92vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -99,13 +99,107 @@
     overflow: hidden;
   }
 
+
   .hero-left {
-    background: linear-gradient(160deg, #0e2a31 0%, #1a4a55 60%, var(--teal-dark) 100%);
+    background: #0e2a31;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 80px 60px;
+    justify-content: flex-end;
+    padding: 60px 60px 60px 60px;
     position: relative;
+    overflow: hidden;
+  }
+
+  /* ── SLIDESHOW ── */
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+  }
+  .slide-bg.active { opacity: 1; }
+
+  /* Dark overlay дээр текст тодоор харагдуулах */
+  .hero-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,30,36,0.15) 0%,
+      rgba(10,30,36,0.35) 40%,
+      rgba(10,30,36,0.75) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Текст болон товчнуудыг зургийн дээр гаргах */
+  .hero-left > *:not(.slide-bg) {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Slide indicator dots */
+  .slide-dots {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .slide-dot {
+    width: 28px; height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    padding: 0;
+  }
+  .slide-dot.active {
+    background: white;
+    width: 44px;
+  }
+
+  /* Slide label */
+  .slide-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 6px;
+    min-height: 16px;
+    transition: opacity 0.4s;
+  }
+
+  /* Slide arrows */
+  .slide-arrows {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+  }
+  .slide-arrow {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(6px);
+  }
+  .slide-arrow:hover {
+    background: rgba(255,255,255,0.28);
+    border-color: rgba(255,255,255,0.6);
+    transform: scale(1.08);
   }
 
   .hero-left::after {
@@ -184,11 +278,15 @@
   .btn-ghost:hover { background: rgba(255,255,255,0.08); }
 
   .hero-right {
-    background: var(--paper);
+    background: linear-gradient(160deg, #f0fafb 0%, #e2f4f7 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 60px 60px 60px 80px;
+    align-items: center;
+    padding: 40px 32px 32px;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
   }
 
   .quick-nav-title {
@@ -255,12 +353,12 @@
   .announce-strip {
     background: var(--teal);
     color: white;
-    padding: 14px 32px;
+    padding: 10px 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 500;
   }
   .announce-strip a { color: white; text-decoration: underline; text-underline-offset: 3px; }
@@ -533,9 +631,10 @@
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 60px 32px; min-height: 60vh; }
+    .hero-left { padding: 60px 32px; min-height: 50vh; }
     .hero-left::after { display: none; }
-    .hero-right { padding: 40px 32px; }
+    .hero-products-stage { min-height: 400px; padding: 32px 24px; }
+    .floating-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
     .hero-title { font-size: 44px; }
     .products-grid { grid-template-columns: 1fr 1fr; }
     .edu-grid { grid-template-columns: 1fr; }
@@ -548,17 +647,6 @@
   }
 
   /* ── FLOATING PRODUCTS HERO ── */
-  .hero-products-stage {
-    background: linear-gradient(160deg, #f0fafb 0%, #e2f4f7 100%);
-    position: relative;
-    overflow: hidden;
-    padding: 40px 32px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-  }
   .hero-products-stage::before {
     content: '';
     position: absolute; inset: 0;
@@ -567,7 +655,7 @@
   }
 
   .floating-grid {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(4, 1fr);
     gap: 14px;
     width: 100%;
@@ -660,7 +748,7 @@
 <body>
 
 <!-- Announce strip -->
-<div class="announce-strip">
+<div class="announce-strip" style="position:sticky;top:0;z-index:101;">
   🔔 Сарын идэвхжилтийн шаардлага: бүх гишүүд 50/40 захиалгаар хийсэн байх — <a href="#notice">дэлгэрэнгүй</a>
 </div>
 
@@ -683,18 +771,41 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-left">
-    <img src="uploads/logo-banner.png" alt="SKINDOX+" style="height:52px;width:auto;margin-bottom:20px;display:block;">
+    <!-- Slideshow зургууд -->
+    <img src="uploads/hero-slide-1.jpg" class="slide-bg active" id="slide-0" alt="Skin Up">
+    <img src="uploads/hero-slide-2.jpg" class="slide-bg" id="slide-1" alt="Perribloom">
+    <img src="uploads/hero-slide-3.jpg" class="slide-bg" id="slide-2" alt="Aros">
+
+    <!-- Лого -->
+    <img src="uploads/logo-banner.png" alt="SKINDOX+" style="height:44px;width:auto;margin-bottom:16px;display:block;">
+
+    <!-- Slide label -->
+    <div class="slide-label" id="slideLabel">Skin Up · Микробиом арчилгаа</div>
+
+    <!-- Dots -->
+    <div class="slide-dots">
+      <button class="slide-dot active" onclick="goSlide(0)"></button>
+      <button class="slide-dot" onclick="goSlide(1)"></button>
+      <button class="slide-dot" onclick="goSlide(2)"></button>
+    </div>
+
     <div class="hero-badge">✦ Design Your Skin+</div>
     <h1 class="hero-title">
       SKINDOX
       <strong>Mongolia</strong>
     </h1>
     <p class="hero-tagline">
-      Гишүүдэд зориулсан албан ёсны портал. Бүтээгдэхүүн, сургалт, захиалга болон мэдэгдлүүдийг энд авна уу.
+      Гишүүдэд зориулсан албан ёсны портал. Бүтээгдэхүүн, сургалт болон мэдэгдлүүдийг энд авна уу.
     </p>
     <div class="hero-cta-group">
       <a href="#products" class="btn-primary">Бүтээгдэхүүн үзэх</a>
       <a href="#education" class="btn-ghost">Сургалт</a>
+    </div>
+
+    <!-- Arrows -->
+    <div class="slide-arrows">
+      <button class="slide-arrow" onclick="prevSlide()">‹</button>
+      <button class="slide-arrow" onclick="nextSlide()">›</button>
     </div>
   </div>
   <div class="hero-right hero-products-stage">
@@ -1133,5 +1244,46 @@
     setTimeout(() => { toast.style.display = 'none'; }, 4000);
   }
 </script>
+
+<script>
+  // ── SLIDESHOW ──
+  const slides = document.querySelectorAll('.slide-bg');
+  const dots   = document.querySelectorAll('.slide-dot');
+  const labels = [
+    'Skin Up · Микробиом арчилгаа',
+    'Perribloom · Remozar серийн',
+    'Aros · 30–40 насныханд зориулсан'
+  ];
+  let current = 0;
+  let timer;
+
+  function goSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    document.getElementById('slideLabel').textContent = labels[current];
+    resetTimer();
+  }
+
+  function nextSlide() { goSlide(current + 1); }
+  function prevSlide() { goSlide(current - 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(nextSlide, 4500);
+  }
+
+  // Auto-play
+  resetTimer();
+
+  // Keyboard support
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft')  prevSlide();
+  });
+</script>
+
 </body>
 </html>
