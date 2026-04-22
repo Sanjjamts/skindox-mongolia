@@ -106,6 +106,22 @@
     justify-content: center;
     padding: 80px 60px;
     position: relative;
+    overflow: hidden;
+  }
+  .hero-left-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.18;
+    mix-blend-mode: luminosity;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-left > *:not(.hero-left-bg) {
+    position: relative;
+    z-index: 1;
   }
   .hero-left::after {
     content: '';
@@ -574,6 +590,7 @@
 <!-- Hero -->
 <section class="hero">
   <div class="hero-left">
+    <img src="uploads/hero-banner.jpg" class="hero-left-bg" alt="">
     <img src="uploads/logo-banner.png" alt="SKINDOX+" style="height:52px;width:auto;margin-bottom:20px;display:block;">
     <div class="hero-badge">✦ Design Your Skin+</div>
     <h1 class="hero-title">
@@ -635,7 +652,7 @@
     <div class="products-grid">
       <!-- Mach -->
       <a href="products.html#mach" class="product-card">
-        <img src="../uploads/마하상세_3_.jpg" class="product-img" alt="Mach Amazing Quick Start Pack" onerror="this.style.background='#e0f2f5';this.style.padding='40px';this.src=''">
+        <img src="uploads/mach.jpg" class="product-img" alt="Mach Amazing Quick Start Pack" onerror="this.style.background='#e0f2f5';this.style.padding='40px';this.src=''">
         <div class="product-info">
           <div class="product-series">MACH</div>
           <div class="product-name">Amazing Quick Start Pack</div>
@@ -646,7 +663,7 @@
 
       <!-- Recovery Serum -->
       <a href="products.html#recovery-serum" class="product-card">
-        <img src="../uploads/사본_-리커버리세럼.jpg" class="product-img" alt="Recovery Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-recovery-serum.jpg" class="product-img" alt="Recovery Serum" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Recovery Serum</div>
@@ -657,7 +674,7 @@
 
       <!-- Vitamin Serum -->
       <a href="products.html#vitamin-serum" class="product-card">
-        <img src="../uploads/사본_-비타민세럼.jpg" class="product-img" alt="Vitamin Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-vitamin-serum.jpg" class="product-img" alt="Vitamin Serum" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Vitamin Serum</div>
@@ -668,7 +685,7 @@
 
       <!-- Toner -->
       <a href="products.html#toner" class="product-card">
-        <img src="../uploads/사본_-토너.jpg" class="product-img" alt="Various Improvements Toner" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-toner.jpg" class="product-img" alt="Various Improvements Toner" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Various Improvements Toner</div>
@@ -679,7 +696,7 @@
 
       <!-- Various Serum -->
       <a href="products.html#various-serum" class="product-card">
-        <img src="../uploads/사본_-베리어스_세럼.jpg" class="product-img" alt="Various Improvements Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-improvement-serum.jpg" class="product-img" alt="Various Improvements Serum" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Various Improvements Serum</div>
@@ -690,7 +707,7 @@
 
       <!-- Oil Serum -->
       <a href="products.html#oil-serum" class="product-card">
-        <img src="../uploads/사본_-뉴트리션오일세럼_1_.jpg" class="product-img" alt="Nutrition Oil Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-oil-serum.jpg" class="product-img" alt="Nutrition Oil Serum" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Natural Nutrition Oil Serum</div>
@@ -701,7 +718,7 @@
 
       <!-- Skin Biome -->
       <a href="products.html#skin-biome" class="product-card">
-        <img src="../uploads/사본_-스킨바이옴세럼.jpg" class="product-img" alt="Skin Biome Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-biome-serum.jpg" class="product-img" alt="Skin Biome Serum" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Skin Biome Serum</div>
@@ -712,7 +729,7 @@
 
       <!-- Cream -->
       <a href="products.html#cream" class="product-card">
-        <img src="../uploads/사본_-크림.jpg" class="product-img" alt="Recovery Nutrition Cream" onerror="this.style.background='#e0f2f5';this.src=''">
+        <img src="uploads/pb-nutrition-cream.jpg" class="product-img" alt="Recovery Nutrition Cream" onerror="this.style.background='#e0f2f5';this.src=''">
         <div class="product-info">
           <div class="product-series">PERRIBLOOM</div>
           <div class="product-name">Recovery & Nutrition Cream</div>
@@ -1037,7 +1054,7 @@
         </div>
       </div>
       <div class="map-placeholder">
-        <img src="../uploads/Skindox_New_location_2.jpg" alt="Skindox байршил" style="width:100%; height:350px; object-fit:cover; border-radius:16px;">
+        <img src="uploads/location-map.jpg" alt="Skindox байршил" style="width:100%; height:350px; object-fit:cover; border-radius:16px;">
       </div>
     </div>
   </div>
