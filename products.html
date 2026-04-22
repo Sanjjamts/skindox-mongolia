@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бүтээгдэхүүний каталог — Skindox Mongolia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #379faf;
+  --teal-dark: #2b7e8d;
+  --teal-light: #eaf6f8;
+  --teal-mid: #5bbece;
+  --orange: #e8722a;
+  --orange-light: #fff3ec;
+  --green: #3aaa6e;
+  --green-light: #edfaf3;
+  --ink: #1a2a2e;
+  --ink-mid: #3d5a61;
+  --ink-light: #7a9ea7;
+  --paper: #f8fafb;
+  --white: #ffffff;
+  --border: #d4e8ec;
+  --gold: #c9a84c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  background: var(--ink);
+  padding: 12px 32px;
+  display: flex; align-items: center; gap: 12px;
+}
+.top-bar a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; }
+.top-bar a:hover { color: white; }
+.top-bar span { color: rgba(255,255,255,0.25); font-size: 13px; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0e2a31 0%, #1a4a55 60%, #2b7e8d 100%);
+  padding: 64px 32px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(55,159,175,0.2) 0%, transparent 60%);
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal-mid); margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 400; color: white;
+  line-height: 1.1; margin-bottom: 14px; position: relative;
+}
+.hero p {
+  font-size: 15px; color: rgba(255,255,255,0.6);
+  max-width: 560px; margin: 0 auto; line-height: 1.7; position: relative;
+}
+
+/* ── FILTER / SERIES NAV ── */
+.series-nav {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; gap: 0;
+  overflow-x: auto;
+  position: sticky; top: 0; z-index: 80;
+}
+.series-nav a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 16px 20px;
+  font-size: 13px; font-weight: 600;
+  color: var(--ink-light);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+.series-nav a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+.series-nav a .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── MAIN CONTAINER ── */
+main { max-width: 1140px; margin: 0 auto; padding: 48px 32px 80px; }
+
+/* ── SERIES BLOCK ── */
+.series-block { margin-bottom: 80px; }
+.series-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 10px;
+}
+.series-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 600;
+  line-height: 1;
+}
+.series-title-wrap {}
+.series-sub {
+  font-size: 13px; color: var(--ink-light); margin-top: 2px; line-height: 1.5;
+}
+.series-divider {
+  height: 2px; border-radius: 2px;
+  margin-bottom: 28px;
+}
+.series-desc {
+  font-size: 14px; color: var(--ink-mid); line-height: 1.75;
+  max-width: 720px; margin-bottom: 32px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid var(--teal);
+}
+
+/* ── PRODUCT GRID ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.product-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.product-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ── PRODUCT CARD ── */
+.pcard {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: all 0.22s;
+  position: relative;
+}
+.pcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(55,159,175,0.13);
+  border-color: var(--teal);
+}
+.pcard-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 6px;
+  background: var(--teal); color: white;
+}
+.pcard-badge.member { background: var(--teal); }
+.pcard-img-wrap {
+  background: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 24px;
+  min-height: 200px;
+  position: relative;
+}
+.pcard-img-wrap img {
+  max-height: 180px;
+  width: auto; max-width: 100%;
+  object-fit: contain;
+}
+.pcard-img-wrap .vol-badge {
+  position: absolute; bottom: 10px; right: 14px;
+  font-size: 11px; font-weight: 700;
+  color: var(--ink-light); background: rgba(255,255,255,0.9);
+  padding: 3px 8px; border-radius: 6px; border: 1px solid var(--border);
+}
+.pcard-body { padding: 18px 20px 0; flex: 1; }
+.pcard-series {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pcard-name {
+  font-weight: 700; font-size: 15px; color: var(--ink);
+  margin-bottom: 4px; line-height: 1.3;
+}
+.pcard-sub {
+  font-size: 11px; color: var(--ink-light); margin-bottom: 10px; font-style: italic;
+}
+.pcard-desc {
+  font-size: 12.5px; color: var(--ink-mid); line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+/* ── PRICING ── */
+.pcard-pricing { padding: 14px 20px; border-top: 1px solid var(--paper); }
+.price-row {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-bottom: 8px; flex-wrap: wrap;
+}
+.price-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 5px; white-space: nowrap;
+}
+.price-label.member { background: var(--teal); color: white; }
+.price-label.non-member { background: var(--paper); color: var(--ink-light); border: 1px solid var(--border); }
+.price-val {
+  font-weight: 700; font-size: 18px; color: var(--ink);
+}
+.price-val.non-member { font-size: 14px; color: var(--ink-light); text-decoration: line-through; font-weight: 400; }
+.pv-bv-row {
+  display: flex; gap: 12px; margin-top: 6px;
+}
+.pv-chip, .bv-chip {
+  font-size: 11px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+}
+.pv-chip { background: #e8f4ff; color: #1a5ca8; }
+.bv-chip { background: #fff0e8; color: #b84800; }
+
+/* ── WIDE CARD (Mach, featured) ── */
+.pcard-wide {
+  grid-column: 1 / -1;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  transition: all 0.22s;
+}
+.pcard-wide:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(55,159,175,0.13);
+  border-color: var(--teal);
+}
+.pcard-wide .pcard-img-wrap {
+  min-height: 280px;
+  padding: 36px 28px;
+}
+.pcard-wide .pcard-img-wrap img { max-height: 240px; }
+.pcard-wide-body {
+  padding: 28px 32px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.pcard-wide-body .pcard-name { font-size: 22px; margin-bottom: 8px; }
+.pcard-wide-body .pcard-desc { font-size: 13.5px; line-height: 1.75; }
+.feature-tags {
+  display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;
+}
+.ftag {
+  font-size: 11px; font-weight: 600;
+  background: var(--teal-light); color: var(--teal-dark);
+  padding: 4px 12px; border-radius: 20px;
+}
+
+/* ── BONUS TABLE (sidebar) ── */
+.bonus-sidebar {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.bonus-sidebar h3 {
+  background: var(--teal);
+  color: white;
+  padding: 14px 20px;
+  font-size: 14px; font-weight: 700;
+}
+.bonus-table { width: 100%; border-collapse: collapse; }
+.bonus-table th {
+  background: var(--paper);
+  padding: 10px 16px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--ink-light); text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.bonus-table td {
+  padding: 12px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-mid);
+}
+.bonus-table tr:last-child td { border-bottom: none; }
+.bonus-table .rank { font-weight: 700; color: var(--ink); }
+.bonus-val {
+  font-weight: 700; color: var(--teal-dark);
+  background: var(--teal-light);
+  padding: 3px 10px; border-radius: 20px; font-size: 13px;
+}
+.bonus-val.gold { background: #fff8e0; color: #a07800; }
+.bonus-val.big { background: #e0f5ff; color: #005a8a; }
+
+/* ── PV-BV GUIDE ── */
+.pv-guide {
+  background: linear-gradient(135deg, var(--ink) 0%, #1a4a55 100%);
+  border-radius: 20px;
+  padding: 32px;
+  color: white;
+  margin-top: 48px;
+}
+.pv-guide h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 500; margin-bottom: 20px;
+  color: var(--teal-mid);
+}
+.pv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pv-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 20px;
+}
+.pv-rank { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 6px; }
+.pv-val { font-size: 15px; font-weight: 700; color: white; margin-bottom: 3px; }
+.pv-bv { font-size: 12px; color: rgba(255,255,255,0.5); }
+.pv-bonus { font-size: 12px; color: #ffd080; margin-top: 6px; font-weight: 600; }
+
+/* ── ORDER CTA ── */
+.order-cta {
+  background: var(--teal);
+  border-radius: 20px;
+  padding: 36px;
+  text-align: center;
+  margin-top: 60px;
+  color: white;
+}
+.order-cta h3 { font-family:'Cormorant Garamond',serif; font-size:32px;font-weight:500;margin-bottom:10px; }
+.order-cta p { font-size:14px;opacity:0.8;margin-bottom:24px; }
+.cta-btn {
+  background: white; color: var(--teal-dark);
+  font-weight: 700; font-size: 15px;
+  padding: 14px 36px; border-radius: 12px;
+  text-decoration: none; display: inline-block;
+  transition: all 0.15s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+/* ── COLORS PER SERIES ── */
+.aros .series-logo { color: var(--orange); }
+.aros .series-divider { background: linear-gradient(90deg, var(--orange), transparent); }
+.aros .pcard-series { color: var(--orange); }
+.aros .pcard:hover { border-color: var(--orange); }
+.aros .pv-chip { background: #fff0e0; color: #b84800; }
+
+.skinup .series-logo { color: var(--green); }
+.skinup .series-divider { background: linear-gradient(90deg, var(--green), transparent); }
+.skinup .pcard-series { color: var(--green); }
+.skinup .pcard:hover { border-color: var(--green); }
+
+.perribloom .series-logo { color: #c47daa; }
+.perribloom .series-divider { background: linear-gradient(90deg, #c47daa, transparent); }
+.perribloom .pcard-series { color: #c47daa; }
+.perribloom .pcard:hover { border-color: #c47daa; }
+
+.mach-series .series-logo { color: var(--teal); }
+.mach-series .series-divider { background: linear-gradient(90deg, var(--teal), transparent); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .pcard-wide { grid-template-columns: 1fr; }
+  .pv-grid { grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 36px; }
+}
+@media (max-width: 600px) {
+  .product-grid, .product-grid.cols-2, .product-grid.cols-4 { grid-template-columns: 1fr; }
+  main { padding: 32px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <a href="index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Бүтээгдэхүүний каталог</span>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <p class="hero-eyebrow">Skindox Mongolia · Design Your Skin+</p>
+  <h1>Бүтээгдэхүүний каталог</h1>
+  <p>Hormesis зарчим ба Liposome технологид тулгуурласан арьс арчилгааны бүтэн шугам. Гишүүдийн үнэ болон PV/BV мэдээлэл бүрэн оруулав.</p>
+</div>
+
+<!-- Series Nav -->
+<div class="series-nav">
+  <a href="#aros" style="color: #e8722a; border-bottom-color: transparent;">
+    <span class="dot" style="background:#e8722a;"></span> Aros
+  </a>
+  <a href="#skinup" style="color: var(--ink-light);">
+    <span class="dot" style="background:#3aaa6e;"></span> Skin Up
+  </a>
+  <a href="#perribloom" style="color: var(--ink-light);">
+    <span class="dot" style="background:#c47daa;"></span> Perribloom
+  </a>
+  <a href="#mach" style="color: var(--ink-light);">
+    <span class="dot" style="background:#379faf;"></span> Mach
+  </a>
+  <a href="#bonus" style="color: var(--ink-light);">
+    <span class="dot" style="background:#c9a84c;"></span> Бонус & PV/BV
+  </a>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════
+     AROS SERIES
+═══════════════════════════════════════════════ -->
+<div class="series-block aros" id="aros">
+  <div class="series-header">
+    <div class="series-logo">Aros</div>
+    <div class="series-title-wrap">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);">Skindeep серийн бүтээгдэхүүн</div>
+      <div style="font-size:16px;font-weight:600;color:var(--ink);">Гэрэлтсэн арьсаа хэвээр нь хадгалья!</div>
+      <div class="series-sub">30, 40 насныханд зориулсан · Remozar-аас бага липосом агуулга</div>
+    </div>
+  </div>
+  <div class="series-divider"></div>
+
+  <div class="series-desc">
+    Remozar бүтээгдэхүүнтэй харьцуулбал Aros нь 30–40 насны хүмүүсийн хэрэгцээнд оновчилсон хүчтэй чийгшүүлэгч шугам юм. Байгалийн гаралтай найрлагатай, инсамын ханд, CS-Peptide 5, Amino Acid Complex агуулсан.
+  </div>
+
+  <div class="product-grid">
+
+    <!-- Тэжээлийн тос -->
+    <div class="pcard">
+      <div class="pcard-badge member">Гишүүд</div>
+      <div class="pcard-img-wrap">
+        <img src="uploads/aros-nutrition-cream.jpg" alt="Overflow Nutrition Cream" onerror="this.parentNode.style.background='#fff3ec'">
+        <span class="vol-badge">50ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series">AROS · Тэжээлийн тос</div>
+        <div class="pcard-name">Skindeep Overflow Nutrition Cream</div>
+        <div class="pcard-sub">Тэжээлийн тос</div>
+        <div class="pcard-desc">
+          Remozar бүтээгдэхүүний бодол липосоомын багасгасан 30-40 насныханд тохирсон тус бүтээгдэхүүн нь байгалийн чийгшүүлэх бодис, 5 төрлийн пептид агуулсан тул арьсыг сайн чийгшүүлж, уян хатан байдлыг сайжруулна.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label member">Гишүүн</span>
+          <span class="price-val">129,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">161,250₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 49,000</span>
+          <span class="bv-chip">BV 22,200</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Цайруулагч тоник -->
+    <div class="pcard">
+      <div class="pcard-badge member">Гишүүд</div>
+      <div class="pcard-img-wrap">
+        <img src="uploads/aros-toner.jpg" alt="Whitening Toner" onerror="this.parentNode.style.background='#fff3ec'">
+        <span class="vol-badge">100ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series">AROS · Тоник</div>
+        <div class="pcard-name">Skindeep Whitening Toner</div>
+        <div class="pcard-sub">Цайруулагч тоник</div>
+        <div class="pcard-desc">
+          Байгалийн чийгшүүлэгч бодис, 5 төрлийн пептид агуулсан тул бүтээгдэхүүн нь нүх, өнгөр урьчлаа, өнгө сэргээх зэрэг арьсны олон асуудлыг шийдэж болдог.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label member">Гишүүн</span>
+          <span class="price-val">87,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">108,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 33,000</span>
+          <span class="bv-chip">BV 15,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Эмчилгээний тосон серум -->
+    <div class="pcard">
+      <div class="pcard-badge member">Гишүүд</div>
+      <div class="pcard-img-wrap">
+        <img src="uploads/aros-oil-serum.jpg" alt="Treatment Oil Serum" onerror="this.parentNode.style.background='#fff3ec'">
+        <span class="vol-badge">30ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series">AROS · Тосон серум</div>
+        <div class="pcard-name">Skindeep Treatment Oil Serum</div>
+        <div class="pcard-sub">Эмчилгээний тосон серум</div>
+        <div class="pcard-desc">
+          Идебеноны найлзагса болон 8 төрлийн байгалийн гаралтай тос агуулсан тос серум нь хуурайсан арьсыг эрүүл, чийгтэй болгоно. Ус, тосны тэнцвэрийг тааруулна.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label member">Гишүүн</span>
+          <span class="price-val">111,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">138,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 42,000</span>
+          <span class="bv-chip">BV 19,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Үндсэн серум -->
+    <div class="pcard">
+      <div class="pcard-badge member">Гишүүд</div>
+      <div class="pcard-img-wrap">
+        <img src="uploads/aros-basic-serum.jpg" alt="Basic Serum" onerror="this.parentNode.style.background='#fff3ec'">
+        <span class="vol-badge">45ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series">AROS · Серум</div>
+        <div class="pcard-name">Skindeep Basic Serum</div>
+        <div class="pcard-sub">Үндсэн серум</div>
+        <div class="pcard-desc">
+          Гиалуроны хүчил болон 5 төрлийн пептид агуулсан энэхүү байгалийн чийгшүүлэгч бүтээгдэхүүн нь арьсыг гүн чийгшүүлж, уян хатан байдлыг сайжруулна. Батга, үрчлээ, сэвх болон нөсөө толбоны асуудалтай хүмүүст тохиромжтой.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label member">Гишүүн</span>
+          <span class="price-val">111,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">138,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 42,000</span>
+          <span class="bv-chip">BV 19,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Хөгшрөлтийн эсрэг серум -->
+    <div class="pcard">
+      <div class="pcard-badge member">Гишүүд</div>
+      <div class="pcard-img-wrap">
+        <img src="uploads/aros-vitamin-serum.jpg" alt="Anti-Aging Serum" onerror="this.parentNode.style.background='#fff3ec'">
+        <span class="vol-badge">30ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series">AROS · Серум</div>
+        <div class="pcard-name">Skindeep Anti-Aging & Whitening Serum</div>
+        <div class="pcard-sub">Хөгшрөлтийн эсрэг, цайруулах серум</div>
+        <div class="pcard-desc">
+          Энэ нь цайруулахад нэмшрэмд, нианцинамид, 3-О-этиласкорбины хүчил бодисуудыг бүгдий липосомын технологиор дамжуулан коэнзим Q агуулсан арьсыг эрүүл байлгахад тусална.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label member">Гишүүн</span>
+          <span class="price-val">111,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">138,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 42,000</span>
+          <span class="bv-chip">BV 19,000</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SKIN UP SERIES
+═══════════════════════════════════════════════ -->
+<div class="series-block skinup" id="skinup">
+  <div class="series-header">
+    <div class="series-logo">Skin Up</div>
+    <div class="series-title-wrap">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#3aaa6e;">Микробиом арьс арчилгааны бүтээгдэхүүн</div>
+      <div style="font-size:16px;font-weight:600;color:var(--ink);">Change Up серийн шугам</div>
+      <div class="series-sub">Арьсны биомын тэнцвэрийг хадгалсан цэвэрлэгээ ба хамгаалалт</div>
+    </div>
+  </div>
+  <div class="series-divider" style="background:linear-gradient(90deg,#3aaa6e,transparent);"></div>
+
+  <div class="series-desc" style="border-left-color:#3aaa6e;">
+    Skin Up серийн бүтээгдэхүүн нь арьсны байгалийн микробиомыг алдагдуулахгүйгээр цэвэрлэж, хамгаалах зорилгоор бүтээгдсэн. Нийлэг гадаргуугийн идэвхт бодис агуулаагүй.
+  </div>
+
+  <div class="product-grid cols-2">
+
+    <!-- Массаж хөөс -->
+    <div class="pcard">
+      <div class="pcard-badge member" style="background:#3aaa6e;">Гишүүд</div>
+      <div class="pcard-img-wrap" style="background:#edfaf3;">
+        <img src="uploads/skinup-massage-foam.jpg" alt="Cleansing Foam" onerror="this.parentNode.style.background='#edfaf3'">
+        <span class="vol-badge">70g</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#3aaa6e;">SKIN UP · Цэвэрлэгч хөөс</div>
+        <div class="pcard-name">Арьсны биом энзим массаж ба Гүн цэвэрлэгч хөөс</div>
+        <div class="pcard-sub">SkinBiome Enzyme Massage & Deep Cleansing Foam</div>
+        <div class="pcard-desc">
+          Нүүрний арьсыг цэвэрхийн тул цацуулагдаар баялаг тос бүтээгдэхүүн нь синтетик сэрфактант агуулаагүй тул хуурайлалт болон арьсны харагдлаадаг х хэрэглэж болно. Арьсны микробиомын тэнцвэрийг хадгалж, дахин зохицуулах хяналдаж хамгаалдаг.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#3aaa6e;color:white;">Гишүүн</span>
+          <span class="price-val">103,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">128,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 39,000</span>
+          <span class="bv-chip">BV 17,700</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Целлюлоз гуужуулагч гель -->
+    <div class="pcard">
+      <div class="pcard-badge member" style="background:#3aaa6e;">Гишүүд</div>
+      <div class="pcard-img-wrap" style="background:#edfaf3;">
+        <img src="uploads/skinup-daily-pack.jpg" alt="Cellulose Peeling Gel" onerror="this.parentNode.style.background='#edfaf3'">
+        <span class="vol-badge">160ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#3aaa6e;">SKIN UP · Гуужуулагч гель</div>
+        <div class="pcard-name">Арьсны биом энзим ба целлюлоз гуужуулагч гель</div>
+        <div class="pcard-sub">Skinbiome Enzyme & Cellulose Daily pack</div>
+        <div class="pcard-desc">
+          Гол орц нь хүчтэй хүчил биш эслэг юм тул тодорхой хамгаарлалт аюулгүй. Арьсны биом бүрэн цэвэрлэгдэхэд, дахин зохицуулалт хийгдэж, байгалийн нэмэлтүүд нь арьсыг чийгшүүлнэ.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#3aaa6e;color:white;">Гишүүн</span>
+          <span class="price-val">182,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">227,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 69,000</span>
+          <span class="bv-chip">BV 31,300</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Арьсыг хамгаалах тос -->
+    <div class="pcard">
+      <div class="pcard-badge member" style="background:#3aaa6e;">Гишүүд</div>
+      <div class="pcard-img-wrap" style="background:#edfaf3;">
+        <img src="uploads/skinup-cream.jpg" alt="Skin Shield" onerror="this.parentNode.style.background='#edfaf3'">
+        <span class="vol-badge">50ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#3aaa6e;">SKIN UP · Хамгаалах тос</div>
+        <div class="pcard-name">Арьсыг хамгаалах, чийгшүүлэх тос</div>
+        <div class="pcard-sub">Skin Shield & Moisturizing Cream</div>
+        <div class="pcard-desc">
+          Олон төрлийн пептид, бичил биетний эслэгийн уусмал агуулсан тул арьсанд хэрэглэхэд нимгэн арьсанд хэрэглэхэд тохиромжтой болгоод. Хүйрэн, цухуйгч цэвдэг болон олон дахин турших арьсны тэнцвэрийг сэргэнэ.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#3aaa6e;color:white;">Гишүүн</span>
+          <span class="price-val">103,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">128,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 39,000</span>
+          <span class="bv-chip">BV 17,700</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Нарны тос -->
+    <div class="pcard">
+      <div class="pcard-badge member" style="background:#3aaa6e;">Гишүүд</div>
+      <div class="pcard-img-wrap" style="background:#edfaf3;">
+        <img src="uploads/skinup-sun-gel.jpg" alt="Sun-Up Gel" onerror="this.parentNode.style.background='#edfaf3'">
+        <span class="vol-badge">50ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#3aaa6e;">SKIN UP · Нарны хамгаалалт</div>
+        <div class="pcard-name">Арьсны биом нарны тос</div>
+        <div class="pcard-sub">Skin Biome Daily Sun-Up Gel (SPF46/PA++)</div>
+        <div class="pcard-desc">
+          Ургамлын ханд, пептид, пробиотик эслэгийн уусмал агуулсан тул арьсны микробиомын тэнцвэрийг хадгалалтад нарцах хамгаалах тос.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#3aaa6e;color:white;">Гишүүн</span>
+          <span class="price-val">103,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">128,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 39,000</span>
+          <span class="bv-chip">BV 17,700</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BB крем -->
+    <div class="pcard">
+      <div class="pcard-badge member" style="background:#3aaa6e;">Гишүүд</div>
+      <div class="pcard-img-wrap" style="background:#edfaf3;">
+        <img src="uploads/skinup-bb-cream.jpg" alt="BB Cream" onerror="this.parentNode.style.background='#edfaf3'">
+        <span class="vol-badge">30ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#3aaa6e;">SKIN UP · BB крем</div>
+        <div class="pcard-name">Арьсны биом BB крем</div>
+        <div class="pcard-sub">Skin Biome Natural Tone-Up BB</div>
+        <div class="pcard-desc">
+          Зуурандагүй тосон бүтэцтэй бөгөөд, арьсанд аших бичил биетний эслэгийн уусмал, ургамлын ханд, пептид зэргийг агуулсан тул арьсны хамгаалах чадварыг нэмэгдүүлж, арьс илүү тунгалаг.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#3aaa6e;color:white;">Гишүүн</span>
+          <span class="price-val">103,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">128,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 39,000</span>
+          <span class="bv-chip">BV 17,700</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PERRIBLOOM SERIES
+═══════════════════════════════════════════════ -->
+<div class="series-block perribloom" id="perribloom">
+  <div class="series-header">
+    <div class="series-logo">Perribloom</div>
+    <div class="series-title-wrap">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c47daa;">Remozar — Бестселлер шугам</div>
+      <div style="font-size:16px;font-weight:600;color:var(--ink);">Арьсны гүн руу нэвтэрч, дахин залуу эсийг сэргээнэ</div>
+      <div class="series-sub">Liposome 24% · Монголын Skindox-ын хамгийн их борлуулагддаг серийн</div>
+    </div>
+  </div>
+  <div class="series-divider" style="background:linear-gradient(90deg,#c47daa,transparent);"></div>
+
+  <div class="series-desc" style="border-left-color:#c47daa;">
+    Perribloom бол Remozar серийн Монголд борлуулагддаг брэнд нэр. Liposome 24%-тай бөгөөд арьсны гүнд нэвтэрч идэвхтэй найрлагыг хүргэх.
+  </div>
+
+  <div class="product-grid cols-2">
+
+    <!-- Various Improvements Serum -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-improvement-serum.jpg" alt="Various Improvements Serum" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">50ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Серум</div>
+        <div class="pcard-name">Various Improvements Serum</div>
+        <div class="pcard-sub">Сэргээх, үрчлээний эсрэг серум</div>
+        <div class="pcard-desc">
+          Эсийн тэжээлт өгнө: Тэжээлэр харах, нэхэн тэжээлэлт байна.4 төрлийн эслэгийн уусмал (Collagen & Fiber complex) Пептидүүд (Peptides) — Эсийн дохио дамжуулах байгалийн хандалтаар уялдуулдаг. Centella Asiatica / Азиатика хандалт болон будайк бол болдог энэ бичил биетнийг зуурангаа.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">182,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">227,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 69,000</span>
+          <span class="bv-chip">BV 31,300</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Natural Nutrition Oil Serum -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-oil-serum.jpg" alt="Oil Serum" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">45ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Тосон серум</div>
+        <div class="pcard-name">Байгалийн гаралтай тосон серум</div>
+        <div class="pcard-sub">Natural Nutrition Oil Serum</div>
+        <div class="pcard-desc">
+          Арьсны тэнцвэрт хадгалах гэхэд.Тос: гүн нэвтэрдэг, нэхэн тэжээлэлтийг идэвхжүүлдэг. Байгалийн тосны хамгаалахад ашигладаг хүчтэй. Булчингийн массажтай хослолоор хийхэд тохиромжтой.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">182,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">227,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 69,000</span>
+          <span class="bv-chip">BV 31,300</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vitamin Serum -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-vitamin-serum.jpg" alt="Vitamin Serum" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">40ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Серум</div>
+        <div class="pcard-name">Витамин серум</div>
+        <div class="pcard-sub">Vitamin Serum</div>
+        <div class="pcard-desc">
+          Антиоксидант: Витамин С, антиацидин, флавоноидуудар баялаг. Матрицаалал: Витамин С/ токоферол /Витамин Е/-ийн найрлага Пантотенийн хүчил /Витамин В5/ Vitamin Complex (HD) нь эсийн хуваагдлыг дэмжиж, эсэгт сэргэлтэд хамгийн.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">182,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">227,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 69,000</span>
+          <span class="bv-chip">BV 31,300</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skin Biome Serum -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-biome-serum.jpg" alt="Skin Biome Serum" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">40ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Серум</div>
+        <div class="pcard-name">Биом серум</div>
+        <div class="pcard-sub">Skin Biome Serum</div>
+        <div class="pcard-desc">
+          Арьсны биомийн тэнцвэрийг хадгалах байгалийн серум. Пробиотик, хэрэгтэй витамин С болон хэдэн нэмэлтүүдэд нийлэгж. Байдал тонус, байгалийн нарцах хамгаалах хана барилт.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">182,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">227,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 69,000</span>
+          <span class="bv-chip">BV 31,300</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recovery Serum -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-recovery-serum.jpg" alt="Recovery Serum" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">40ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Серум</div>
+        <div class="pcard-name">Эмчилгээний нөхөн сэргэлх серум</div>
+        <div class="pcard-sub">Recovery Serum</div>
+        <div class="pcard-desc">
+          Гэнтсэн тэлмийн тусад хамгийн байдаг бөгөөд, эмэгтэй арьстай хүн харагхад тохиромжтой. Маш хурдан. Нөхцлийг 4 удаа эмчилгэх болно. Хэрэгцийн хязгаарт болно.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">182,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">227,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 69,000</span>
+          <span class="bv-chip">BV 31,300</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Нөхөн сэргээх & Тэжээлийн тос -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-nutrition-cream.jpg" alt="Recovery Nutrition Cream" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">100ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Крем</div>
+        <div class="pcard-name">Нөхөн сэргэлт & Тэжээлийн тос</div>
+        <div class="pcard-sub">Recovery & Nutrition Cream</div>
+        <div class="pcard-desc">
+          Тосон серум зэрэгчилсэн тул арьсны тэнцвэрт C болон глутатионоор арьстаа гарааж байна. Матрицаалал: Витамин С-ийн дериватив, VC-ийн дериватив. Нь 10 польтийн хүчил-ний аажим аажмаар нэгтгэлийн хамгаалалт байгаа.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">262,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">327,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 99,000</span>
+          <span class="bv-chip">BV 45,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Сэргэлт тоник -->
+    <div class="pcard">
+      <div class="pcard-img-wrap" style="background:#fdf5f9;">
+        <img src="uploads/pb-toner.jpg" alt="Various Improvements Toner" onerror="this.parentNode.style.background='#fdf5f9'">
+        <span class="vol-badge">100ml</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-series" style="color:#c47daa;">PERRIBLOOM · Тоник</div>
+        <div class="pcard-name">Сэргэлт тоник</div>
+        <div class="pcard-sub">Various Improvements Toner</div>
+        <div class="pcard-desc">
+          Арьс ортгоор нэвтэрч, нэлийн бие болон нэлийн бие болон хэдэн нэлийн эсэгт сэргэлтэд хамгийн. Арьс арчилгааны хамгийн эхний шатанд хэрэглэдэг.
+        </div>
+      </div>
+      <div class="pcard-pricing">
+        <div class="price-row">
+          <span class="price-label" style="background:#c47daa;color:white;">Гишүүн</span>
+          <span class="price-val">103,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">128,750₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 39,000</span>
+          <span class="bv-chip">BV 17,700</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     MACH SERIES
+═══════════════════════════════════════════════ -->
+<div class="series-block mach-series" id="mach">
+  <div class="series-header">
+    <div class="series-logo">Mach</div>
+    <div class="series-title-wrap">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);">Уургийн маск</div>
+      <div style="font-size:16px;font-weight:600;color:var(--ink);">Арьсны эсийн тушмал нөхөн сэргэгч</div>
+      <div class="series-sub">90ml × 2 ширхэг — Маш хурдан үр дүн</div>
+    </div>
+  </div>
+  <div class="series-divider" style="background:linear-gradient(90deg,var(--teal),transparent);"></div>
+
+  <div class="series-desc">
+    "Масгуйзэр нөхөн тайлхулж, арьсны үнсэн эсийн арьсан сэргэнэ: 20 гаруй төрлийн амин хүчил, 12 төрлийн пептид (Peptide complex), 7 төрлийн энзимийн ханд. Байгалийн антиоксидантыг идэвхжүүлнэ."
+  </div>
+
+  <!-- Wide Mach card -->
+  <div class="pcard-wide">
+    <div class="pcard-img-wrap" style="background: linear-gradient(135deg,#e0f5f7,#c5ecf2);">
+      <img src="uploads/mach.jpg" alt="Mach Amazing Quick Start Pack" onerror="this.parentNode.style.background='#c5ecf2'">
+    </div>
+    <div class="pcard-wide-body">
+      <div>
+        <div class="pcard-series" style="color:var(--teal);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">MACH · Уургийн маск</div>
+        <div class="pcard-name">Amazing Quick Start Pack<br><span style="font-size:16px;font-weight:400;color:var(--ink-mid);">Уургийн маск</span></div>
+        <div class="pcard-desc" style="margin-top:12px;">
+          Арьсны эсийн тушмал нөхөн сэргэгч. "Масгуйзэр нөхөн тайлхулж, арьсны үнсэн эсийн арьсан сэргэнэ: 20 гаруй төрлийн амин хүчил, 12 төрлийн пептид, 7 төрлийн энзимийн ханд. Байгалийн антиоксидантыг идэвхжүүлнэ."
+        </div>
+        <div class="feature-tags">
+          <span class="ftag">20+ Амин хүчил</span>
+          <span class="ftag">12 төрлийн Пептид</span>
+          <span class="ftag">7 Энзимийн ханд</span>
+          <span class="ftag">Антиоксидант</span>
+          <span class="ftag">90ml × 2ш</span>
+        </div>
+      </div>
+      <div class="pcard-pricing" style="border-top:1px solid var(--paper);padding-top:16px;">
+        <div class="price-row">
+          <span class="price-label member">Гишүүн</span>
+          <span class="price-val">262,000₮</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label non-member">Гишүүн бус</span>
+          <span class="price-val non-member">327,500₮</span>
+        </div>
+        <div class="pv-bv-row">
+          <span class="pv-chip">PV 99,000</span>
+          <span class="bv-chip">BV 45,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     BONUS & PV/BV TABLE
+═══════════════════════════════════════════════ -->
+<div id="bonus">
+
+  <!-- PV/BV Guide -->
+  <div class="pv-guide">
+    <h3>Цолны PV / BV шаардлага</h3>
+    <div class="pv-grid">
+      <div class="pv-item">
+        <div class="pv-rank">Бизнесс зэрэглэл</div>
+        <div class="pv-val">99,000 PV</div>
+        <div class="pv-bv">44,550 BV</div>
+      </div>
+      <div class="pv-item">
+        <div class="pv-rank">Повер зэрэглэл</div>
+        <div class="pv-val">1,100,000 PV</div>
+        <div class="pv-bv">500,000 BV</div>
+      </div>
+      <div class="pv-item">
+        <div class="pv-rank">Мастер цол</div>
+        <div class="pv-val">2,200,000 PV</div>
+        <div class="pv-bv">1,000,000 BV</div>
+      </div>
+      <div class="pv-item">
+        <div class="pv-rank">Поларис цол</div>
+        <div class="pv-val">13,200,000 PV</div>
+        <div class="pv-bv">5,940,000 BV</div>
+        <div class="pv-bonus">🏆 Хамгийн өндөр</div>
+      </div>
+      <div class="pv-item" style="grid-column: 1 / -1; background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.4);">
+        <div class="pv-rank" style="color:#e8d080;">Сарын идэвхжилт</div>
+        <div class="pv-val">50/40 захиалга</div>
+        <div class="pv-bv">Power, Master, Polaris: 55,000PV / 25,000BV ба дээш</div>
+        <div class="pv-bonus">Royal/Crown Polaris: 110,000PV / 55,000BV ба дээш</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bonus table -->
+  <div class="bonus-sidebar">
+    <h3>🎁 SKINDOX Бонусын хувь хэмжээ</h3>
+    <table class="bonus-table">
+      <thead>
+        <tr>
+          <th>Цол</th>
+          <th>Үйлчлүүлэгчийн бонус</th>
+          <th>Багийн бонус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">Бизнесс</td>
+          <td><span class="bonus-val">20%</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td class="rank">Повер</td>
+          <td><span class="bonus-val">20%</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td class="rank">Мастер</td>
+          <td><span class="bonus-val">20%</span></td>
+          <td><span class="bonus-val gold">20%</span></td>
+        </tr>
+        <tr>
+          <td class="rank">Поларис</td>
+          <td><span class="bonus-val">20%</span></td>
+          <td><span class="bonus-val gold">35%</span></td>
+        </tr>
+        <tr>
+          <td class="rank">Роял Поларис</td>
+          <td><span class="bonus-val">20%</span></td>
+          <td><span class="bonus-val big">48%</span></td>
+        </tr>
+        <tr>
+          <td class="rank">Краун Поларис</td>
+          <td><span class="bonus-val">20%</span></td>
+          <td><span class="bonus-val big">60%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="padding:14px 20px;font-size:12px;color:var(--ink-light);border-top:1px solid var(--border);">
+      * BV-ээс тооцно · Утас: 77002223 · www.cosdox.com
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="order-cta">
+  <h3>Захиалга өгөхөд бэлэн үү?</h3>
+  <p>Онлайнаар захиалга өгж, оффис дээрээ дараалалгүй авна уу.</p>
+  <a href="index.html#order" class="cta-btn">Захиалга өгөх →</a>
+</div>
+
+</main>
+</body>
+</html>

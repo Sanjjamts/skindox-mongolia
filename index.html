@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKINDOX Mongolia – Гишүүдийн портал</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #379faf;
+    --teal-dark: #2b7e8d;
+    --teal-light: #eaf6f8;
+    --teal-mid: #5bbece;
+    --ink: #1a2a2e;
+    --ink-mid: #3d5a61;
+    --ink-light: #7a9ea7;
+    --paper: #f8fafb;
+    --white: #ffffff;
+    --border: #d4e8ec;
+    --gold: #c9a84c;
+    --warm: #f5f0eb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    font-family: 'DM Sans', 'Noto Sans Mongolian', sans-serif;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 14px;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .nav-links {
+    display: flex; gap: 0; list-style: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.15s;
+  }
+  .nav-links a:hover { background: var(--teal-light); color: var(--teal-dark); }
+
+  .nav-phone {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal-dark);
+    background: var(--teal-light);
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 64px;
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: linear-gradient(160deg, #0e2a31 0%, #1a4a55 60%, var(--teal-dark) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute; right: -1px; top: 0; bottom: 0; width: 60px;
+    background: linear-gradient(to right, transparent, var(--paper));
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(55,159,175,0.3);
+    border: 1px solid rgba(55,159,175,0.5);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal-mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero-title strong {
+    font-weight: 600;
+    color: var(--teal-mid);
+    display: block;
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    margin: 20px 0 40px;
+    line-height: 1.7;
+    max-width: 400px;
+  }
+
+  .hero-cta-group {
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 13px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(55,159,175,0.4);
+  }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 13px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+
+  .hero-right {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 60px 60px 80px;
+  }
+
+  .quick-nav-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+  }
+
+  .quick-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .quick-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .quick-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s;
+  }
+  .quick-card:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(55,159,175,0.12); }
+  .quick-card:hover::before { transform: scaleX(1); }
+
+  .qc-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+  .qc-title { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .qc-sub { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 80px 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 500;
+    color: var(--ink); line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 15px; color: var(--ink-mid);
+    line-height: 1.75; max-width: 600px;
+  }
+
+  /* ── ANNOUNCE STRIP ── */
+  .announce-strip {
+    background: var(--teal);
+    color: white;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 13.5px;
+    font-weight: 500;
+  }
+  .announce-strip a { color: white; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ── PRODUCTS SECTION ── */
+  .products-section { background: white; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .product-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(55,159,175,0.14); border-color: var(--teal); }
+
+  .product-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: contain;
+    background: #f0f6f7;
+    padding: 24px 20px;
+  }
+  .product-info { padding: 16px; }
+  .product-series {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 4px;
+  }
+  .product-name { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+  .product-desc { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+  .product-arrow {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600; color: var(--teal);
+    margin-top: 10px;
+  }
+
+  /* ── EDUCATION SECTION ── */
+  .edu-section { background: var(--warm); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .lesson-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: flex;
+  }
+  .lesson-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+
+  .lesson-num {
+    width: 72px;
+    background: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; flex-shrink: 0;
+    color: white; font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600;
+  }
+  .lesson-num small { font-size: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: 0.1em; opacity: 0.7; }
+
+  .lesson-body { padding: 20px; flex: 1; }
+  .lesson-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .lesson-title { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 6px; line-height: 1.3; }
+  .lesson-desc { font-size: 12.5px; color: var(--ink-mid); line-height: 1.6; }
+  .lesson-meta {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 12px;
+  }
+  .lesson-meta span {
+    font-size: 12px; color: var(--ink-light); font-weight: 500;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-section { background: white; }
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .schedule-table th {
+    background: var(--teal);
+    color: white;
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .schedule-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .schedule-table tr:last-child td { border-bottom: none; }
+  .schedule-table tr:nth-child(even) td { background: var(--paper); }
+  .hours-badge {
+    font-weight: 700; color: var(--teal-dark);
+    background: var(--teal-light);
+    padding: 4px 12px; border-radius: 20px; font-size: 13px;
+  }
+  .break-badge {
+    color: var(--ink-light); font-size: 12px;
+  }
+
+  /* ── ORDER SECTION ── */
+  .order-section { background: linear-gradient(160deg, #0e2a31 0%, #1a4a55 100%); }
+  .order-section .section-title { color: white; }
+  .order-section .section-sub { color: rgba(255,255,255,0.65); }
+  .order-section .section-label { color: var(--teal-mid); }
+
+  .order-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .order-step {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 28px;
+    color: white;
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 600;
+    color: var(--teal-mid); opacity: 0.6;
+    line-height: 1; margin-bottom: 12px;
+  }
+  .step-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+  .order-form-wrap {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 48px;
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 0; }
+  .form-group.full { grid-column: 1 / -1; }
+  label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  input, select, textarea {
+    width: 100%; background: var(--paper); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--ink); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 11px 14px; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--teal); box-shadow: 0 0 0 3px rgba(55,159,175,0.1);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+  select option { background: white; }
+
+  .form-submit {
+    background: var(--teal); color: white;
+    font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px;
+    border: none; border-radius: 12px; padding: 15px 32px;
+    cursor: pointer; transition: all 0.15s; width: 100%; margin-top: 20px;
+    box-shadow: 0 4px 16px rgba(55,159,175,0.35);
+  }
+  .form-submit:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  /* ── NOTICE ── */
+  .notice-section { background: var(--paper); }
+  .notice-list { margin-top: 40px; }
+  .notice-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all 0.15s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .notice-item:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(55,159,175,0.08); }
+  .notice-badge {
+    background: var(--teal);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .notice-badge.important { background: #e05252; }
+  .notice-title { font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .notice-meta { font-size: 12px; color: var(--ink-light); }
+
+  /* ── MAP ── */
+  .location-section { background: white; }
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; align-items: start; }
+  .location-info { }
+  .location-detail {
+    display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .loc-icon {
+    width: 40px; height: 40px; background: var(--teal-light);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 18px;
+  }
+  .loc-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 3px; }
+  .loc-value { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .map-placeholder {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .map-placeholder img { width: 100%; height: 350px; object-fit: cover; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer strong { color: white; }
+
+  /* ── SUCCESS ── */
+  .success-toast {
+    display: none;
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--teal);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 8px 24px rgba(55,159,175,0.5);
+    z-index: 200;
+    animation: slideIn 0.3s ease;
+  }
+  @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 32px; min-height: 60vh; }
+    .hero-left::after { display: none; }
+    .hero-right { padding: 40px 32px; }
+    .hero-title { font-size: 44px; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .order-steps { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .location-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .quick-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Announce strip -->
+<div class="announce-strip">
+  🔔 Сарын идэвхжилтийн шаардлага: бүх гишүүд 50/40 захиалгаар хийсэн байх — <a href="#notice">дэлгэрэнгүй</a>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">SK+</div>
+    <span>SKINDOX Mongolia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">Бүтээгдэхүүн</a></li>
+    <li><a href="#education">Сургалт</a></li>
+    <li><a href="#schedule">Цагийн хуваарь</a></li>
+    <li><a href="#order">Захиалга</a></li>
+    <li><a href="#notice">Мэдэгдэл</a></li>
+    <li><a href="#location">Байршил</a></li>
+  </ul>
+  <a href="tel:77002223" class="nav-phone">📞 7700-2223</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">✦ Design Your Skin+</div>
+    <h1 class="hero-title">
+      SKINDOX
+      <strong>Mongolia</strong>
+    </h1>
+    <p class="hero-tagline">
+      Гишүүдэд зориулсан албан ёсны портал. Бүтээгдэхүүн, сургалт, захиалга болон мэдэгдлүүдийг энд авна уу.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#products" class="btn-primary">Бүтээгдэхүүн үзэх</a>
+      <a href="#education" class="btn-ghost">Сургалт</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="quick-nav-title">Шуурхай навигаци</p>
+    <div class="quick-cards">
+      <a href="#products" class="quick-card">
+        <span class="qc-icon">🧴</span>
+        <div class="qc-title">Бүтээгдэхүүн</div>
+        <div class="qc-sub">Remozar, Perribloom, Mach болон бусад</div>
+      </a>
+      <a href="#education" class="quick-card">
+        <span class="qc-icon">🎓</span>
+        <div class="qc-title">Сургалт & Видео</div>
+        <div class="qc-sub">Мастер класс хичээлүүд</div>
+      </a>
+      <a href="#order" class="quick-card">
+        <span class="qc-icon">📦</span>
+        <div class="qc-title">Захиалга</div>
+        <div class="qc-sub">Онлайн захиалга өгөх</div>
+      </a>
+      <a href="#notice" class="quick-card">
+        <span class="qc-icon">📢</span>
+        <div class="qc-title">Мэдэгдэл</div>
+        <div class="qc-sub">Багийн орлого, урамшуулал</div>
+      </a>
+      <a href="#schedule" class="quick-card">
+        <span class="qc-icon">🕐</span>
+        <div class="qc-title">Цагийн хуваарь</div>
+        <div class="qc-sub">Оффисын ажиллах цаг</div>
+      </a>
+      <a href="#location" class="quick-card">
+        <span class="qc-icon">📍</span>
+        <div class="qc-title">Байршил</div>
+        <div class="qc-sub">Сансарын туннелийн ойролцоо</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="products-section" id="products">
+  <div class="container">
+    <p class="section-label">Бүтээгдэхүүний каталог</p>
+    <h2 class="section-title">Skindox бүтээгдэхүүнүүд</h2>
+    <p class="section-sub">Hormesis (Хормесис) зарчимд тулгуурлан, 24% липосом технологиор бүтээгдсэн арьс арчилгааны бүтээгдэхүүнүүд. Арьсны гүнд нэвтэрч, бодит өөрчлөлт гаргана.</p>
+
+    <div class="products-grid">
+      <!-- Mach -->
+      <a href="products.html#mach" class="product-card">
+        <img src="../uploads/마하상세_3_.jpg" class="product-img" alt="Mach Amazing Quick Start Pack" onerror="this.style.background='#e0f2f5';this.style.padding='40px';this.src=''">
+        <div class="product-info">
+          <div class="product-series">MACH</div>
+          <div class="product-name">Amazing Quick Start Pack</div>
+          <div class="product-desc">Маха амейзинг квик старт пак — Нано технологитой олин ван бүтээгдэхүүн</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Recovery Serum -->
+      <a href="products.html#recovery-serum" class="product-card">
+        <img src="../uploads/사본_-리커버리세럼.jpg" class="product-img" alt="Recovery Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Recovery Serum</div>
+          <div class="product-desc">Аргаан тос, Алтан Жожоба тос, Lipex Shea агуулсан тэжээллэг серум</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Vitamin Serum -->
+      <a href="products.html#vitamin-serum" class="product-card">
+        <img src="../uploads/사본_-비타민세럼.jpg" class="product-img" alt="Vitamin Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Vitamin Serum</div>
+          <div class="product-desc">Арьсыг гэрэлтүүлж, антиэйжинг нөлөөтэй витамин С агуулсан серум</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Toner -->
+      <a href="products.html#toner" class="product-card">
+        <img src="../uploads/사본_-토너.jpg" class="product-img" alt="Various Improvements Toner" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Various Improvements Toner</div>
+          <div class="product-desc">Нано-Эмульсион технологитой, хана бус чийгшүүлэлт олгодог тонер</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Various Serum -->
+      <a href="products.html#various-serum" class="product-card">
+        <img src="../uploads/사본_-베리어스_세럼.jpg" class="product-img" alt="Various Improvements Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Various Improvements Serum</div>
+          <div class="product-desc">Хоёр давхар хэрэглэхэд крем хэрэггүй — жинхэнэ шингэн серум</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Oil Serum -->
+      <a href="products.html#oil-serum" class="product-card">
+        <img src="../uploads/사본_-뉴트리션오일세럼_1_.jpg" class="product-img" alt="Nutrition Oil Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Natural Nutrition Oil Serum</div>
+          <div class="product-desc">Meadowfoam, Olive Squalane, Organic Coconut агуулсан тэжээллэг тосон серум</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Skin Biome -->
+      <a href="products.html#skin-biome" class="product-card">
+        <img src="../uploads/사본_-스킨바이옴세럼.jpg" class="product-img" alt="Skin Biome Serum" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Skin Biome Serum</div>
+          <div class="product-desc">Арьсны биом хамгаалж, Onion Extract болон Probio Meta G55 агуулсан серум</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+
+      <!-- Cream -->
+      <a href="products.html#cream" class="product-card">
+        <img src="../uploads/사본_-크림.jpg" class="product-img" alt="Recovery Nutrition Cream" onerror="this.style.background='#e0f2f5';this.src=''">
+        <div class="product-info">
+          <div class="product-series">PERRIBLOOM</div>
+          <div class="product-name">Recovery & Nutrition Cream</div>
+          <div class="product-desc">Glutathione болон ET-VC агуулсан чийгийн балансыг тохируулсан крем</div>
+          <span class="product-arrow">Дэлгэрэнгүй →</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top: 32px;">
+      <a href="products.html" class="btn-primary" style="display:inline-block; color:white;">Бүх бүтээгдэхүүн харах →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="edu-section" id="education">
+  <div class="container">
+    <p class="section-label">Сургалт & Видео хичээл</p>
+    <h2 class="section-title">Мастер класс сургалт</h2>
+    <p class="section-sub">Skindox-ийн арьс арчилгааны философи, бүтээгдэхүүн хэрэглэх зөв арга болон бизнесийн мэдлэгийг эзэмшинэ.</p>
+
+    <div class="edu-grid">
+      <!-- Lesson 1 -->
+      <a href="lessons/lesson1.html" class="lesson-card">
+        <div class="lesson-num"><small>ХИЧЭЭЛ</small>01</div>
+        <div class="lesson-body">
+          <div class="lesson-tag">📖 Онол</div>
+          <div class="lesson-title">Арьс ба гоо сайхны бүтээгдэхүүний парадокс</div>
+          <div class="lesson-desc">Яагаад сайн косметик хэрэглэсэн ч арьс хэвэндээ үлддэг вэ? Хормесисийн зарчим ба Skindox-ийн философи.</div>
+          <div class="lesson-meta">
+            <span>🎬 Видео + Заавар</span>
+            <span>⭐ Суурь хичээл</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Lesson 2 -->
+      <a href="lessons/lesson2.html" class="lesson-card">
+        <div class="lesson-num"><small>ХИЧЭЭЛ</small>02</div>
+        <div class="lesson-body">
+          <div class="lesson-tag">🧼 Практик</div>
+          <div class="lesson-title">Нүүр угаалт — Зөв массажийн арга</div>
+          <div class="lesson-desc">Нүүр угаалтыг зүгээр угаах биш, массаж хэлбэрээр хийх учир, лимфийн эргэлт сайжруулах аргачлал.</div>
+          <div class="lesson-meta">
+            <span>🎬 Видео + Заавар</span>
+            <span>⭐ Тогтмол хийх</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Lesson 3 -->
+      <a href="lessons/lesson3.html" class="lesson-card">
+        <div class="lesson-num"><small>ХИЧЭЭЛ</small>03</div>
+        <div class="lesson-body">
+          <div class="lesson-tag">⚡ Практик</div>
+          <div class="lesson-title">Реакц — Бүтээгдэхүүнд үзүүлэх хариу үйлдэл</div>
+          <div class="lesson-desc">Липосом бүтээгдэхүүн хэрэглэх үед гарч болох урвалуудыг хэрхэн ойлгож, зохицуулах вэ.</div>
+          <div class="lesson-meta">
+            <span>🎬 Видео + Заавар</span>
+            <span>⭐ Чухал</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Lesson 4 -->
+      <a href="lessons/lesson4.html" class="lesson-card">
+        <div class="lesson-num"><small>ХИЧЭЭЛ</small>04</div>
+        <div class="lesson-body">
+          <div class="lesson-tag">💧 Практик</div>
+          <div class="lesson-title">Аппликейшн — Функциональ косметикийн хэрэглэх арга</div>
+          <div class="lesson-desc">Липосомтой бүтээгдэхүүнийг арьсны насаар нь хэрхэн зөв хэрэглэх зааварчилгаа. 20–50+ нас.</div>
+          <div class="lesson-meta">
+            <span>🎬 Видео + Заавар</span>
+            <span>⭐ Насаар ялгасан</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Masterclass -->
+      <a href="lessons/masterclass.html" class="lesson-card">
+        <div class="lesson-num" style="background: var(--gold);"><small>МАСТЕР</small>КЛАСС</div>
+        <div class="lesson-body">
+          <div class="lesson-tag">🏆 Нэгтгэсэн</div>
+          <div class="lesson-title">Мастер класс — Нэг дор суралцах</div>
+          <div class="lesson-desc">5 үндсэн дадал: Нүүр угаалт, Өдөр тутмын гуужуулалт, Булчингийн дасгал, Dove, Усан будалт.</div>
+          <div class="lesson-meta">
+            <span>📚 Дэлгэрэнгүй</span>
+            <span>⭐ Бүгдэд шаардлагатай</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Design School -->
+      <a href="lessons/design-school.html" class="lesson-card">
+        <div class="lesson-num" style="background: #2a2a2a;"><small>СУРГАЛТ</small>DS</div>
+        <div class="lesson-body">
+          <div class="lesson-tag">🎨 Онлайн</div>
+          <div class="lesson-title">Design School — ЕД Хуан Жин Уг</div>
+          <div class="lesson-desc">Ерөнхий захирлын удирдсан Design School сургалтын материал. Сургалтын төлбөр: 60,000₮</div>
+          <div class="lesson-meta">
+            <span>🎓 Тусгай</span>
+            <span>💰 60,000₮</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- YouTube channel note -->
+    <div style="margin-top: 32px; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 24px; display: flex; align-items: center; gap: 20px;">
+      <div style="width: 56px; height: 56px; background: #ff0000; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.8 2.3 12 2.3 12 2.3s-4.8 0-7.3.1c-.6.1-1.9.1-3 1.3C.8 4.5.5 6.5.5 6.5S.2 8.8.2 11.1v2.1c0 2.3.3 4.6.3 4.6s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2 2.4.2 10 .3 10 .3s4.8 0 7.3-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.3.3-4.6v-2.1c0-2.3-.3-4.6-.3-4.6zm-14 9.4V8.4l8.1 3.8-8.1 3.7z"/></svg>
+      </div>
+      <div style="flex:1">
+        <div style="font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 4px;">YouTube видео хичээлүүд</div>
+        <div style="font-size: 13px; color: var(--ink-light);">관리하는 남자 황진옥 — Skindox-ийн YouTube сувгаас бүрэн хичээлүүдийг үзнэ үү</div>
+      </div>
+      <a href="https://www.youtube.com/@%EA%B4%80%EB%A6%AC%ED%95%98%EB%8A%94%EB%82%A8%EC%9E%90%ED%99%A9%EC%A7%84%EC%9C%A1" target="_blank" style="background: var(--teal); color: white; font-weight: 600; font-size: 13px; padding: 10px 20px; border-radius: 8px; text-decoration: none; white-space: nowrap; flex-shrink: 0;">Суваг үзэх →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Schedule -->
+<section class="schedule-section" id="schedule">
+  <div class="container">
+    <p class="section-label">Ажиллах цаг</p>
+    <h2 class="section-title">Цагийн хуваарь</h2>
+    <p class="section-sub">Захиалга баталгаажуулалт болон хүргэлтийн цагийн хуваарь. Даваа, Лхагва, Баасан 18:00 цаг хүртэл баталгаажуулалт хийгдэнэ.</p>
+
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Гараг</th>
+          <th>Ажиллах цаг</th>
+          <th>Цайны цаг</th>
+          <th>Тэмдэглэл</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Даваа</strong></td>
+          <td><span class="hours-badge">09:00 – 20:00</span></td>
+          <td>—</td>
+          <td style="font-size:13px; color: var(--teal-dark);">18:00 хүртэл захиалга → 20:00 хүртэл хүргэлт боломжтой</td>
+        </tr>
+        <tr>
+          <td><strong>Мягмар</strong></td>
+          <td><span class="hours-badge">09:00 – 17:00</span></td>
+          <td><span class="break-badge">13:00 – 14:00</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Лхагва</strong></td>
+          <td><span class="hours-badge">09:00 – 20:00</span></td>
+          <td><span class="break-badge">13:00 – 14:00</span></td>
+          <td style="font-size:13px; color: var(--teal-dark);">18:00 хүртэл захиалга → 20:00 хүртэл хүргэлт боломжтой</td>
+        </tr>
+        <tr>
+          <td><strong>Пүрэв</strong></td>
+          <td><span class="hours-badge">09:00 – 17:00</span></td>
+          <td><span class="break-badge">13:00 – 14:00</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Баасан</strong></td>
+          <td><span class="hours-badge">09:00 – 20:00</span></td>
+          <td>—</td>
+          <td style="font-size:13px; color: var(--teal-dark);">18:00 хүртэл захиалга → 20:00 хүртэл хүргэлт боломжтой</td>
+        </tr>
+        <tr>
+          <td><strong>Бямба</strong></td>
+          <td><span class="hours-badge">09:00 – 17:00</span></td>
+          <td><span class="break-badge">13:00 – 14:00</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Ням</strong></td>
+          <td><span class="hours-badge">09:00 – 17:00</span></td>
+          <td><span class="break-badge">13:00 – 14:00</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 20px; background: #fff8e1; border: 1px solid #f0c040; border-radius: 12px; padding: 16px 20px; font-size: 13.5px; color: #7a5500;">
+      ⚠️ <strong>Анхааруулга:</strong> Та авах бүтээгдэхүүнийхээ захиалгыг урьдчилж дээрх сайтаар хийгээд оффис дээр ирвэл дараалалгүй, хурдан авах боломжтой. Захиалга <strong>2 цагийн өмнө</strong> хийсэн тохиолдолд баталгааны байдалд тооцогдох болно.
+    </div>
+  </div>
+</section>
+
+<!-- Order -->
+<section class="order-section" id="order">
+  <div class="container">
+    <p class="section-label">Онлайн захиалга</p>
+    <h2 class="section-title">Захиалга өгөх</h2>
+    <p class="section-sub">Урьдчилж захиалга өгснөөр дараалалгүй, хурдан авах боломжтой. Захиалгын 2 цагийн өмнө хийгээд байгаарай.</p>
+
+    <div class="order-steps">
+      <div class="order-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Захиалга өгнө</div>
+        <div class="step-desc">Доорх маягтыг бөглөж захиалга өгнө. ID дугаараа заавал бичнэ үү — бичихгүй бол захиалга дутуу боловсруулагдана.</div>
+      </div>
+      <div class="order-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Баталгаажуулалт</div>
+        <div class="step-desc">Ажлын цагийн хуваарийн дагуу баталгаажуулалт хийгдэнэ. 7700-2223 утсаар холбогдоно.</div>
+      </div>
+      <div class="order-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Хүргэлт/Очих</div>
+        <div class="step-desc">Оффис дээр очих эсвэл хүргэлтийн хугацааг тохиролцоно. Давааа, Лхагва, Баасан 20:00 хүртэл хүргэлт боломжтой.</div>
+      </div>
+    </div>
+
+    <div class="order-form-wrap">
+      <h3 style="font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 24px;">Захиалгын маягт</h3>
+      <div class="form-grid" id="orderForm">
+        <div class="form-group">
+          <label>Нэр <span style="color:#e05252">*</span></label>
+          <input type="text" id="o-name" placeholder="Таны нэр">
+        </div>
+        <div class="form-group">
+          <label>Гишүүний ID <span style="color:#e05252">*</span></label>
+          <input type="text" id="o-id" placeholder="Жишээ: ID123456">
+        </div>
+        <div class="form-group">
+          <label>Утасны дугаар <span style="color:#e05252">*</span></label>
+          <input type="tel" id="o-phone" placeholder="+976 9999 9999">
+        </div>
+        <div class="form-group">
+          <label>Бүтээгдэхүүн авах арга</label>
+          <select id="o-delivery">
+            <option value="">Сонгоно уу</option>
+            <option>Оффис дээр очих</option>
+            <option>Хүргэлтээр авах</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Захиалгын бүтээгдэхүүнүүд <span style="color:#e05252">*</span></label>
+          <textarea id="o-products" placeholder="Жишээ: Recovery Serum x2, Vitamin Serum x1, Skin Biome Serum x1..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label>Нэмэлт тайлбар</label>
+          <input type="text" id="o-note" placeholder="Хүргэлтийн хаяг эсвэл тэмдэглэл">
+        </div>
+      </div>
+      <button class="form-submit" onclick="submitOrder()">Захиалга илгээх →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Notice -->
+<section class="notice-section" id="notice">
+  <div class="container">
+    <p class="section-label">Мэдэгдэл & Зар</p>
+    <h2 class="section-title">Гишүүдэд мэдэгдэх зүйлс</h2>
+
+    <div class="notice-list">
+      <a href="notices/bonus-notice.html" class="notice-item">
+        <span class="notice-badge important">ЧУХАЛ</span>
+        <div>
+          <div class="notice-title">Скиндокс Албан Мэдэгдэл — Багийн орлогын урамшуулал, идэвхжилтийн шаардлага</div>
+          <div class="notice-meta">Бүх гишүүд сар бүрийн 7-нд урамшуулал тооцоолно. Идэвхжилтийн дагуу 50/40 захиалга шаардлагатай.</div>
+        </div>
+      </a>
+      <a href="notices/tips.html" class="notice-item">
+        <span class="notice-badge">ЗӨВЛӨМЖ</span>
+        <div>
+          <div class="notice-title">Захиалга хийх зөв арга — Байнга хийдэг алдаанаас зайлсхийнэ</div>
+          <div class="notice-meta">ID дугаараа заавал бичих, цагийн хуваарь дагуу захиалах, оффис дээр очих үед цаг алдахгүй байх зөвлөмж.</div>
+        </div>
+      </a>
+      <a href="notices/compensation-plan.html" class="notice-item">
+        <span class="notice-badge">МЭДЭЭЛЭЛ</span>
+        <div>
+          <div class="notice-title">Скиндокс Хөнгөлөлтийн Төлөвлөгөө — Цолны систем ба хөнгөлөлт</div>
+          <div class="notice-meta">Power, Master, Polaris, Royal Polaris, Crown Polaris цолнуудын PV/BV шаардлага ба урамшуулал.</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section class="location-section" id="location">
+  <div class="container">
+    <p class="section-label">Байршил</p>
+    <h2 class="section-title">Бидний байршил</h2>
+
+    <div class="location-grid">
+      <div class="location-info">
+        <div class="location-detail">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-label">Хаяг</div>
+            <div class="loc-value">Сансарын туннелийн ойролцоо,<br>Emart-ийн хажуугийн байр</div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-label">Утас</div>
+            <div class="loc-value">7700-2223</div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">🕐</div>
+          <div>
+            <div class="loc-label">Ажиллах цаг</div>
+            <div class="loc-value">Даваа–Баасан 09:00–20:00<br>Бямба–Ням 09:00–17:00</div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">🏢</div>
+          <div>
+            <div class="loc-label">Компани</div>
+            <div class="loc-value">Скиндокс Бьюти Косметикс ХХК</div>
+          </div>
+        </div>
+        <div style="margin-top: 24px;">
+          <a href="#order" class="btn-primary" style="display: inline-block; color: white;">Захиалга өгөх →</a>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <img src="../uploads/Skindox_New_location_2.jpg" alt="Skindox байршил" style="width:100%; height:350px; object-fit:cover; border-radius:16px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <strong>SKINDOX+ Mongolia</strong> — Скиндокс Бьюти Косметикс ХХК<br>
+  <strong>Design Your Skin+</strong> · Утас: 7700-2223<br><br>
+  <span style="font-size:12px;">Энэ сайт нь Skindox Mongolia-ийн гишүүдэд зориулан бэлдсэн дотоод портал юм.</span>
+</footer>
+
+<!-- Toast -->
+<div class="success-toast" id="toast">✅ Захиалга амжилттай илгээгдлээ!</div>
+
+<script>
+  function submitOrder() {
+    const name = document.getElementById('o-name').value.trim();
+    const id = document.getElementById('o-id').value.trim();
+    const phone = document.getElementById('o-phone').value.trim();
+    const products = document.getElementById('o-products').value.trim();
+
+    if (!name || !id || !phone || !products) {
+      alert('Нэр, гишүүний ID, утас болон бүтээгдэхүүний мэдээллийг бөглөнө үү.');
+      return;
+    }
+
+    // Clear
+    document.getElementById('o-name').value = '';
+    document.getElementById('o-id').value = '';
+    document.getElementById('o-phone').value = '';
+    document.getElementById('o-products').value = '';
+    document.getElementById('o-note').value = '';
+    document.getElementById('o-delivery').value = '';
+
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 4000);
+  }
+</script>
+</body>
+</html>
