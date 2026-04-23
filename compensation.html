@@ -128,6 +128,42 @@ main{max-width:1080px;margin:0 auto;padding:60px 32px 80px;}
   .ci-desc { font-size: 13.5px; color: var(--ink-mid); line-height: 1.7; }
   .ci-desc strong { color: var(--teal-dark); }
 
+
+  .rank-way {
+    background: var(--teal-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+  .rank-way:last-child { margin-bottom: 0; }
+  .way-badge {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+  }
+  .ratio-tag {
+    display: inline-block;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal-dark);
+    margin-top: 4px;
+  }
+
 </style>
 </head>
 <body>
@@ -141,7 +177,7 @@ main{max-width:1080px;margin:0 auto;padding:60px 32px 80px;}
 <div class="hero">
   <p class="hero-eyebrow">Skindox Mongolia · Compensation Plan</p>
   <h1>Хөнгөлөлтийн төлөвлөгөө</h1>
-  <p>PV оноо цуглуулж BV-оор цалин авна. Цолоо ахиулж орлогоо нэмэгдүүл.</p>
+  <p>PV оноо цуглуулж BV-оор цалин авна. Master, Polaris, Royal Polaris, Crown Polaris — 4 цолыг ахиулж орлогоо нэмэгдүүл.</p>
 </div>
 
 <main>
@@ -224,50 +260,75 @@ main{max-width:1080px;margin:0 auto;padding:60px 32px 80px;}
   <p class="sec-sub">Цол ахиулахад өөрийн PV, шууд санал болгосон гишүүд, бүлгийн нийт гүйцэтгэл зэрэг шаардлагуудыг хангасан байх ёстой.</p>
 
   <div class="ranks-grid">
+
     <div class="rank-card">
       <span class="rank-icon">⭐</span>
-      <div class="rank-tag">DT — Director</div>
-      <div class="rank-name">Директор</div>
+      <div class="rank-tag">MS — Master</div>
+      <div class="rank-name">Мастер</div>
       <div class="rank-req">
-        <strong>Өөрийн:</strong> Старт зэрэглэл (110,000 PV) ба дээш<br><br>
-        <strong>Нэмэлт шаардлага:</strong> Старт зэрэглэлтэй шууд санал болгосон 3 гишүүн + бүлгийн нийт 3,300,000 PV<br>
-        <em>Эсвэл</em> өөрийн худалдан авалт 2,200,000 PV ба дээш
+        <div class="rank-way">
+          <div class="way-badge">Арга 1</div>
+          Нэг дор <strong>2,200,000 PV</strong> худалдан авалт хийх
+        </div>
+        <div class="rank-way">
+          <div class="way-badge">Арга 2</div>
+          Багийн орлогоор <strong>3,300,000 PV</strong> цуглуулах<br>
+          <span class="ratio-tag">📊 2 тал: 66% / 34% харьцаатай байх</span><br>
+          + Шууд урилгын 3 Business гишүүнтэй болсон байх
+        </div>
       </div>
-      <span class="pv-badge">🏆 110,000+ PV</span>
+      <span class="pv-badge">🏆 2,200,000 PV</span>
     </div>
 
     <div class="rank-card">
       <span class="rank-icon">⭐⭐</span>
-      <div class="rank-tag">MS — Master</div>
-      <div class="rank-name">Мастер</div>
+      <div class="rank-tag">PL — Polaris</div>
+      <div class="rank-name">Поларис</div>
       <div class="rank-req">
-        <strong>Өөрийн:</strong> Бизнес зэрэглэл (330,000 PV) ба дээш<br><br>
-        <strong>Нэмэлт шаардлага:</strong> 2 бүлэгт тус бүр 1 Директор + бүлгийн нийт 33,000,000 PV ба дээш
+        <div class="rank-way">
+          <div class="way-badge">Арга 1</div>
+          Нэг дор <strong>13,200,000 PV</strong> худалдан авалт хийх
+        </div>
+        <div class="rank-way">
+          <div class="way-badge">Арга 2</div>
+          Багийн орлогоор <strong>33,000,000 PV</strong> цуглуулах<br>
+          <span class="ratio-tag">📊 2 тал: 66% / 34% харьцаатай байх</span><br>
+          + 2 талд тус 1 Master цолтой гишүүнтэй болсон байх
+        </div>
       </div>
-      <span class="pv-badge">🏆 330,000+ PV</span>
+      <span class="pv-badge">🏆 13,200,000 PV</span>
     </div>
 
     <div class="rank-card gold">
       <span class="rank-icon">🌟</span>
-      <div class="rank-tag gold-tag">PL — Polaris</div>
-      <div class="rank-name">Поларис</div>
+      <div class="rank-tag gold-tag">RP — Royal Polaris</div>
+      <div class="rank-name">Роял Поларис</div>
       <div class="rank-req">
-        <strong>Өөрийн:</strong> Пауэр зэрэглэл (1,100,000 PV) ба дээш<br><br>
-        <strong>Нэмэлт шаардлага:</strong> 2 бүлэгт тус бүр 1 Мастер + бүлгийн нийт 330,000,000 PV ба дээш
+        <div class="rank-way" style="background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.3);">
+          <div class="way-badge" style="background:var(--gold);color:white;">Цорын ганц арга</div>
+          Багийн орлогоор <strong>330,000,000 PV</strong> цуглуулах<br>
+          <span class="ratio-tag">📊 2 тал: 66% / 34% харьцаатай байх</span><br>
+          + 2 талд тус 1 Polaris цолтой гишүүнтэй болсон байх
+        </div>
       </div>
-      <span class="pv-badge" style="background:var(--gold-light);color:#a07800;">🌟 1,100,000+ PV</span>
+      <span class="pv-badge" style="background:var(--gold-light);color:#a07800;">🌟 330,000,000 PV</span>
     </div>
 
     <div class="rank-card gold">
       <span class="rank-icon">👑</span>
-      <div class="rank-tag gold-tag">RP — Royal Polaris</div>
-      <div class="rank-name">Роял Поларис</div>
+      <div class="rank-tag gold-tag">CP — Crown Polaris</div>
+      <div class="rank-name">Краун Поларис</div>
       <div class="rank-req">
-        <strong>Өөрийн:</strong> Пауэр зэрэглэл (1,100,000 PV) ба дээш<br><br>
-        <strong>Нэмэлт шаардлага:</strong> 2 бүлэгт тус бүр 1 Поларис + бүлгийн нийт 1,100,000,000 PV ба дээш
+        <div class="rank-way" style="background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.3);">
+          <div class="way-badge" style="background:var(--gold);color:white;">Цорын ганц арга</div>
+          Багийн орлогоор <strong>1,100,000,000 PV</strong> цуглуулах<br>
+          <span class="ratio-tag">📊 2 тал: 66% / 34% харьцаатай байх</span><br>
+          + 2 талд тус 1 Royal Polaris цолтой гишүүнтэй болсон байх
+        </div>
       </div>
-      <span class="pv-badge" style="background:var(--gold-light);color:#a07800;">👑 1,100,000+ PV</span>
+      <span class="pv-badge" style="background:var(--gold-light);color:#a07800;">👑 1,100,000,000 PV</span>
     </div>
+
   </div>
 
   <div class="divider"></div>
@@ -308,43 +369,31 @@ main{max-width:1080px;margin:0 auto;padding:60px 32px 80px;}
       </thead>
       <tbody>
         <tr>
-          <td class="rank-label">Гишүүн (Member)</td>
+          <td class="rank-label">Гишүүн / Business / Power</td>
           <td><span class="pct-badge">20%</span></td>
           <td>—</td>
           <td>—</td>
         </tr>
         <tr>
-          <td class="rank-label">Старт (Start)</td>
-          <td><span class="pct-badge">20%</span></td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td class="rank-label">Бизнес (Business)</td>
-          <td><span class="pct-badge">20%</span></td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td class="rank-label">⭐ Директор (DT)</td>
-          <td><span class="pct-badge">20%</span></td>
-          <td><span class="pct-badge">20%</span></td>
-          <td><span class="pct-badge">6%</span></td>
-        </tr>
-        <tr>
-          <td class="rank-label">⭐⭐ Мастер (MS)</td>
+          <td class="rank-label">⭐ Мастер (MS)</td>
           <td><span class="pct-badge">20%</span></td>
           <td><span class="pct-badge">35%</span></td>
           <td><span class="pct-badge">6%</span></td>
         </tr>
         <tr>
-          <td class="rank-label">🌟 Поларис (PL)</td>
+          <td class="rank-label">⭐⭐ Поларис (PL)</td>
           <td><span class="pct-badge">20%</span></td>
           <td><span class="pct-badge gold">48%</span></td>
           <td><span class="pct-badge">6%</span></td>
         </tr>
         <tr>
-          <td class="rank-label">👑 Роял Поларис (RP)</td>
+          <td class="rank-label">🌟 Роял Поларис (RP)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td><span class="pct-badge big">60%</span></td>
+          <td><span class="pct-badge">6%</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">👑 Краун Поларис (CP)</td>
           <td><span class="pct-badge">20%</span></td>
           <td><span class="pct-badge big">60%</span></td>
           <td><span class="pct-badge">6%</span></td>
@@ -366,22 +415,22 @@ main{max-width:1080px;margin:0 auto;padding:60px 32px 80px;}
       </thead>
       <tbody>
         <tr>
-          <td class="rank-label">⭐ Пауэр / Директор</td>
-          <td>Өмнөх сар 110,000₮ (бодит худалдан авалт 55,000₮)</td>
-          <td><span class="max-val">4,000,000₮</span></td>
-        </tr>
-        <tr>
-          <td class="rank-label">⭐⭐ Мастер</td>
+          <td class="rank-label">⭐ Мастер (MS)</td>
           <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
           <td><span class="max-val">40,000,000₮</span></td>
         </tr>
         <tr>
-          <td class="rank-label">🌟 Поларис</td>
+          <td class="rank-label">⭐⭐ Поларис (PL)</td>
           <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
           <td><span class="max-val">80,000,000₮</span></td>
         </tr>
         <tr>
-          <td class="rank-label">👑 Роял Поларис</td>
+          <td class="rank-label">🌟 Роял Поларис (RP)</td>
+          <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
+          <td><span class="max-val">100,000,000₮</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">👑 Краун Поларис (CP)</td>
           <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
           <td><span class="max-val">100,000,000₮</span></td>
         </tr>
