@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хичээл 04 – Аппликейшн</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+  .top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}
+  .top-bar a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;}
+  .top-bar span{color:rgba(255,255,255,0.3);font-size:13px;}
+  .hero{background:linear-gradient(135deg,#0e2a31,#1a4a55);padding:60px 32px;text-align:center;}
+  .badge{display:inline-block;background:rgba(55,159,175,0.3);border:1px solid rgba(55,159,175,0.5);color:#5bbece;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px;}
+  .num{font-family:'Cormorant Garamond',serif;font-size:100px;font-weight:300;color:rgba(55,159,175,0.15);line-height:1;margin-bottom:-20px;}
+  h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;color:white;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.2;}
+  .sub{font-size:15px;color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto;line-height:1.7;}
+  .body{max-width:800px;margin:0 auto;padding:60px 32px;}
+  .video-box{background:var(--ink);border-radius:16px;overflow:hidden;margin-bottom:48px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;border:2px solid rgba(55,159,175,0.3);}
+  .video-box a{display:flex;flex-direction:column;align-items:center;gap:12px;color:white;text-decoration:none;width:100%;height:100%;justify-content:center;}
+  .play{width:72px;height:72px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.2s;}
+  .video-box a:hover .play{transform:scale(1.1);}
+  .sec{margin-bottom:48px;}
+  .sec h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--ink);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--teal-light);}
+  .sec p{font-size:15px;color:var(--ink-mid);line-height:1.8;margin-bottom:14px;}
+  .callout{background:var(--teal-light);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:16px 20px;margin:20px 0;font-size:14.5px;color:var(--ink);line-height:1.7;}
+  .callout strong{color:var(--teal-dark);}
+  .age-card{background:white;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px;display:grid;grid-template-columns:80px 1fr;gap:20px;align-items:start;}
+  .age-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--teal);line-height:1;}
+  .age-sub{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-top:2px;}
+  .age-title{font-weight:700;font-size:16px;color:var(--ink);margin-bottom:8px;}
+  .age-product{font-size:13px;color:var(--teal-dark);font-weight:600;background:var(--teal-light);display:inline-block;padding:3px 10px;border-radius:20px;margin-bottom:10px;}
+  .age-desc{font-size:13.5px;color:var(--ink-mid);line-height:1.7;}
+  .routine-block{background:var(--paper);border:1px solid var(--border);border-radius:14px;padding:20px;margin:20px 0;}
+  .routine-title{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .routine-steps{display:flex;gap:0;flex-wrap:wrap;}
+  .rs{display:flex;align-items:center;gap:6px;}
+  .rs-item{background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12.5px;font-weight:500;color:var(--ink);}
+  .rs-arrow{color:var(--ink-light);font-size:16px;padding:0 4px;}
+  .nav-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:32px;margin-top:48px;}
+  .btn{background:var(--teal);color:white;font-weight:600;font-size:14px;padding:12px 24px;border-radius:10px;text-decoration:none;}
+  .btn.ghost{background:white;color:var(--teal);border:1px solid var(--border);}
+  @media(max-width:600px){.age-card{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="../index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <a href="../index.html#education">Сургалт</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Хичээл 04</span>
+</div>
+<div class="hero">
+  <div class="badge">Хичээл 04 · Практик · Насаар ялгасан</div>
+  <div class="num">04</div>
+  <h1>Аппликейшн — Функциональ косметикийн хэрэглэх арга</h1>
+  <p class="sub">Липосомтой бүтээгдэхүүнийг арьсны насаар нь хэрхэн зөв хэрэглэх зааварчилгаа. 10-аад наснаас 50+ нас хүртэл.</p>
+</div>
+
+<div class="body">
+  <div class="video-box">
+    <a href="https://www.youtube.com/@%EA%B4%80%EB%A6%AC%ED%95%98%EB%8A%94%EB%82%A8%EC%9E%90%ED%99%A9%EC%A7%84%EC%9C%A1" target="_blank">
+      <div class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
+      <span style="font-size:14px;opacity:0.7;">관리하는 남자 황진옥 — YouTube-с үзэх</span>
+    </a>
+  </div>
+
+  <div class="sec">
+    <h2>Яагаад насаар ялгаж хэрэглэх хэрэгтэй вэ?</h2>
+    <p>Арьсны дермис нас ахих тусам хоосорч, нимгэрдэг. Нас залуу байх тусам дермис дүүрэн байдаг тул тэжээлийн тосны хэрэглээ харилцан адилгүй байна. Арьсны насаа ойлгож, тохирох бүтээгдэхүүн хэрэглэх нь хамгийн чухал.</p>
+    <div class="callout"><strong>Гол зарчим:</strong> Бүтээгдэхүүнийг арьсан дээр дарж, үрж шингээх биш — <strong>тавьж шингэхийг хүлээх</strong>. Маск хийж байгаатай адил зөөлөн түрхэж, 20 минут хүлээнэ.</div>
+  </div>
+
+  <div class="sec">
+    <h2>Насны бүлгийн зааварчилгаа</h2>
+
+    <div class="age-card">
+      <div><div class="age-num">10s</div><div class="age-sub">Өсвөр нас</div></div>
+      <div>
+        <div class="age-product">AROS Тонер · Change-Up</div>
+        <div class="age-title">Батга, тослог арьсны арчилгаа</div>
+        <div class="age-desc">AROS тонер болон Change-Up чийгшүүлэгч тосыг голлон хэрэглэнэ. Пилинг өдрүүдэд бага хэмжээний Vitamin C серум. Батгатай тохиолдолд оройд SkinBiome серумын бага хэмжээ нэмнэ.</div>
+      </div>
+    </div>
+
+    <div class="age-card">
+      <div><div class="age-num">20s</div><div class="age-sub">Залуу нас</div></div>
+      <div>
+        <div class="age-product">AROS Тонер + Серум</div>
+        <div class="age-title">Чийгшүүлэлт, эхний хөгшрөлтөөс сэргийлэлт</div>
+        <div class="age-desc">AROS тонер болон серумыг голлон хэрэглэнэ. Нүүрэнд хонхойсон хэсэг байвал зөвхөн оройд AROS тэжээлийн тос нэмнэ — дүүрсний дараа зогсоно. Тосыг хэт их хэрэглэвэл үсний уутанцрын үрэвсэл үүсч болно.</div>
+      </div>
+    </div>
+
+    <div class="age-card">
+      <div><div class="age-num">30s</div><div class="age-sub">Дунд нас</div></div>
+      <div>
+        <div class="age-product">AROS бүх бүтээгдэхүүн</div>
+        <div class="age-title">Идэвхтэй сайжруулалт эхлэх үе</div>
+        <div class="age-desc">AROS серийн бүх бүтээгдэхүүнийг ашиглаж болно. Нүүрний хэлбэр сайжирсны дараа тэжээлийн тосны хэрэглээг аажим багасгах эсвэл зогсоох хэрэгтэй.</div>
+      </div>
+    </div>
+
+    <div class="age-card">
+      <div><div class="age-num">40s</div><div class="age-sub">Насжилт</div></div>
+      <div>
+        <div class="age-product">AROS + REMOZAR хослол</div>
+        <div class="age-title">Дермис дүүргэх цаг</div>
+        <div class="age-desc">AROS болон REMOZAR хоёуланг хослуулан хэрэглэнэ. Дүүргэлтийн хугацаа 1 сар орчим шаардагдана. Тэжээлийн тосыг 7 хоногт 1 савнаас илүү хэрэглэх "нүүр хэлбэржүүлэх" аргыг эхлэнэ.</div>
+      </div>
+    </div>
+
+    <div class="age-card">
+      <div><div class="age-num">50+</div><div class="age-sub">Гүн сайжруулалт</div></div>
+      <div>
+        <div class="age-product">REMOZAR голлон</div>
+        <div class="age-title">Тогтмол хэрэглэл хамгийн чухал</div>
+        <div class="age-desc">REMOZAR серийн бүтээгдэхүүнийг голлон хэрэглэнэ. Дүүргэлтийн хугацаа 3 сар ба түүнээс дээш. Тогтвортой хэрэглэл хамгийн чухал — завсарлага авбал үр дүн буурна.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Өглөө / Оройн хэрэглэх дараалал</h2>
+    <div class="routine-block">
+      <div class="routine-title">☀️ Өглөө (хавар/зун)</div>
+      <div class="routine-steps">
+        <div class="rs"><div class="rs-item">Нүүр угаалт</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Тонер × 3-6 удаа</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Серум × 3-5 төрөл</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Нарны тос / BB</div></div>
+      </div>
+    </div>
+    <div class="routine-block">
+      <div class="routine-title">🌙 Өглөө (намар/өвөл)</div>
+      <div class="routine-steps">
+        <div class="rs"><div class="rs-item">Нүүр угаалт</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Тосон серум</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Чийгшүүлэгч серум</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Нарны тос / BB</div></div>
+      </div>
+    </div>
+    <div class="routine-block">
+      <div class="routine-title">🌙 Орой</div>
+      <div class="routine-steps">
+        <div class="rs"><div class="rs-item">Нүүр угаалт (массаж)</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">SkinBiome серум</div><div class="rs-arrow">→</div></div>
+        <div class="rs"><div class="rs-item">Тэжээлийн тос (хангалттай хэмжээ)</div></div>
+      </div>
+    </div>
+    <div class="callout"><strong>Чухал:</strong> Бүтээгдэхүүн тус бүр шингэхийг <strong>20 минут</strong> хүлээнэ. Дарж, үрж шингээх биш — зөөлөн тавьж үлдээнэ.</div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="lesson3.html" class="btn ghost">← Хичээл 03</a>
+    <a href="masterclass.html" class="btn">Мастер класс →</a>
+  </div>
+</div>
+</body>
+</html>
