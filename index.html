@@ -784,11 +784,15 @@
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     border: 1px solid rgba(55,159,175,0.3);
+    aspect-ratio: 16/9;
+    position: relative;
   }
-  .vs-player video {
+  .vs-player iframe {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    display: block;
-    border-radius: 16px;
+    height: 100%;
+    border: none;
   }
 
 </style>
@@ -897,14 +901,14 @@
     <p class="vs-label">✦ Skindox Mongolia</p>
     <h2 class="vs-title">Бидний тухай</h2>
     <div class="vs-player">
-      <video 
-        controls 
-        preload="metadata"
-        poster=""
-        style="width:100%;border-radius:16px;display:block;">
-        <source src="uploads/hero-video.mp4" type="video/mp4">
-        Таны браузер видео дэмжихгүй байна.
-      </video>
+      <iframe
+        src="https://www.youtube.com/embed/Yd2yPCKZMUQ"
+        title="Skindox Mongolia"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="width:100%;aspect-ratio:16/9;display:block;border:none;">
+      </iframe>
     </div>
   </div>
 </section>
