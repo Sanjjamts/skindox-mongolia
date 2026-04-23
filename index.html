@@ -36,7 +36,7 @@
   /* ── NAV ── */
   nav {
     position: fixed;
-    top: 44px;
+    top: 0;
     left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(12px);
@@ -96,7 +96,7 @@
 
   /* ── HERO ── */
   .hero {
-    margin-top: 104px;
+    margin-top: 60px;
     min-height: calc(100vh - 104px);
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -370,23 +370,6 @@
   }
 
   /* ── ANNOUNCE STRIP ── */
-  .announce-strip {
-    background: var(--teal);
-    color: white;
-    padding: 10px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    font-size: 13px;
-    font-weight: 500;
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 101;
-    height: 44px;
-  }
-  .announce-strip a { color: white; text-decoration: underline; text-underline-offset: 3px; }
-
   /* ── PRODUCTS SECTION ── */
   .products-section { background: white; }
   .products-grid {
@@ -773,16 +756,10 @@
 </head>
 <body>
 
-<!-- Announce strip -->
-<div class="announce-strip">
-  🔔 Сарын идэвхжилтийн шаардлага: бүх гишүүд 50/40 захиалгаар хийсэн байх — <a href="#notice">дэлгэрэнгүй</a>
-</div>
-
 <!-- Nav -->
 <nav>
   <a href="#" class="nav-logo">
-    <img src="uploads/logo-stamp.png" alt="SK" style="height:34px;width:34px;object-fit:contain;border-radius:50%;">
-    <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--ink);font-weight:400;">SKINDOX+</span>
+    <img src="uploads/logo-banner.png" alt="SKINDOX+" style="height:32px;width:auto;object-fit:contain;">
   </a>
   <ul class="nav-links">
     <li><a href="#products">Бүтээгдэхүүн</a></li>
