@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хичээл 01 – Арьс ба Гоо сайхны бүтээгдэхүүний парадокс</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec; }
+  * { box-sizing:border-box;margin:0;padding:0; }
+  body { background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink); }
+
+  .top-bar {
+    background:var(--ink);
+    padding:12px 32px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .top-bar a { color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px; }
+  .top-bar a:hover { color:white; }
+  .top-bar span { color:rgba(255,255,255,0.3);font-size:13px; }
+
+  .lesson-hero {
+    background:linear-gradient(135deg,#0e2a31,#1a4a55);
+    padding:60px 32px;
+    text-align:center;
+  }
+  .lesson-badge {
+    display:inline-block;background:rgba(55,159,175,0.3);border:1px solid rgba(55,159,175,0.5);
+    color:var(--teal-light);font-size:11px;font-weight:700;letter-spacing:0.12em;
+    text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px;
+  }
+  .lesson-num-big {
+    font-family:'Cormorant Garamond',serif;font-size:100px;font-weight:300;
+    color:rgba(55,159,175,0.15);line-height:1;margin-bottom:-20px;
+  }
+  .lesson-title {
+    font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;
+    color:white;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.2;
+  }
+  .lesson-sub { font-size:15px;color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto;line-height:1.7; }
+
+  .lesson-body { max-width:800px;margin:0 auto;padding:60px 32px; }
+
+  /* Video embed placeholder */
+  .video-box {
+    background:var(--ink);
+    border-radius:16px;overflow:hidden;margin-bottom:48px;
+    aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:16px;
+    border:2px solid rgba(55,159,175,0.3);
+  }
+  .video-box a {
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    color:white;text-decoration:none;width:100%;height:100%;justify-content:center;
+  }
+  .play-btn {
+    width:72px;height:72px;background:var(--teal);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform 0.2s,box-shadow 0.2s;
+  }
+  .video-box a:hover .play-btn { transform:scale(1.1);box-shadow:0 8px 24px rgba(55,159,175,0.5); }
+
+  /* Content blocks */
+  .content-section { margin-bottom: 48px; }
+  .content-section h2 {
+    font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;
+    color:var(--ink);margin-bottom:16px;padding-bottom:12px;
+    border-bottom:2px solid var(--teal-light);
+  }
+  .content-section h3 {
+    font-size:17px;font-weight:700;color:var(--teal-dark);margin:24px 0 10px;
+  }
+  .content-section p {
+    font-size:15px;color:var(--ink-mid);line-height:1.8;margin-bottom:14px;
+  }
+
+  .key-point {
+    background:var(--teal-light);border-left:4px solid var(--teal);
+    border-radius:0 12px 12px 0;padding:16px 20px;margin:20px 0;
+    font-size:14.5px;color:var(--ink);line-height:1.7;
+  }
+  .key-point strong { color:var(--teal-dark); }
+
+  .steps-list { list-style:none;margin:16px 0; }
+  .steps-list li {
+    display:flex;gap:16px;align-items:flex-start;
+    background:white;border:1px solid var(--border);border-radius:12px;
+    padding:16px 20px;margin-bottom:10px;
+  }
+  .step-n {
+    min-width:32px;height:32px;background:var(--teal);color:white;
+    border-radius:8px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:13px;flex-shrink:0;
+  }
+  .step-text { font-size:14px;color:var(--ink-mid);line-height:1.65; }
+  .step-text strong { color:var(--ink);display:block;margin-bottom:3px; }
+
+  .nav-bottom {
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--border);padding-top:32px;margin-top:48px;
+  }
+  .nav-btn {
+    background:var(--teal);color:white;font-weight:600;font-size:14px;
+    padding:12px 24px;border-radius:10px;text-decoration:none;
+    transition:background 0.15s;
+  }
+  .nav-btn:hover { background:var(--teal-dark); }
+  .nav-btn.ghost { background:white;color:var(--teal);border:1px solid var(--border); }
+  .nav-btn.ghost:hover { border-color:var(--teal); }
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 48px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="../index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <a href="../index.html#education">Сургалт</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Хичээл 01</span>
+</div>
+
+<div class="lesson-hero">
+  <div class="lesson-badge">Хичээл 01 · Онол</div>
+  <div class="lesson-num-big">01</div>
+  <h1 class="lesson-title">Арьс ба Гоо сайхны бүтээгдэхүүний парадокс</h1>
+  <p class="lesson-sub">COSDOX гэдэг нь Cosmetic + Paradox. Яагаад сайн косметик хэрэглэсэн ч арьс хэвэндээ үлддэг вэ? Хормесисийн зарчим ба Skindox-ийн философи.</p>
+</div>
+
+<div class="lesson-body">
+
+  <!-- Video -->
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/NEF5Jw_tfAc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <!-- 2. Hormesis -->
+  <div class="content-section">
+    <h2>Хормесис (HORMESIS) гэж юу вэ?</h2>
+    <p>Хормесис нь Грек хэлнэс "өдөөгч" буюу "идэвхжүүлэгч" гэсэн утгатай. Хортой биш хэмжээний хөнгөн стресс, бага хэмжээний хор, физик, химийн, биологийн янз бүрийн аргаар биед өдөөлт өгөхөд:</p>
+    <ul class="steps-list">
+      <li>
+        <div class="step-n">✓</div>
+        <div class="step-text"><strong>Дархлааны үйл ажиллагаа нэмэгдэнэ</strong>Биеийн хамгаалах чадвар идэвхжинэ</div>
+      </li>
+      <li>
+        <div class="step-n">✓</div>
+        <div class="step-text"><strong>Өвчин буурна</strong>Гадны цочрол нь эрүүлжүүлэх нөлөөтэй болно</div>
+      </li>
+      <li>
+        <div class="step-n">✓</div>
+        <div class="step-text"><strong>Амьдрах хугацаа уртасна</strong>Зохистой стресс бол эрүүл амьдралын хэсэг</div>
+      </li>
+    </ul>
+    <p>Skindox нь энэ Хормесисийн зарчмыг арьсанд хэрэглэж, <strong>сайжруулагч косметик</strong> (개선용 화장품) бий болгосон.</p>
+  </div>
+
+  <!-- 3. Нүүрний хөгшрөлт -->
+  <div class="content-section">
+    <h2>Нүүрний хөгшрөлтийн жинхэнэ шалтгаан</h2>
+    <p>Косметик үйлдвэрлэл нь нүүрний арьс сайжрах асуудлыг арьсны гадаргуу болон дотоод давхаргын асуудлаар харж байсан. Гэвч жинхэнэ шалтгаан нь өөр:</p>
+    <ul class="steps-list">
+      <li>
+        <div class="step-n">1</div>
+        <div class="step-text"><strong>Нүүрний булчингийн сулрал</strong>Нүүр нь 43-100 жижиг булчингаас бүрддэг. Нас ахих тусам, ялангуяа цэвэршилтийн үеэс хойш булчин хурдацтай суларч, нүүр унжих эхлэнэ.</div>
+      </li>
+      <li>
+        <div class="step-n">2</div>
+        <div class="step-text"><strong>Лимфийн эргэлт удааширна</strong>Нүүрэнд лимф хуримтлагдаж, насжилтын нүүрний хэлбэр алдагдахад хүргэнэ. Чих, хоолойн орчмын лимфийн зангилаагаар урсгал удааших нь гол шалтгаан.</div>
+      </li>
+      <li>
+        <div class="step-n">3</div>
+        <div class="step-text"><strong>Чийгийн алдагдал</strong>Арьсны эвэрлэг давхарга 15-25 давхарга байдаг бөгөөд байнга ууршдаг. Чийг тогтвортой барих нь арьсны эрүүл байдлын суурь.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 4. Яг юунд анхаарах вэ -->
+  <div class="content-section">
+    <h2>Зөв арьс арчилгааны 5 дадал</h2>
+    <p>Нүүрний хөгшрөлтийг удаашруулахын тулд дараах 5 зүйлийг тогтмол хийгээрэй:</p>
+    <ul class="steps-list">
+      <li>
+        <div class="step-n">1</div>
+        <div class="step-text"><strong>Нүүр цэвэрлэгээ — Массаж хэлбэрээр</strong>Зүгээр угаах биш, 5-10 минут хөөстэй массаж хийх. Эвэрлэг давхаргад чийг нэвтрүүлж, лимф болон булчинг идэвхжүүлнэ.</div>
+      </li>
+      <li>
+        <div class="step-n">2</div>
+        <div class="step-text"><strong>Өдөр тутмын гуужуулалт (Daily Peeling)</strong>Хуучин эвэрлэг давхарга гуужихад шинэ эс үүсэх дохио явагдана. Change-Up гуужуулалтын маск өдөр бүр хэрэглэхэд тохиромжтой найрлагатай.</div>
+      </li>
+      <li>
+        <div class="step-n">3</div>
+        <div class="step-text"><strong>Булчингийн дасгал</strong>Нүүрний 100 гаруй булчинг өдөрт 10 минут дасгал хийснээр нүүр унжихаас сэргийлнэ.</div>
+      </li>
+      <li>
+        <div class="step-n">4</div>
+        <div class="step-text"><strong>Dove (Ундааны чийгшүүлэлт)</strong>Арьсны гадаргуудаа чийгтэй байлгах онцгой арга.</div>
+      </li>
+      <li>
+        <div class="step-n">5</div>
+        <div class="step-text"><strong>Усан будалт (Water Makeup)</strong>Тонерыг 3-6 удаа давтаж түрхэж, арьсыг бүрэн чийгшүүлснийхээ дараа нарны хамгаалалт/BB крем хэрэглэнэ.</div>
+      </li>
+    </ul>
+    <div class="key-point">
+      <strong>Санах зүйл:</strong> Өнөөдрийн нүүрнийхээ зургийг авч хадгалаарай. 1 сарын дараа өөрчлөлтийг харна. 50 насанд 1 сар, 60 насанд 2 сарын тогтмол дадлаар үнэхээр гайхалтай өөрчлөлт гарна.
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-bottom">
+    <a href="../index.html#education" class="nav-btn ghost">← Сургалт руу буцах</a>
+    <a href="lesson2.html" class="nav-btn">Дараагийн хичээл: Нүүр угаалт →</a>
+  </div>
+</div>
+
+</body>
+</html>
