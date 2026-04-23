@@ -36,7 +36,7 @@
   /* ── NAV ── */
   nav {
     position: sticky; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.97);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: 0 32px;
@@ -44,6 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0;
   }
 
   .nav-logo {
@@ -94,7 +95,7 @@
   /* ── HERO ── */
   .hero {
     margin-top: 0;
-    min-height: 92vh;
+    min-height: calc(100vh - 104px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
@@ -185,28 +186,34 @@
   /* Slide arrows */
   .slide-arrows {
     position: absolute;
-    bottom: 24px;
-    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
     z-index: 3;
     display: flex;
-    gap: 8px;
+    justify-content: space-between;
+    padding: 0 16px;
+    pointer-events: none;
   }
   .slide-arrow {
-    width: 36px; height: 36px;
+    width: 40px; height: 40px;
     background: rgba(255,255,255,0.15);
-    border: 1.5px solid rgba(255,255,255,0.3);
+    border: 1.5px solid rgba(255,255,255,0.35);
     border-radius: 50%;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    pointer-events: all;
+    line-height: 1;
   }
   .slide-arrow:hover {
-    background: rgba(255,255,255,0.28);
-    border-color: rgba(255,255,255,0.6);
-    transform: scale(1.08);
+    background: rgba(255,255,255,0.30);
+    border-color: white;
+    transform: scale(1.1);
   }
 
   .hero-left::after {
@@ -294,8 +301,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 32px 32px;
-    gap: 24px;
+    padding: 24px 32px;
+    gap: 20px;
     position: relative;
     overflow: hidden;
   }
@@ -371,6 +378,8 @@
     gap: 16px;
     font-size: 13px;
     font-weight: 500;
+    position: relative;
+    z-index: 99;
   }
   .announce-strip a { color: white; text-decoration: underline; text-underline-offset: 3px; }
 
@@ -759,7 +768,7 @@
 <body>
 
 <!-- Announce strip -->
-<div class="announce-strip" style="position:sticky;top:0;z-index:101;">
+<div class="announce-strip">
   🔔 Сарын идэвхжилтийн шаардлага: бүх гишүүд 50/40 захиалгаар хийсэн байх — <a href="#notice">дэлгэрэнгүй</a>
 </div>
 
