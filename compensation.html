@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хөнгөлөлтийн төлөвлөгөө — Skindox Mongolia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--teal-mid:#5bbece;
+  --ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;
+  --paper:#f8fafb;--white:#fff;--border:#d4e8ec;
+  --gold:#c9a84c;--gold-light:#fff8e0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+
+.top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}
+.top-bar a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;}
+.top-bar a:hover{color:white;}
+.top-bar span{color:rgba(255,255,255,0.3);font-size:13px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0e2a31,#1a4a55);padding:64px 32px;text-align:center;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:14px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:400;color:white;margin-bottom:14px;line-height:1.1;}
+.hero p{font-size:15px;color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto;line-height:1.7;}
+
+/* SECTION */
+main{max-width:1080px;margin:0 auto;padding:60px 32px 80px;}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:500;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.sec-sub{font-size:14.5px;color:var(--ink-mid);line-height:1.8;max-width:680px;margin-bottom:40px;}
+.divider{height:2px;background:linear-gradient(90deg,var(--teal),transparent);margin:56px 0;}
+
+/* TERMS */
+.terms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
+.term-card{background:white;border:1px solid var(--border);border-radius:14px;padding:20px;}
+.term-tag{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;}
+.term-name{font-weight:700;font-size:16px;color:var(--ink);margin-bottom:6px;}
+.term-desc{font-size:13px;color:var(--ink-mid);line-height:1.6;}
+
+/* RANK CARDS */
+.ranks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px;}
+.rank-card{background:white;border:1px solid var(--border);border-radius:16px;padding:24px;position:relative;overflow:hidden;}
+.rank-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--teal);}
+.rank-card.gold::before{background:linear-gradient(90deg,var(--gold),#e8c870);}
+.rank-card.platinum::before{background:linear-gradient(90deg,#8a9bb0,#b8cad6);}
+.rank-icon{font-size:32px;margin-bottom:10px;display:block;}
+.rank-tag{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+.rank-tag.gold-tag{color:var(--gold);}
+.rank-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);margin-bottom:12px;}
+.rank-req{font-size:13.5px;color:var(--ink-mid);line-height:1.7;}
+.rank-req strong{color:var(--ink);}
+.pv-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-light);color:var(--teal-dark);font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:10px;}
+
+/* 기본 회원 */
+.member-grades{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px;}
+.mg-card{background:white;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;}
+.mg-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:var(--teal);line-height:1;margin-bottom:6px;}
+.mg-name{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px;}
+.mg-en{font-size:11px;color:var(--ink-light);margin-bottom:8px;}
+.mg-pv{font-size:12px;color:var(--ink-mid);}
+
+/* BONUS TABLE */
+.bonus-table-wrap{background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:32px;}
+.bonus-table-wrap h3{background:var(--teal);color:white;padding:16px 24px;font-size:15px;font-weight:700;}
+.bonus-table{width:100%;border-collapse:collapse;}
+.bonus-table th{background:var(--paper);padding:12px 20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-light);text-align:left;border-bottom:1px solid var(--border);}
+.bonus-table td{padding:14px 20px;font-size:14px;color:var(--ink-mid);border-bottom:1px solid var(--border);}
+.bonus-table tr:last-child td{border-bottom:none;}
+.bonus-table tr:hover td{background:var(--paper);}
+.rank-label{font-weight:700;color:var(--ink);}
+.pct-badge{font-weight:700;color:var(--teal-dark);background:var(--teal-light);padding:3px 12px;border-radius:20px;font-size:13px;}
+.pct-badge.gold{background:var(--gold-light);color:#a07800;}
+.pct-badge.big{background:#e0f5ff;color:#005a8a;}
+
+/* STEP CARDS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;}
+.step-card{background:white;border:1px solid var(--border);border-radius:16px;padding:28px;}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;color:var(--teal);opacity:0.4;line-height:1;margin-bottom:10px;}
+.step-title{font-weight:700;font-size:17px;color:var(--ink);margin-bottom:10px;}
+.step-desc{font-size:13.5px;color:var(--ink-mid);line-height:1.7;}
+
+/* MAX PAY TABLE */
+.max-table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.max-table th{background:var(--teal);color:white;padding:13px 18px;font-size:13px;font-weight:600;text-align:left;}
+.max-table td{padding:13px 18px;font-size:14px;color:var(--ink-mid);border-bottom:1px solid var(--border);}
+.max-table tr:last-child td{border-bottom:none;}
+.max-table tr:nth-child(even) td{background:var(--paper);}
+.max-val{font-weight:700;color:var(--teal-dark);}
+
+/* CALLOUT */
+.callout{background:var(--teal-light);border-left:4px solid var(--teal);padding:16px 20px;border-radius:0 12px 12px 0;margin:20px 0;font-size:14px;color:var(--ink);line-height:1.7;}
+.callout strong{color:var(--teal-dark);}
+.warning{background:#fff8e1;border:1px solid #f0c040;border-radius:12px;padding:16px 20px;margin:20px 0;font-size:13.5px;color:#7a5500;}
+
+@media(max-width:768px){
+  .terms-grid,.ranks-grid,.member-grades,.steps{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+}
+
+  /* CONTRACT LIST */
+  .contract-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .contract-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.15s;
+  }
+  .contract-item:hover { border-color: var(--teal); }
+  .contract-item.highlight { border-left: 4px solid var(--teal); background: var(--teal-light); }
+  .ci-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-light);
+    min-width: 52px;
+    padding-top: 3px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .ci-title { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .ci-desc { font-size: 13.5px; color: var(--ink-mid); line-height: 1.7; }
+  .ci-desc strong { color: var(--teal-dark); }
+
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Хөнгөлөлтийн төлөвлөгөө</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Skindox Mongolia · Compensation Plan</p>
+  <h1>Хөнгөлөлтийн төлөвлөгөө</h1>
+  <p>PV оноо цуглуулж BV-оор цалин авна. Цолоо ахиулж орлогоо нэмэгдүүл.</p>
+</div>
+
+<main>
+
+  <!-- НЭРШЛИЙН ТАЙЛБАР -->
+  <div class="sec-label">Үндсэн нэршлүүд</div>
+  <h2 class="sec-title">Нэр томьёо</h2>
+  <div class="terms-grid">
+    <div class="term-card">
+      <div class="term-tag">PV</div>
+      <div class="term-name">Point Value</div>
+      <div class="term-desc">Цол тодорхойлоход ашигладаг оноо. НӨАТ орсон бүтээгдэхүүн худалдан авсан дүнгээр тооцно.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-tag">BV</div>
+      <div class="term-name">Bonus Value</div>
+      <div class="term-desc">Цалин тооцоход ашигладаг бонус оноо. Бүх төлбөр BV-аас тооцогдоно.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-tag">Идэвхтэй гишүүн</div>
+      <div class="term-name">Active Member</div>
+      <div class="term-desc">Нийлмэл гүйцэтгэл 11 тэрбум PV-аас дээш байгаа гишүүн.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-tag">Дэмжигч</div>
+      <div class="term-name">Спонсор</div>
+      <div class="term-desc">Тухайн гишүүний бизнесийг дэмжиж буй шууд дээд цолтой гишүүн.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-tag">Санал болгогч</div>
+      <div class="term-name">Рефера</div>
+      <div class="term-desc">Шинэ гишүүнийг шууд бүртгүүлсэн гишүүн.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-tag">Том/Жижиг бүлэг</div>
+      <div class="term-name">Их/Бага гүйцэтгэл</div>
+      <div class="term-desc">Бүлгийн гүйцэтгэлийн том ба жижиг хэсэг. Жижиг хэсгийн BV-аар цалин тооцно.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ГИШҮҮНИЙ ЗЭРЭГЛЭЛ -->
+  <div class="sec-label">Гишүүний зэрэглэл</div>
+  <h2 class="sec-title">Үндсэн 4 зэрэглэл</h2>
+  <p class="sec-sub">Бүтээгдэхүүн худалдан авах хэмжээнд тулгуурлан зэрэглэл тогтоогдоно.</p>
+
+  <div class="member-grades">
+    <div class="mg-card">
+      <div class="mg-num">MB</div>
+      <div class="mg-name">Гишүүн</div>
+      <div class="mg-en">Member</div>
+      <div class="mg-pv">Өөрийн PV 110,000 хүртэл</div>
+    </div>
+    <div class="mg-card">
+      <div class="mg-num">ST</div>
+      <div class="mg-name">Старт</div>
+      <div class="mg-en">Start</div>
+      <div class="mg-pv">Өөрийн PV 110,000 ба дээш</div>
+    </div>
+    <div class="mg-card">
+      <div class="mg-num">BS</div>
+      <div class="mg-name">Бизнес</div>
+      <div class="mg-en">Business</div>
+      <div class="mg-pv">Өөрийн PV 330,000 ба дээш</div>
+    </div>
+    <div class="mg-card">
+      <div class="mg-num">PW</div>
+      <div class="mg-name">Пауэр</div>
+      <div class="mg-en">Power</div>
+      <div class="mg-pv">Өөрийн PV 1,100,000 ба дээш</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ЦОЛНЫ ШААРДЛАГА -->
+  <div class="sec-label">Цолны шаардлага</div>
+  <h2 class="sec-title">4 үндсэн цол</h2>
+  <p class="sec-sub">Цол ахиулахад өөрийн PV, шууд санал болгосон гишүүд, бүлгийн нийт гүйцэтгэл зэрэг шаардлагуудыг хангасан байх ёстой.</p>
+
+  <div class="ranks-grid">
+    <div class="rank-card">
+      <span class="rank-icon">⭐</span>
+      <div class="rank-tag">DT — Director</div>
+      <div class="rank-name">Директор</div>
+      <div class="rank-req">
+        <strong>Өөрийн:</strong> Старт зэрэглэл (110,000 PV) ба дээш<br><br>
+        <strong>Нэмэлт шаардлага:</strong> Старт зэрэглэлтэй шууд санал болгосон 3 гишүүн + бүлгийн нийт 3,300,000 PV<br>
+        <em>Эсвэл</em> өөрийн худалдан авалт 2,200,000 PV ба дээш
+      </div>
+      <span class="pv-badge">🏆 110,000+ PV</span>
+    </div>
+
+    <div class="rank-card">
+      <span class="rank-icon">⭐⭐</span>
+      <div class="rank-tag">MS — Master</div>
+      <div class="rank-name">Мастер</div>
+      <div class="rank-req">
+        <strong>Өөрийн:</strong> Бизнес зэрэглэл (330,000 PV) ба дээш<br><br>
+        <strong>Нэмэлт шаардлага:</strong> 2 бүлэгт тус бүр 1 Директор + бүлгийн нийт 33,000,000 PV ба дээш
+      </div>
+      <span class="pv-badge">🏆 330,000+ PV</span>
+    </div>
+
+    <div class="rank-card gold">
+      <span class="rank-icon">🌟</span>
+      <div class="rank-tag gold-tag">PL — Polaris</div>
+      <div class="rank-name">Поларис</div>
+      <div class="rank-req">
+        <strong>Өөрийн:</strong> Пауэр зэрэглэл (1,100,000 PV) ба дээш<br><br>
+        <strong>Нэмэлт шаардлага:</strong> 2 бүлэгт тус бүр 1 Мастер + бүлгийн нийт 330,000,000 PV ба дээш
+      </div>
+      <span class="pv-badge" style="background:var(--gold-light);color:#a07800;">🌟 1,100,000+ PV</span>
+    </div>
+
+    <div class="rank-card gold">
+      <span class="rank-icon">👑</span>
+      <div class="rank-tag gold-tag">RP — Royal Polaris</div>
+      <div class="rank-name">Роял Поларис</div>
+      <div class="rank-req">
+        <strong>Өөрийн:</strong> Пауэр зэрэглэл (1,100,000 PV) ба дээш<br><br>
+        <strong>Нэмэлт шаардлага:</strong> 2 бүлэгт тус бүр 1 Поларис + бүлгийн нийт 1,100,000,000 PV ба дээш
+      </div>
+      <span class="pv-badge" style="background:var(--gold-light);color:#a07800;">👑 1,100,000+ PV</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- БОНУСЫН БҮТЭЦ -->
+  <div class="sec-label">Цалингийн бүтэц</div>
+  <h2 class="sec-title">3 үе шатны маркетинг</h2>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Шууд борлуулалт + Дэмжлэгийн маркетинг</div>
+      <div class="step-desc">Шинэ гишүүн бүртгэх болон бүтээгдэхүүн борлуулах замаар санал болгох болон дэмжих бонус авна. Директороос дээш цолтойд хамаарна.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">Дахин худалдан авалтын бинари маркетинг</div>
+      <div class="step-desc">Бүлгийн жижиг гүйцэтгэлийн BV-н 40%-ийг сар бүр авна. Сарын хязгаар цолоор тодорхойлогдоно.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">Төв ажиллуулах + Промоушн</div>
+      <div class="step-desc">Төв дэлгүүр нээсэн гишүүнд талбайн хэмжээнд тулгуурлан сар бүр дэмжлэгийн мөнгө олгоно.</div>
+    </div>
+  </div>
+
+  <!-- БОНУСЫН ХУВЬ ХЭМЖЭЭ -->
+  <div class="bonus-table-wrap">
+    <h3>💰 Цолоор ялгасан бонусын хувь</h3>
+    <table class="bonus-table">
+      <thead>
+        <tr>
+          <th>Цол</th>
+          <th>Санал болгох бонус</th>
+          <th>Цолны зөрүү бонус</th>
+          <th>Ижил цолны бонус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-label">Гишүүн (Member)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td class="rank-label">Старт (Start)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td class="rank-label">Бизнес (Business)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td class="rank-label">⭐ Директор (DT)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td><span class="pct-badge">20%</span></td>
+          <td><span class="pct-badge">6%</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">⭐⭐ Мастер (MS)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td><span class="pct-badge">35%</span></td>
+          <td><span class="pct-badge">6%</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">🌟 Поларис (PL)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td><span class="pct-badge gold">48%</span></td>
+          <td><span class="pct-badge">6%</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">👑 Роял Поларис (RP)</td>
+          <td><span class="pct-badge">20%</span></td>
+          <td><span class="pct-badge big">60%</span></td>
+          <td><span class="pct-badge">6%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ДЭМЖЛЭГИЙН БОНУСЫН ХЯЗГААР -->
+  <div class="bonus-table-wrap">
+    <h3>📊 Дэмжлэгийн бонусын сарын хязгаар (Step 2)</h3>
+    <table class="max-table">
+      <thead>
+        <tr>
+          <th>Цол</th>
+          <th>Идэвхжилтийн шаардлага</th>
+          <th>Сарын дээд хязгаар</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-label">⭐ Пауэр / Директор</td>
+          <td>Өмнөх сар 110,000₮ (бодит худалдан авалт 55,000₮)</td>
+          <td><span class="max-val">4,000,000₮</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">⭐⭐ Мастер</td>
+          <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
+          <td><span class="max-val">40,000,000₮</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">🌟 Поларис</td>
+          <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
+          <td><span class="max-val">80,000,000₮</span></td>
+        </tr>
+        <tr>
+          <td class="rank-label">👑 Роял Поларис</td>
+          <td>Өмнөх сар 110,000₮ (бодит 55,000₮)</td>
+          <td><span class="max-val">100,000,000₮</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- АНХААРУУЛГА -->
+  <div class="callout">
+    <strong>Дэмжлэгийн бонусын тооцоо (Step 2):</strong><br>
+    Бүлгийн жижиг гүйцэтгэлийн BV-н <strong>40%</strong> — сар бүрийн 7-нд олгоно (амралт/баярын өдөр таарвал дараагийн ажлын өдөр). Идэвхжилт хангаагүй тохиолдолд хуримтлагдсан иш хэмжээ устана.
+  </div>
+
+  <div class="warning">
+    ⚠️ <strong>Поларис болон Роял Поларис:</strong> Ижил цолны бонус авахын тулд өмнөх сарын жижиг гүйцэтгэл — Поларис 11,000,000 PV, Роял Поларис 33,000,000 PV хангасан байх шаардлагатай. Хангаагүй тохиолдолд дээш цол руу шилжнэ.
+  </div>
+
+  <!-- ТӨВ ДЭМЖЛЭГ -->
+  <div class="divider"></div>
+  <div class="sec-label">Step 3 — Төв дэмжлэг</div>
+  <h2 class="sec-title">Төв ажиллуулах дэмжлэгийн мөнгө</h2>
+  <p class="sec-sub">Төв дэлгүүр нээсэн гишүүнд талбайн хэмжээнд тулгуурлан сар бүр дэмжлэгийн мөнгө олгоно.</p>
+
+  <div class="bonus-table-wrap">
+    <h3>🏪 Талбайн хэмжээний дэмжлэг</h3>
+    <table class="max-table">
+      <thead>
+        <tr><th>Талбай</th><th>Сарын дээд дэмжлэг</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>20 кв.м ба дээш</td><td><span class="max-val">1,000,000₮</span></td></tr>
+        <tr><td>30 кв.м ба дээш</td><td><span class="max-val">2,000,000₮</span></td></tr>
+        <tr><td>40 кв.м ба дээш</td><td><span class="max-val">3,000,000₮</span></td></tr>
+        <tr><td>50 кв.м ба дээш</td><td><span class="max-val">5,000,000₮</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Гэр бүлийн хайр бонус:</strong> Роял Поларис цолтой анхны 20 гишүүнд нэг удаа <strong>50,000,000₮</strong> олгоно (сарын нийт борлуулалт 10,000,000,000₮ хүрснээс хойш 10 удаа хуваан олгоно).
+  </div>
+
+
+  <div class="divider"></div>
+
+  <!-- ГЭРЭЭНИЙ НЭР ТОМЬЁО -->
+  <div class="sec-label">Гишүүнчлэлийн гэрээ</div>
+  <h2 class="sec-title">Нэр томьёо ба тодорхойлолт</h2>
+  <p class="sec-sub">Скиндокс Монголиагийн гишүүнчлэлийн гэрээнд хэрэглэгдэх үндсэн нэр томьёонуудын тайлбар.</p>
+
+  <div class="contract-list">
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.1</div>
+      <div class="ci-body">
+        <div class="ci-title">Гишүүн</div>
+        <div class="ci-desc">Скиндокс Монголиатай хамтран ажиллахаар бүртгүүлсэн хувийн дугаарлалт бүхий хүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.2</div>
+      <div class="ci-body">
+        <div class="ci-title">ID</div>
+        <div class="ci-desc">Гишүүнээр бүртгүүлсэн хүнд Скиндокс Монголиагаас олгож буй гишүүний хувийн дугаар.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.6</div>
+      <div class="ci-body">
+        <div class="ci-title">Уригч</div>
+        <div class="ci-desc">Скиндокс Монголиагийн гишүүнээр элсэх хүсэлтэй хүнийг урьж гишүүн болгосон хүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.7</div>
+      <div class="ci-body">
+        <div class="ci-title">Спонсор</div>
+        <div class="ci-desc">Скиндокс Монголиагийн гишүүн бөгөөд элсэх хүсэлтэй хүнийг урьсан болон урьж гишүүн болгосон хүний дээр байгаа хүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item highlight">
+      <div class="ci-num">1.1.16</div>
+      <div class="ci-body">
+        <div class="ci-title">PV (Point Value)</div>
+        <div class="ci-desc">Борлуулалтын дүнг БНСУ-ын вон /KRW/-оор илэрхийлсэн дүн. <strong>1 PV = 1 KRW = 2.64₮</strong> (тогтмол ханш, өөрчлөгдөж болно).</div>
+      </div>
+    </div>
+
+    <div class="contract-item highlight">
+      <div class="ci-num">1.1.17</div>
+      <div class="ci-body">
+        <div class="ci-title">BV (Bonus Value)</div>
+        <div class="ci-desc">Урамшууллаар олгох бонусыг илэрхийлэх утга. <strong>1 BV = 1 KRW = 2.64₮</strong> (тогтмол ханш, өөрчлөгдөж болно).</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.9–1.1.10</div>
+      <div class="ci-body">
+        <div class="ci-title">Гишүүний зэрэглэл</div>
+        <div class="ci-desc">
+          <strong>Энгийн гишүүн (Member):</strong> 0 – 99,000 PV<br>
+          <strong>Business гишүүн:</strong> 99,000 – 1,099,999 PV<br>
+          <strong>Power гишүүн:</strong> 1,100,000 – 2,199,999 PV
+        </div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.12</div>
+      <div class="ci-body">
+        <div class="ci-title">Master цол</div>
+        <div class="ci-desc">Нэг дор 2,200,000 PV худалдан авалт хийсэн гишүүн, <em>эсвэл</em> сүүлийн 6 сарын хугацаанд 3,300,000 PV цуглуулж, шууд урилгын 3 Business гишүүнтэй болсон гишүүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.13</div>
+      <div class="ci-body">
+        <div class="ci-title">Polaris цол</div>
+        <div class="ci-desc">Нэг дор 13,200,000 PV худалдан авалт хийсэн гишүүн, <em>эсвэл</em> сүүлийн 6 сарын хугацаанд 33,000,000 PV цуглуулж, 2 талд тус 1 Master цолтой гишүүнтэй болсон гишүүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.14</div>
+      <div class="ci-body">
+        <div class="ci-title">Royal Polaris цол</div>
+        <div class="ci-desc">Сүүлийн 6 сарын хугацаанд 330,000,000 PV цуглуулж, 2 талд тус 1 Polaris цолтой гишүүнтэй болсон дээд цолтой гишүүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.15</div>
+      <div class="ci-body">
+        <div class="ci-title">Crown Polaris цол</div>
+        <div class="ci-desc">Сүүлийн 6 сарын хугацаанд 1,100,000,000 PV цуглуулж, 2 талд тус 1 Royal Polaris цолтой гишүүнтэй болсон хамгийн дээд цолтой гишүүн.</div>
+      </div>
+    </div>
+
+    <div class="contract-item highlight">
+      <div class="ci-num">1.1.19</div>
+      <div class="ci-body">
+        <div class="ci-title">Багийн орлогын бонус</div>
+        <div class="ci-desc">Өөрийн худалдан авалтын BV-ээс бусад багийн орлогоос <strong>50%-ийн</strong> худалдан авалтаас бодогдсон — сард 1 удаа олгогдох таны орлого.</div>
+      </div>
+    </div>
+
+    <div class="contract-item highlight">
+      <div class="ci-num">1.1.20</div>
+      <div class="ci-body">
+        <div class="ci-title">Өдрийн орлогын бонус</div>
+        <div class="ci-desc">Та болон таны багийн тэлэлтээс хамаарсан шууд худалдан авалтын орлогоос бодогдсон — <strong>7 хоногийн дараа</strong> олгогддог таны орлого.</div>
+      </div>
+    </div>
+
+    <div class="contract-item">
+      <div class="ci-num">1.1.22</div>
+      <div class="ci-body">
+        <div class="ci-title">Идэвхижил</div>
+        <div class="ci-desc">Цолтой гишүүдийн Скиндокс Монголиатай хамтран эрхэлдэг өөрийн бизнесээ дэмжихээр худалдан авч буй бүтээгдэхүүний үнийн дүн.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Гэрээний үндэслэл -->
+  <div class="callout" style="margin-top:24px;">
+    <strong>Гэрээний үндэслэл:</strong> Гишүүнчлэлийн гэрээний нөхцөлүүд нь Скиндокс Монголиагийн гишүүний хувьд <strong>Cosdox.com</strong> цахим хуудсыг ашиглан бараа, бүтээгдэхүүнийг худалдан авах, хувийн бизнесээ хамтран хийхэд үйлчилнэ. Та гэрээний нөхцөлийг хүлээн зөвшөөрч зөвшөөрсөн гэх товчийг дарснаар үйлчилгээнд нэвтрэх эрх үүснэ.
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;margin-top:56px;background:linear-gradient(135deg,#0e2a31,#1a4a55);border-radius:20px;padding:48px 32px;">
+    <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:12px;">Skindox Mongolia</p>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:white;margin-bottom:12px;">Бизнесийг өнөөдөр эхлүүл</h3>
+    <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:28px;">Асуулт байвал 7700-2223 дугаарт холбогдоно уу.</p>
+    <a href="tel:77002223" style="background:var(--teal);color:white;font-weight:700;font-size:15px;padding:14px 36px;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 4px 16px rgba(55,159,175,0.4);">📞 7700-2223</a>
+  </div>
+
+</main>
+</body>
+</html>
