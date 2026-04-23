@@ -795,6 +795,104 @@
     border: none;
   }
 
+
+  /* ── BONUS SECTION ── */
+  .bonus-section {
+    background: linear-gradient(160deg, #0e2a31 0%, #1a4a55 100%);
+    padding: 80px 32px;
+  }
+  .bonus-section .section-label { color: var(--teal-mid); }
+  .bonus-section .section-title { color: white; }
+  .bonus-section .section-sub { color: rgba(255,255,255,0.6); }
+
+  .bonus-ranks {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .br-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .br-card:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+    border-color: var(--teal);
+  }
+  .br-card.highlight {
+    border-color: var(--teal);
+    background: rgba(55,159,175,0.15);
+  }
+  .br-card.gold {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08);
+  }
+  .br-icon { font-size: 28px; margin-bottom: 10px; }
+  .br-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: white; margin-bottom: 6px;
+  }
+  .br-pv {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--teal-mid);
+    margin-bottom: 10px;
+  }
+  .br-desc {
+    font-size: 12px; color: rgba(255,255,255,0.55);
+    line-height: 1.6; margin-bottom: 14px;
+  }
+  .br-bonus {
+    font-size: 13px; color: white;
+    background: rgba(55,159,175,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    display: inline-block;
+  }
+  .br-card.gold .br-bonus {
+    background: rgba(201,168,76,0.3);
+    color: #ffd080;
+  }
+
+  .bonus-info-row {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .bi-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .bi-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 600;
+    color: var(--teal-mid); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .bi-label {
+    font-size: 13px; font-weight: 700;
+    color: white; margin-bottom: 4px;
+  }
+  .bi-desc {
+    font-size: 12px; color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  @media(max-width:768px) {
+    .bonus-ranks { grid-template-columns: repeat(2,1fr); }
+    .bonus-info-row { grid-template-columns: repeat(2,1fr); }
+  }
+
 </style>
 </head>
 <body>
@@ -809,7 +907,7 @@
     <li><a href="#education">Сургалт</a></li>
     <li><a href="#schedule">Цагийн хуваарь</a></li>
     <li><a href="#notice">Мэдэгдэл</a></li>
-    <li><a href="compensation.html">Бонус & Цол</a></li>
+    <li><a href="#bonus">Бонус & Цол</a></li>
     <li><a href="#location">Байршил</a></li>
   </ul>
   <a href="tel:77002223" class="nav-phone">📞 7700-2223</a>
@@ -1192,6 +1290,76 @@
   </div>
 </section>
 
+
+
+<!-- Bonus & Rank -->
+<section class="bonus-section" id="bonus">
+  <div class="section-container">
+    <p class="section-label">Бонус & Цол</p>
+    <h2 class="section-title">Хөнгөлөлтийн төлөвлөгөө</h2>
+    <p class="section-sub">PV оноо цуглуулж BV-оор цалин авна. 4 цолыг ахиулж орлогоо нэмэгдүүл.</p>
+
+    <!-- 4 цол -->
+    <div class="bonus-ranks">
+      <div class="br-card">
+        <div class="br-icon">⭐</div>
+        <div class="br-name">Master</div>
+        <div class="br-pv">2,200,000 PV</div>
+        <div class="br-desc">Нэг дор 2.2сая PV<br>эсвэл 6 сарт 3.3сая PV (66/34%)</div>
+        <div class="br-bonus">Бонус <strong>35%</strong></div>
+      </div>
+      <div class="br-card highlight">
+        <div class="br-icon">⭐⭐</div>
+        <div class="br-name">Polaris</div>
+        <div class="br-pv">13,200,000 PV</div>
+        <div class="br-desc">Нэг дор 13.2сая PV<br>эсвэл 6 сарт 33сая PV (66/34%)</div>
+        <div class="br-bonus">Бонус <strong>48%</strong></div>
+      </div>
+      <div class="br-card gold">
+        <div class="br-icon">🌟</div>
+        <div class="br-name">Royal Polaris</div>
+        <div class="br-pv">330,000,000 PV</div>
+        <div class="br-desc">6 сарт 330сая PV (66/34%)<br>+ 2 талд Polaris гишүүн</div>
+        <div class="br-bonus">Бонус <strong>60%</strong></div>
+      </div>
+      <div class="br-card gold">
+        <div class="br-icon">👑</div>
+        <div class="br-name">Crown Polaris</div>
+        <div class="br-pv">1,100,000,000 PV</div>
+        <div class="br-desc">6 сарт 1.1тэрбум PV (66/34%)<br>+ 2 талд Royal Polaris гишүүн</div>
+        <div class="br-bonus">Бонус <strong>60%</strong></div>
+      </div>
+    </div>
+
+    <!-- Санал болгох бонус -->
+    <div class="bonus-info-row">
+      <div class="bi-card">
+        <div class="bi-num">20%</div>
+        <div class="bi-label">Санал болгох бонус</div>
+        <div class="bi-desc">Бүх цолтой гишүүдэд хамаарна</div>
+      </div>
+      <div class="bi-card">
+        <div class="bi-num">6%</div>
+        <div class="bi-label">Ижил цолны бонус</div>
+        <div class="bi-desc">Master ба дээш цолтойд</div>
+      </div>
+      <div class="bi-card">
+        <div class="bi-num">40%</div>
+        <div class="bi-label">Дэмжлэгийн бонус</div>
+        <div class="bi-desc">Жижиг бүлгийн BV-н 40%</div>
+      </div>
+      <div class="bi-card">
+        <div class="bi-num">2.64₮</div>
+        <div class="bi-label">1 PV / 1 BV ханш</div>
+        <div class="bi-desc">1 KRW = 2.64₮ тогтмол ханш</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <a href="compensation.html" class="btn-primary" style="display:inline-block;">Дэлгэрэнгүй үзэх →</a>
+    </div>
+  </div>
+</section>
 
 
 <!-- Notice -->
