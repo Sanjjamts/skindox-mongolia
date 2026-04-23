@@ -752,6 +752,45 @@
   .quick-nav-title { display: none; }
   .quick-cards { display: none; }
 
+
+  /* ── VIDEO SECTION ── */
+  .video-section {
+    background: var(--ink);
+    padding: 80px 32px;
+  }
+  .vs-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .vs-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 12px;
+  }
+  .vs-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 36px;
+    line-height: 1.2;
+  }
+  .vs-player {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(55,159,175,0.3);
+  }
+  .vs-player video {
+    width: 100%;
+    display: block;
+    border-radius: 16px;
+  }
+
 </style>
 </head>
 <body>
@@ -851,6 +890,25 @@
     </div>
   </div>
 </section>
+
+<!-- Video Section -->
+<section class="video-section">
+  <div class="vs-inner">
+    <p class="vs-label">✦ Skindox Mongolia</p>
+    <h2 class="vs-title">Бидний тухай</h2>
+    <div class="vs-player">
+      <video 
+        controls 
+        preload="metadata"
+        poster=""
+        style="width:100%;border-radius:16px;display:block;">
+        <source src="uploads/hero-video.mp4" type="video/mp4">
+        Таны браузер видео дэмжихгүй байна.
+      </video>
+    </div>
+  </div>
+</section>
+
 
 <!-- Products -->
 <section class="products-section" id="products">
