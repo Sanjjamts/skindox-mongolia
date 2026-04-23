@@ -35,7 +35,9 @@
 
   /* ── NAV ── */
   nav {
-    position: sticky; top: 0; left: 0; right: 0; z-index: 100;
+    position: fixed;
+    top: 44px;
+    left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -94,7 +96,7 @@
 
   /* ── HERO ── */
   .hero {
-    margin-top: 0;
+    margin-top: 104px;
     min-height: calc(100vh - 104px);
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -378,8 +380,10 @@
     gap: 16px;
     font-size: 13px;
     font-weight: 500;
-    position: relative;
-    z-index: 99;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 101;
+    height: 44px;
   }
   .announce-strip a { color: white; text-decoration: underline; text-underline-offset: 3px; }
 
