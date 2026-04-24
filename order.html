@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Захиалга өгөх — Skindox Mongolia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--teal-mid:#5bbece;
+  --ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;
+  --paper:#f8fafb;--white:#fff;--border:#d4e8ec;
+  --gold:#c9a84c;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+
+/* TOP BAR */
+.top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}
+.top-bar a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;}
+.top-bar a:hover{color:white;}
+.top-bar span{color:rgba(255,255,255,0.3);font-size:13px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0e2a31,#1a4a55);padding:56px 32px;text-align:center;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:12px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:400;color:white;margin-bottom:12px;line-height:1.1;}
+.hero p{font-size:14px;color:rgba(255,255,255,0.6);max-width:500px;margin:0 auto;line-height:1.7;}
+
+/* MAIN */
+main{max-width:960px;margin:0 auto;padding:56px 32px 80px;}
+
+/* STEPS */
+.steps-row{display:flex;gap:0;margin-bottom:48px;background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.step{flex:1;padding:20px 24px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--border);}
+.step:last-child{border-right:none;}
+.step-circle{width:36px;height:36px;border-radius:50%;background:var(--teal);color:white;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-text{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;}
+.step-sub{font-size:11px;color:var(--ink-light);margin-top:2px;}
+
+/* GRID */
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+
+/* PAYMENT CARD */
+.payment-card{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.card-header{background:linear-gradient(135deg,#0e2a31,#1a4a55);padding:20px 24px;display:flex;align-items:center;gap:12px;}
+.card-header-icon{font-size:22px;}
+.card-header-title{font-size:16px;font-weight:700;color:white;}
+.card-header-sub{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;}
+.card-body{padding:24px;}
+
+/* QR */
+.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.qr-img{width:220px;height:220px;object-fit:contain;border-radius:12px;border:2px solid var(--border);padding:8px;background:white;}
+.qr-label{font-size:12px;color:var(--ink-light);text-align:center;line-height:1.5;}
+.scan-badge{background:var(--teal-light);color:var(--teal-dark);font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:0.04em;}
+
+/* BANK INFO */
+.bank-rows{display:flex;flex-direction:column;gap:0;}
+.bank-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--paper);}
+.bank-row:last-child{border-bottom:none;}
+.br-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);}
+.br-value{font-size:14px;font-weight:700;color:var(--ink);text-align:right;}
+.br-value.accent{color:var(--teal-dark);font-size:15px;}
+.copy-btn{background:var(--teal-light);border:none;color:var(--teal-dark);font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;transition:all 0.15s;margin-left:8px;}
+.copy-btn:hover{background:var(--teal);color:white;}
+.bank-logo{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.bank-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);}
+.bank-tag{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);padding:3px 10px;border-radius:20px;}
+
+/* NOTICE */
+.notice-box{background:#fff8e1;border:1px solid #f0c040;border-radius:12px;padding:16px 20px;margin-top:20px;font-size:13px;color:#7a5500;line-height:1.7;}
+.notice-box strong{color:#5a3800;}
+
+/* INFO CARD */
+.info-card{background:white;border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:24px;}
+.info-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.info-steps{display:flex;flex-direction:column;gap:12px;}
+.is-item{display:flex;gap:14px;align-items:flex-start;}
+.is-num{width:28px;height:28px;border-radius:50%;background:var(--teal);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.is-text{font-size:14px;color:var(--ink-mid);line-height:1.7;}
+.is-text strong{color:var(--ink);}
+
+/* CONTACT */
+.contact-row{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;}
+.contact-btn{flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border-radius:14px;font-weight:700;font-size:15px;text-decoration:none;transition:all 0.15s;}
+.contact-btn.phone{background:var(--teal);color:white;box-shadow:0 4px 16px rgba(55,159,175,0.35);}
+.contact-btn.phone:hover{background:var(--teal-dark);transform:translateY(-2px);}
+.contact-btn.fb{background:#1877f2;color:white;box-shadow:0 4px 16px rgba(24,119,242,0.35);}
+.contact-btn.fb:hover{background:#1565d8;transform:translateY(-2px);}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:white;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:600;opacity:0;transition:all 0.3s;z-index:999;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media(max-width:700px){
+  .order-grid{grid-template-columns:1fr;}
+  .steps-row{flex-direction:column;}
+  .step{border-right:none;border-bottom:1px solid var(--border);}
+  .step:last-child{border-bottom:none;}
+  .hero h1{font-size:34px;}
+}
+
+  /* ── BROCHURE CARD ── */
+  .brochure-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 24px rgba(55,159,175,0.08);
+  }
+  .bc-left {
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .bc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 320px;
+  }
+  .bc-right {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .bc-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+  .bc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .bc-desc {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+  .bc-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bc-feat {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal-dark);
+    background: var(--teal-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .bc-price-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .bc-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .bc-price span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink-light);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .bc-qty-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .qty-btn {
+    width: 36px; height: 36px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qty-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .qty-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    min-width: 32px;
+    text-align: center;
+  }
+  .qty-total {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    background: var(--teal-light);
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+  .bc-note {
+    font-size: 12.5px;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  @media(max-width:700px) {
+    .brochure-card { grid-template-columns: 1fr; }
+    .bc-img { min-height: 220px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Захиалга өгөх</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Skindox Mongolia · Захиалга</p>
+  <h1>Бүтээгдэхүүн захиалах</h1>
+  <p>Доорх дансанд шилжүүлэг хийж, утас эсвэл Facebook-р захиалгаа баталгаажуулна уу.</p>
+</div>
+
+<main>
+
+
+  <!-- БРОШУР -->
+  <div class="brochure-card">
+    <div class="bc-left">
+      <img src="uploads/brochure-mockup.jpg" alt="Skindox Брошур" class="bc-img">
+    </div>
+    <div class="bc-right">
+      <div class="bc-tag">📖 Брошур</div>
+      <h2 class="bc-title">Skindox Бүтээгдэхүүний Брошур</h2>
+      <p class="bc-desc">Бүх серийн бүтээгдэхүүний дэлгэрэнгүй мэдээлэл, үнэ, PV/BV болон хөнгөлөлтийн төлөвлөгөө бүхий гар дээр барих брошур.</p>
+      <div class="bc-features">
+        <span class="bc-feat">✓ Aros серийн</span>
+        <span class="bc-feat">✓ Skin Up серийн</span>
+        <span class="bc-feat">✓ Perribloom серийн</span>
+        <span class="bc-feat">✓ Үнэ & PV/BV</span>
+        <span class="bc-feat">✓ Хөнгөлөлтийн төлөвлөгөө</span>
+      </div>
+      <div class="bc-price-row">
+        <div class="bc-price">1,000₮ <span>/ 1 ширхэг</span></div>
+        <div class="bc-qty-wrap">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="qtyNum">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+          <div class="qty-total" id="qtyTotal">Нийт: 1,000₮</div>
+        </div>
+      </div>
+      <p class="bc-note">⚠️ Захиалгыг утас эсвэл Facebook-р баталгаажуулна уу.</p>
+    </div>
+  </div>
+
+  <!-- АЛХАМУУД -->
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-circle">1</div>
+      <div>
+        <div class="step-text">Бүтээгдэхүүн сонгох</div>
+        <div class="step-sub">Каталогоос сонгоно</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-circle">2</div>
+      <div>
+        <div class="step-text">Дансанд шилжүүлэх</div>
+        <div class="step-sub">QR эсвэл дансаар</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-circle">3</div>
+      <div>
+        <div class="step-text">Захиалга баталгаажуулах</div>
+        <div class="step-sub">Утас эсвэл Facebook</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-circle">4</div>
+      <div>
+        <div class="step-text">Хүргэлт / Очиж авах</div>
+        <div class="step-sub">Хаяг тохиролцоно</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ТӨЛБӨР -->
+  <div class="order-grid">
+
+    <!-- QR -->
+    <div class="payment-card">
+      <div class="card-header">
+        <div class="card-header-icon">📱</div>
+        <div>
+          <div class="card-header-title">QR кодоор төлөх</div>
+          <div class="card-header-sub">Хаан банкны апп ашиглана уу</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="qr-wrap">
+          <span class="scan-badge">📷 QR уншуулах</span>
+          <img src="uploads/qr-payment.png" alt="Хаан банк QR" class="qr-img">
+          <div class="qr-label">Хаан банкны аппликейшн нээж<br>QR кодыг уншуулна уу</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK INFO -->
+    <div class="payment-card">
+      <div class="card-header">
+        <div class="card-header-icon">🏦</div>
+        <div>
+          <div class="card-header-title">Дансны мэдээлэл</div>
+          <div class="card-header-sub">Шилжүүлэг хийх</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="bank-logo">
+          <div>
+            <div class="bank-name">Хаан Банк</div>
+            <div class="bank-tag">Khan Bank · IBAN 85000 500</div>
+          </div>
+        </div>
+        <div class="bank-rows">
+          <div class="bank-row">
+            <div class="br-label">Дансны дугаар</div>
+            <div style="display:flex;align-items:center;">
+              <div class="br-value accent" id="accNum">5311663186</div>
+              <button class="copy-btn" onclick="copyText('5311663186', this)">Хуулах</button>
+            </div>
+          </div>
+          <div class="bank-row">
+            <div class="br-label">Данс эзэмшигч</div>
+            <div class="br-value">Н. Болорчимэг</div>
+          </div>
+          <div class="bank-row">
+            <div class="br-label">Банк</div>
+            <div class="br-value">Хаан Банк</div>
+          </div>
+          <div class="bank-row">
+            <div class="br-label">IBAN</div>
+            <div class="br-value">85000 500</div>
+          </div>
+        </div>
+        <div class="notice-box">
+          ⚠️ <strong>Анхаарна уу:</strong> Шилжүүлэг хийсний дараа <strong>гүйлгээний дэлгэцийн зургийг</strong> утас эсвэл Facebook-р илгээж захиалгаа баталгаажуулна уу.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ЗАХИАЛГЫН ЗААВАР -->
+  <div class="info-card">
+    <h3>Захиалгын дараалал</h3>
+    <div class="info-steps">
+      <div class="is-item">
+        <div class="is-num">1</div>
+        <div class="is-text"><strong>Бүтээгдэхүүн сонгох</strong> — <a href="products.html" style="color:var(--teal);">Бүтээгдэхүүний каталог</a>-аас хүссэн бүтээгдэхүүнээ сонгож, нэр болон тоо ширхгийг тэмдэглэнэ.</div>
+      </div>
+      <div class="is-item">
+        <div class="is-num">2</div>
+        <div class="is-text"><strong>Төлбөр шилжүүлэх</strong> — QR уншуулах эсвэл дансны дугаарт бүтээгдэхүүний нийт үнийг шилжүүлнэ.</div>
+      </div>
+      <div class="is-item">
+        <div class="is-num">3</div>
+        <div class="is-text"><strong>Баталгаажуулах</strong> — Гүйлгээний дэлгэцийн зургийг болон захиалсан бүтээгдэхүүний мэдээллийг <strong>7700-2223</strong> дугаар эсвэл Facebook-р илгээнэ.</div>
+      </div>
+      <div class="is-item">
+        <div class="is-num">4</div>
+        <div class="is-text"><strong>Хүргэлт / Очиж авах</strong> — Захиалга баталгаажсаны дараа хүргэлтийн хаяг тохиролцох эсвэл оффис дээрээс өөрөө авна. <br>📍 БЗД 1-р хороо 2-р байр, Чингисийн И Мартын зүүн хойно, 5 давхар.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ХОЛБОО БАРИХ -->
+  <div class="contact-row">
+    <a href="tel:77002223" class="contact-btn phone">
+      📞 7700-2223 утасдах
+    </a>
+    <a href="https://www.facebook.com/share/14Zq6vjQtQ9/?mibextid=wwXIfr" target="_blank" class="contact-btn fb">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook-р холбогдох
+    </a>
+  </div>
+
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ Хуулагдлаа!</div>
+
+<script>
+
+function changeQty(delta) {
+  const el = document.getElementById('qtyNum');
+  const total = document.getElementById('qtyTotal');
+  let qty = parseInt(el.textContent) + delta;
+  if (qty < 1) qty = 1;
+  if (qty > 99) qty = 99;
+  el.textContent = qty;
+  total.textContent = 'Нийт: ' + (qty * 1000).toLocaleString() + '₮';
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Хуулагдлаа';
+    btn.style.background = 'var(--teal)';
+    btn.style.color = 'white';
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      btn.textContent = 'Хуулах';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
