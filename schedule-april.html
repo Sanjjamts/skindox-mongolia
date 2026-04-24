@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-р сарын сургалтын хуваарь — Skindox Mongolia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--teal-mid:#5bbece;
+  --ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;
+  --paper:#f8fafb;--white:#fff;--border:#d4e8ec;
+  --online:#e74c3c;--online-light:#fdeaea;
+  --tankhim:#e91e8c;--tankhim-light:#fde8f3;
+  --design:#379faf;--design-light:#eaf6f8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+
+.top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}
+.top-bar a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;}
+.top-bar span{color:rgba(255,255,255,0.3);font-size:13px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0e2a31,#1a4a55);padding:48px 32px;text-align:center;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:10px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:white;margin-bottom:10px;}
+.hero p{font-size:14px;color:rgba(255,255,255,0.6);max-width:500px;margin:0 auto;}
+
+/* LEGEND */
+.legend{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:20px 32px;background:white;border-bottom:1px solid var(--border);}
+.leg-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-mid);}
+.leg-dot{width:12px;height:12px;border-radius:50%;}
+.leg-dot.online{background:var(--online);}
+.leg-dot.tankhim{background:var(--tankhim);}
+.leg-dot.design{background:var(--design);}
+.time-note{font-size:12px;color:var(--ink-light);display:flex;align-items:center;gap:6px;}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:40px 24px 80px;}
+
+/* CALENDAR GRID */
+.cal-header{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;}
+.cal-head{text-align:center;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);padding:10px 4px;}
+.cal-head.weekend{color:var(--teal);}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-day{background:white;border:1px solid var(--border);border-radius:12px;padding:10px;min-height:110px;position:relative;}
+.cal-day.empty{background:transparent;border-color:transparent;}
+.cal-day.weekend{background:#f8feff;}
+.cal-num{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.cal-day.empty .cal-num{display:none;}
+
+/* EVENT CHIPS */
+.event{border-radius:8px;padding:6px 8px;margin-bottom:5px;cursor:pointer;transition:all 0.15s;font-size:11px;line-height:1.4;}
+.event:hover{transform:scale(1.02);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.event.online{background:var(--online-light);border-left:3px solid var(--online);}
+.event.tankhim{background:var(--tankhim-light);border-left:3px solid var(--tankhim);}
+.event.design{background:var(--teal-light);border-left:3px solid var(--teal);}
+.event-type{font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;}
+.event-type.online{color:var(--online);}
+.event-type.tankhim{color:var(--tankhim);}
+.event-type.design{color:var(--teal-dark);}
+.event-title{font-weight:600;color:var(--ink);font-size:10.5px;}
+.event-speaker{color:var(--ink-light);font-size:10px;margin-top:1px;}
+
+/* MODAL */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(10,30,36,0.6);z-index:500;
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:white;border-radius:20px;
+  max-width:480px;width:90%;
+  overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,0.3);
+  animation:modalIn 0.25s ease-out;
+}
+@keyframes modalIn{
+  from{opacity:0;transform:scale(0.92) translateY(20px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+.modal-header{padding:20px 24px;display:flex;align-items:center;gap:14px;}
+.modal-header.online{background:var(--online-light);border-bottom:2px solid var(--online);}
+.modal-header.tankhim{background:var(--tankhim-light);border-bottom:2px solid var(--tankhim);}
+.modal-header.design{background:var(--teal-light);border-bottom:2px solid var(--teal);}
+.modal-type-badge{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.modal-type-badge.online{background:var(--online);color:white;}
+.modal-type-badge.tankhim{background:var(--tankhim);color:white;}
+.modal-type-badge.design{background:var(--teal);color:white;}
+.modal-date{font-size:13px;color:var(--ink-light);}
+.modal-body{padding:24px;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.modal-speaker{font-size:14px;color:var(--ink-mid);margin-bottom:16px;}
+.modal-info-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--paper);}
+.modal-info-row:last-of-type{border-bottom:none;}
+.modal-info-icon{font-size:16px;width:24px;text-align:center;}
+.modal-info-text{font-size:13.5px;color:var(--ink-mid);}
+.modal-footer{padding:16px 24px;background:var(--paper);display:flex;gap:12px;flex-wrap:wrap;}
+.modal-btn{flex:1;min-width:120px;padding:13px 20px;border-radius:10px;font-weight:700;font-size:14px;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.15s;border:none;cursor:pointer;}
+.modal-btn.primary{background:var(--online);color:white;}
+.modal-btn.primary.tankhim{background:var(--tankhim);}
+.modal-btn.primary.design{background:var(--teal);}
+.modal-btn.primary:hover{opacity:0.88;transform:translateY(-1px);}
+.modal-btn.ghost{background:white;color:var(--ink);border:1px solid var(--border);}
+.modal-btn.ghost:hover{border-color:var(--teal);color:var(--teal);}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.08);border:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+/* TIME LEGEND */
+.time-legend{background:white;border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:24px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;}
+.tl-item{display:flex;align-items:center;gap:8px;font-size:13px;}
+.tl-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.tl-badge.online{background:var(--online-light);color:var(--online);}
+.tl-badge.tankhim{background:var(--tankhim-light);color:var(--tankhim);}
+.tl-badge.design{background:var(--teal-light);color:var(--teal-dark);}
+
+@media(max-width:700px){
+  .cal-head{font-size:9px;padding:6px 2px;}
+  .cal-day{min-height:70px;padding:6px 4px;}
+  .cal-num{font-size:12px;}
+  .event{padding:4px 5px;}
+  .event-speaker{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Сургалтын хуваарь</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Skindox Mongolia · 2026</p>
+  <h1>4-р сарын сургалтын хуваарь</h1>
+  <p>Сургалт дээр дарж Zoom нэвтрэх эсвэл танхимд бүртгүүлнэ үү.</p>
+</div>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot online"></div> Online (Zoom)</div>
+  <div class="leg-item"><div class="leg-dot tankhim"></div> Танхим</div>
+  <div class="leg-item"><div class="leg-dot design"></div> Design School</div>
+  <div class="time-note">🕐 Online: 20:00–21:00 &nbsp;|&nbsp; 🏛️ Танхим: 12:00–15:00 &nbsp;|&nbsp; 🎓 Design School: 10:00–17:00</div>
+</div>
+
+<main>
+  <div class="time-legend">
+    <div class="tl-item"><span class="tl-badge online">● ONLINE</span> Zoom-оор нэвтэрнэ — 20:00–21:00</div>
+    <div class="tl-item"><span class="tl-badge tankhim">● ТАНХИМ</span> Оффист ирнэ — 12:00–15:00</div>
+    <div class="tl-item"><span class="tl-badge design">● DESIGN SCHOOL</span> Crown/Royal Polaris — 10:00–17:00</div>
+  </div>
+
+  <!-- CALENDAR HEADER -->
+  <div class="cal-header">
+    <div class="cal-head">Даваа</div>
+    <div class="cal-head">Мягмар</div>
+    <div class="cal-head">Лхагва</div>
+    <div class="cal-head">Пүрэв</div>
+    <div class="cal-head">Баасан</div>
+    <div class="cal-head weekend">Бямба</div>
+    <div class="cal-head weekend">Ням</div>
+  </div>
+
+  <div class="cal-grid">
+
+    <!-- Week 1 -->
+    <div class="cal-day empty"></div>
+    <div class="cal-day empty"></div>
+    <div class="cal-day">
+      <div class="cal-num">01</div>
+      <div class="event online" onclick="openModal('online','04/01','Хувь хүний хөгжил','Royal Polaris Ш.ГАЛБАДРАХ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Хувь хүний хөгжил</div>
+        <div class="event-speaker">Ш.ГАЛБАДРАХ</div>
+      </div>
+    </div>
+    <div class="cal-day"><div class="cal-num">02</div></div>
+    <div class="cal-day">
+      <div class="cal-num">03</div>
+      <div class="event online" onclick="openModal('online','04/03','Маркетинг','Royal Polaris Б.НАРАНГЭРЭЛ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Маркетинг</div>
+        <div class="event-speaker">Б.НАРАНГЭРЭЛ</div>
+      </div>
+    </div>
+    <div class="cal-day weekend">
+      <div class="cal-num">04</div>
+      <div class="event tankhim" onclick="openModal('tankhim','04/04','Угаалт практик','Polaris М.БАДАМЦЭЦЭГ','12:00–15:00')">
+        <div class="event-type tankhim">● ТАНХИМ</div>
+        <div class="event-title">Угаалт практик</div>
+        <div class="event-speaker">М.БАДАМЦЭЦЭГ</div>
+      </div>
+    </div>
+    <div class="cal-day weekend"><div class="cal-num">05</div></div>
+
+    <!-- Week 2 -->
+    <div class="cal-day"><div class="cal-num">06</div></div>
+    <div class="cal-day">
+      <div class="cal-num">07</div>
+      <div class="event online" onclick="openModal('online','04/07','Aros бүтээгдэхүүний тухай','Master Ч.ОЮУНЖАРГАЛ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">AROS бүтээгдэхүүн</div>
+        <div class="event-speaker">Ч.ОЮУНЖАРГАЛ</div>
+      </div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-num">08</div>
+      <div class="event online" onclick="openModal('online','04/08','Угаалт практик','Royal Polaris Т.САРАНТУЯА','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Угаалт практик</div>
+        <div class="event-speaker">Т.САРАНТУЯА</div>
+      </div>
+    </div>
+    <div class="cal-day"><div class="cal-num">09</div></div>
+    <div class="cal-day">
+      <div class="cal-num">10</div>
+      <div class="event online" onclick="openModal('online','04/10','My Office','Polaris Д.ЭНХТУУЛ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">MY OFFICE</div>
+        <div class="event-speaker">Д.ЭНХТУУЛ</div>
+      </div>
+    </div>
+    <div class="cal-day weekend">
+      <div class="cal-num">11</div>
+      <div class="event design" onclick="openModal('design','04/11','Design School','Crown Polaris Т.ГАНЧИМЭГ · Royal Polaris Ш.ГАЛБАДРАХ · Б.НАРАНГЭРЭЛ','10:00–17:00')">
+        <div class="event-type design">● DESIGN SCHOOL</div>
+        <div class="event-title">Design School</div>
+        <div class="event-speaker">Т.ГАНЧИМЭГ</div>
+      </div>
+    </div>
+    <div class="cal-day weekend">
+      <div class="cal-num">12</div>
+      <div class="event design" onclick="openModal('design','04/12','Design School','Crown Polaris Т.ГАНЧИМЭГ · Royal Polaris Ш.ГАЛБАДРАХ · Б.НАРАНГЭРЭЛ','10:00–17:00')">
+        <div class="event-type design">● DESIGN SCHOOL</div>
+        <div class="event-title">Design School</div>
+        <div class="event-speaker">Т.ГАНЧИМЭГ</div>
+      </div>
+    </div>
+
+    <!-- Week 3 -->
+    <div class="cal-day"><div class="cal-num">13</div></div>
+    <div class="cal-day">
+      <div class="cal-num">14</div>
+      <div class="event online" onclick="openModal('online','04/14','Батгатай арьс, хөөс, биом','Polaris М.БАДАМЦЭЦЭГ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Батгатай арьс, хөөс</div>
+        <div class="event-speaker">М.БАДАМЦЭЦЭГ</div>
+      </div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-num">15</div>
+      <div class="event online" onclick="openModal('online','04/15','Угаалт практик','Royal Polaris С.РИНА','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Угаалт практик</div>
+        <div class="event-speaker">С.РИНА</div>
+      </div>
+    </div>
+    <div class="cal-day"><div class="cal-num">16</div></div>
+    <div class="cal-day">
+      <div class="cal-num">17</div>
+      <div class="event online" onclick="openModal('online','04/17','Маркетинг, My Office','Royal Polaris Д.БАЙГАЛЬМАА','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Маркетинг, My Office</div>
+        <div class="event-speaker">Д.БАЙГАЛЬМАА</div>
+      </div>
+    </div>
+    <div class="cal-day weekend">
+      <div class="cal-num">18</div>
+      <div class="event tankhim" onclick="openModal('tankhim','04/18','Угаалт практик','Royal Polaris Г.БАТНАМ','12:00–15:00')">
+        <div class="event-type tankhim">● ТАНХИМ</div>
+        <div class="event-title">Угаалт практик</div>
+        <div class="event-speaker">Г.БАТНАМ</div>
+      </div>
+    </div>
+    <div class="cal-day weekend"><div class="cal-num">19</div></div>
+
+    <!-- Week 4 -->
+    <div class="cal-day"><div class="cal-num">20</div></div>
+    <div class="cal-day">
+      <div class="cal-num">21</div>
+      <div class="event online" onclick="openModal('online','04/21','Бүтээгдэхүүн технологи','Royal Polaris Б.НАРАНГЭРЭЛ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Бүтээгдэхүүн технологи</div>
+        <div class="event-speaker">Б.НАРАНГЭРЭЛ</div>
+      </div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-num">22</div>
+      <div class="event online" onclick="openModal('online','04/22','Хувь хүний хөгжил','Royal Polaris Ш.ГАЛБАДРАХ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Хувь хүний хөгжил</div>
+        <div class="event-speaker">Ш.ГАЛБАДРАХ</div>
+      </div>
+    </div>
+    <div class="cal-day"><div class="cal-num">23</div></div>
+    <div class="cal-day">
+      <div class="cal-num">24</div>
+      <div class="event online" onclick="openModal('online','04/24','Батгатай арьс, хөөс, биом','Polaris М.БАДАМЦЭЦЭГ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Батгатай арьс, хөөс</div>
+        <div class="event-speaker">М.БАДАМЦЭЦЭГ</div>
+      </div>
+    </div>
+    <div class="cal-day weekend">
+      <div class="cal-num">25</div>
+      <div class="event tankhim" onclick="openModal('tankhim','04/25','Татварын талаар мэдлэг олгох сургалт — MBD Татварын консалтинг','Royal Polaris','12:00–15:00')">
+        <div class="event-type tankhim">● ТАНХИМ</div>
+        <div class="event-title">Татварын сургалт</div>
+        <div class="event-speaker">MBD Консалтинг</div>
+      </div>
+    </div>
+    <div class="cal-day weekend"><div class="cal-num">26</div></div>
+
+    <!-- Week 5 -->
+    <div class="cal-day"><div class="cal-num">27</div></div>
+    <div class="cal-day">
+      <div class="cal-num">28</div>
+      <div class="event online" onclick="openModal('online','04/28','Remozar, Perribloom','Royal Polaris Г.БАТНАМ','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Remozar, Perribloom</div>
+        <div class="event-speaker">Г.БАТНАМ</div>
+      </div>
+    </div>
+    <div class="cal-day">
+      <div class="cal-num">29</div>
+      <div class="event online" onclick="openModal('online','04/29','Угаалт практик','Polaris Д.ЭНХТУЯА','20:00–21:00')">
+        <div class="event-type online">● ONLINE</div>
+        <div class="event-title">Угаалт практик</div>
+        <div class="event-speaker">Д.ЭНХТУЯА</div>
+      </div>
+    </div>
+    <div class="cal-day"><div class="cal-num">30</div></div>
+    <div class="cal-day empty"></div>
+    <div class="cal-day empty"></div>
+    <div class="cal-day empty"></div>
+
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header" id="modalHeader">
+      <div>
+        <div class="modal-type-badge" id="modalBadge"></div>
+        <div class="modal-date" id="modalDate" style="margin-top:6px;"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-speaker" id="modalSpeaker"></div>
+      <div class="modal-info-row">
+        <div class="modal-info-icon">🕐</div>
+        <div class="modal-info-text" id="modalTime"></div>
+      </div>
+      <div class="modal-info-row">
+        <div class="modal-info-icon">📍</div>
+        <div class="modal-info-text" id="modalLocation"></div>
+      </div>
+    </div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<script>
+const ZOOM_LINK = 'https://us06web.zoom.us/j/85439936113';
+const FORM_LINK = 'https://forms.gle/MNgXiHExY6PCDAh66';
+
+function openModal(type, date, title, speaker, time) {
+  const overlay = document.getElementById('modalOverlay');
+  const header = document.getElementById('modalHeader');
+  const badge = document.getElementById('modalBadge');
+  const footer = document.getElementById('modalFooter');
+
+  document.getElementById('modalDate').textContent = '2026 оны 4-р сарын ' + date.split('/')[1];
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalSpeaker').textContent = speaker;
+  document.getElementById('modalTime').textContent = time;
+
+  header.className = 'modal-header ' + type;
+  badge.className = 'modal-type-badge ' + type;
+
+  if (type === 'online') {
+    badge.textContent = '● ONLINE СУРГАЛТ';
+    document.getElementById('modalLocation').textContent = 'Zoom — онлайнаар нэвтэрнэ';
+    footer.innerHTML = `
+      <a href="${ZOOM_LINK}" target="_blank" class="modal-btn primary online">
+        🎥 Zoom нэвтрэх
+      </a>
+      <button class="modal-btn ghost" onclick="closeModal()">Хаах</button>`;
+  } else if (type === 'tankhim') {
+    badge.textContent = '● ТАНХИМЫН СУРГАЛТ';
+    document.getElementById('modalLocation').textContent = 'БЗД 1-р хороо 2-р байр, 5 давхар — Skindox оффис';
+    footer.innerHTML = `
+      <a href="${FORM_LINK}" target="_blank" class="modal-btn primary tankhim">
+        📋 Бүртгүүлэх
+      </a>
+      <a href="tel:77002223" class="modal-btn ghost">📞 7700-2223</a>`;
+  } else {
+    badge.textContent = '● DESIGN SCHOOL';
+    document.getElementById('modalLocation').textContent = 'Skindox оффис — Crown/Royal Polaris цолтойд';
+    footer.innerHTML = `
+      <a href="${FORM_LINK}" target="_blank" class="modal-btn primary design">
+        📋 Бүртгүүлэх
+      </a>
+      <button class="modal-btn ghost" onclick="closeModal()">Хаах</button>`;
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
