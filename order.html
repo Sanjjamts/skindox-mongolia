@@ -229,6 +229,32 @@ main{max-width:960px;margin:0 auto;padding:56px 32px 80px;}
     .bc-img { min-height: 220px; }
   }
 
+
+  .accordion-toggle {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .accordion-toggle:hover {
+    background: rgba(255,255,255,0.08);
+  }
+  .accordion-arrow {
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .accordion-arrow.open {
+    transform: rotate(180deg);
+  }
+  .accordion-body {
+    animation: slideDown 0.25s ease-out;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
 </style>
 </head>
 <body>
@@ -314,14 +340,15 @@ main{max-width:960px;margin:0 auto;padding:56px 32px 80px;}
 
     <!-- QR -->
     <div class="payment-card">
-      <div class="card-header">
+      <div class="card-header accordion-toggle" onclick="toggleCard('qr-body', this)">
         <div class="card-header-icon">📱</div>
-        <div>
+        <div style="flex:1;">
           <div class="card-header-title">QR кодоор төлөх</div>
           <div class="card-header-sub">Хаан банкны апп ашиглана уу</div>
         </div>
+        <div class="accordion-arrow">▾</div>
       </div>
-      <div class="card-body">
+      <div class="card-body accordion-body" id="qr-body" style="display:none;">
         <div class="qr-wrap">
           <span class="scan-badge">📷 QR уншуулах</span>
           <img src="uploads/qr-payment.png" alt="Хаан банк QR" class="qr-img">
@@ -332,14 +359,15 @@ main{max-width:960px;margin:0 auto;padding:56px 32px 80px;}
 
     <!-- BANK INFO -->
     <div class="payment-card">
-      <div class="card-header">
+      <div class="card-header accordion-toggle" onclick="toggleCard('bank-body', this)">
         <div class="card-header-icon">🏦</div>
-        <div>
+        <div style="flex:1;">
           <div class="card-header-title">Дансны мэдээлэл</div>
           <div class="card-header-sub">Шилжүүлэг хийх</div>
         </div>
+        <div class="accordion-arrow">▾</div>
       </div>
-      <div class="card-body">
+      <div class="card-body accordion-body" id="bank-body" style="display:none;">
         <div class="bank-logo">
           <div>
             <div class="bank-name">Хаан Банк</div>
@@ -415,6 +443,15 @@ main{max-width:960px;margin:0 auto;padding:56px 32px 80px;}
 <div class="toast" id="toast">✅ Хуулагдлаа!</div>
 
 <script>
+
+
+function toggleCard(id, header) {
+  const body = document.getElementById(id);
+  const arrow = header.querySelector('.accordion-arrow');
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  arrow.classList.toggle('open', !isOpen);
+}
 
 function changeQty(delta) {
   const el = document.getElementById('qtyNum');
