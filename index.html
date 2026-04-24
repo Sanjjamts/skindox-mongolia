@@ -959,6 +959,91 @@
     .nav-phone { display: none; }
   }
 
+
+  /* ── HERO BROCHURE ── */
+  .hero-brochure-stage {
+    background: linear-gradient(160deg, #f0fafb 0%, #e2f4f7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-brochure-stage::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(55,159,175,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hb-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+    width: 100%;
+  }
+  .hb-badge {
+    background: var(--teal);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 6px 18px;
+    border-radius: 20px;
+  }
+  .hb-img-wrap {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(55,159,175,0.18);
+    display: block;
+    transition: transform 0.3s;
+    width: 100%;
+  }
+  .hb-img-wrap:hover { transform: translateY(-6px) scale(1.02); }
+  .hb-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+  .hb-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(10,30,36,0.85), transparent);
+    padding: 20px 20px 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-radius: 0 0 16px 16px;
+  }
+  .hb-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+  }
+  .hb-cta {
+    background: var(--teal);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .hb-img-wrap:hover .hb-cta { background: var(--teal-dark); }
+  .hb-desc {
+    font-size: 12px;
+    color: var(--ink-mid);
+    text-align: center;
+    line-height: 1.6;
+  }
+
 </style>
 </head>
 <body>
@@ -1033,40 +1118,17 @@
       <button class="slide-arrow" onclick="nextSlide()">›</button>
     </div>
   </div>
-  <div class="hero-right hero-products-stage">
-    <div class="floating-grid">
-      <a href="#products" class="fcard fcard-1">
-        <img src="uploads/mach.jpg" alt="Mach">
-        <span>Mach</span>
+  <div class="hero-right hero-brochure-stage">
+    <div class="hb-inner">
+      <div class="hb-badge">📖 Брошур захиалах боломжтой</div>
+      <a href="order.html" class="hb-img-wrap">
+        <img src="uploads/brochure-mockup.jpg" alt="Skindox Брошур" class="hb-img">
+        <div class="hb-overlay">
+          <span class="hb-price">1,000₮ / 1ш</span>
+          <span class="hb-cta">Захиалах →</span>
+        </div>
       </a>
-      <a href="#products" class="fcard fcard-2">
-        <img src="uploads/pb-recovery-serum.jpg" alt="Recovery Serum">
-        <span>Recovery Serum</span>
-      </a>
-      <a href="#products" class="fcard fcard-3">
-        <img src="uploads/pb-vitamin-serum.jpg" alt="Vitamin Serum">
-        <span>Vitamin Serum</span>
-      </a>
-      <a href="#products" class="fcard fcard-4">
-        <img src="uploads/pb-toner.jpg" alt="Toner">
-        <span>Toner</span>
-      </a>
-      <a href="#products" class="fcard fcard-5">
-        <img src="uploads/pb-biome-serum.jpg" alt="Skin Biome">
-        <span>Skin Biome</span>
-      </a>
-      <a href="#products" class="fcard fcard-6">
-        <img src="uploads/aros-toner.jpg" alt="Aros Toner">
-        <span>Aros Toner</span>
-      </a>
-      <a href="#products" class="fcard fcard-7">
-        <img src="uploads/pb-nutrition-cream.jpg" alt="Nutrition Cream">
-        <span>Cream</span>
-      </a>
-      <a href="#products" class="fcard fcard-8">
-        <img src="uploads/skinup-massage-foam.jpg" alt="Cleansing">
-        <span>Cleansing</span>
-      </a>
+      <div class="hb-desc">Aros · Skin Up · Perribloom · Mach<br>серийн бүх мэдээлэл, үнэ, PV/BV</div>
     </div>
   </div>
 </section>
