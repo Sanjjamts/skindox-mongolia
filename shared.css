@@ -1,0 +1,337 @@
+/* ═══════════════════════════════════════════════
+   SKINDOX Mongolia — shared.css
+   Applied to all subpages. Korean beauty aesthetic.
+   Vanilla CSS only, no external libraries.
+═══════════════════════════════════════════════ */
+
+:root {
+  --teal: #379faf;
+  --teal-dark: #2b7e8d;
+  --teal-light: #eaf6f8;
+  --teal-mid: #5bbece;
+  --ink: #1a2a2e;
+  --ink-mid: #3d5a61;
+  --ink-light: #7a9ea7;
+  --paper: #f8fafb;
+  --white: #ffffff;
+  --border: #d4e8ec;
+  --gold: #c9a84c;
+  --gold-light: #fff8e0;
+  --cream: #fdf6ef;
+  --rose-gold: #c9967a;
+  --warm: #f5f0eb;
+}
+
+/* ══════════════════════════════════════════════
+   TOP BAR — Sticky + Glass Morphism on Scroll
+══════════════════════════════════════════════ */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+}
+.top-bar.tb-scrolled {
+  background: rgba(26,42,46,0.80) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+/* ══════════════════════════════════════════════
+   HERO — Animated Gradient + Text Animations
+══════════════════════════════════════════════ */
+@keyframes sharedGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.hero,
+.lesson-hero {
+  background: linear-gradient(-45deg, #0e2a31, #1a4a55, #2b7e8d, #1a3a42) !important;
+  background-size: 400% 400% !important;
+  animation: sharedGradient 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after,
+.lesson-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(55,159,175,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-eyebrow,
+.lesson-badge {
+  animation: fadeSlideUp 0.7s ease both;
+  animation-delay: 0.05s;
+}
+.hero h1,
+.lesson-title {
+  animation: fadeSlideUp 0.7s ease both;
+  animation-delay: 0.18s;
+}
+.hero p,
+.lesson-sub {
+  animation: fadeSlideUp 0.7s ease both;
+  animation-delay: 0.30s;
+}
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.72s cubic-bezier(0.4,0,0.2,1),
+              transform 0.72s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.10s; }
+.reveal-delay-2 { transition-delay: 0.20s; }
+.reveal-delay-3 { transition-delay: 0.30s; }
+.reveal-delay-4 { transition-delay: 0.40s; }
+
+/* ══════════════════════════════════════════════
+   GENERIC CARD HOVER GLOW
+══════════════════════════════════════════════ */
+.term-card,
+.rank-card,
+.mg-card,
+.br-card,
+.bi-card,
+.lesson-card,
+.notice-item,
+.order-step,
+.payment-card,
+.tip-card {
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease !important;
+}
+.term-card:hover,
+.mg-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(55,159,175,0.13) !important;
+  border-color: var(--teal) !important;
+}
+.rank-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 40px rgba(55,159,175,0.16) !important;
+  border-color: var(--teal) !important;
+}
+.rank-card.gold:hover {
+  box-shadow: 0 16px 40px rgba(201,168,76,0.20) !important;
+  border-color: var(--gold) !important;
+}
+.payment-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(55,159,175,0.14) !important;
+}
+
+/* ══════════════════════════════════════════════
+   PRODUCT CARDS — 3D Tilt + Glow
+══════════════════════════════════════════════ */
+.product-card,
+.pcard {
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.35s !important;
+}
+.product-card:hover,
+.pcard:hover {
+  border-color: var(--teal) !important;
+  box-shadow: 0 20px 48px rgba(55,159,175,0.18) !important;
+}
+/* Shimmer sweep */
+.product-card::after,
+.pcard::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.4) 50%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.product-card:hover::after,
+.pcard:hover::after { opacity: 1; }
+
+/* ══════════════════════════════════════════════
+   FORM ELEMENTS — Focus Animation
+══════════════════════════════════════════════ */
+input, select, textarea {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--teal) !important;
+  box-shadow: 0 0 0 3px rgba(55,159,175,0.14) !important;
+  transform: translateY(-1px) !important;
+  outline: none !important;
+}
+
+/* ══════════════════════════════════════════════
+   SUBMIT BUTTON — Pulse Effect
+══════════════════════════════════════════════ */
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(55,159,175,0.4); }
+  50%       { box-shadow: 0 4px 28px rgba(55,159,175,0.7), 0 0 0 6px rgba(55,159,175,0.12); }
+}
+.form-submit,
+.btn-submit,
+button[type="submit"] {
+  animation: btnPulse 2.5s ease-in-out infinite !important;
+  transition: transform 0.2s, background 0.2s !important;
+}
+.form-submit:hover,
+.btn-submit:hover,
+button[type="submit"]:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  animation-play-state: paused !important;
+}
+
+/* ══════════════════════════════════════════════
+   SCHEDULE / TABLE — Row Hover Highlight
+══════════════════════════════════════════════ */
+.cal-day {
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease !important;
+}
+.cal-day:not(.empty):hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 8px 24px rgba(55,159,175,0.14) !important;
+  border-color: var(--teal) !important;
+  z-index: 2;
+}
+tr { transition: background 0.2s ease; }
+tbody tr:hover td { background: rgba(55,159,175,0.06) !important; }
+
+.event {
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s !important;
+}
+.event:hover {
+  transform: scale(1.04) translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.14) !important;
+}
+
+/* ══════════════════════════════════════════════
+   COUNT-UP NUMBERS
+══════════════════════════════════════════════ */
+[data-count] {
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+/* ══════════════════════════════════════════════
+   LESSON PAGES
+══════════════════════════════════════════════ */
+.lesson-num-big {
+  animation: fadeIn 1s ease both;
+  animation-delay: 0s;
+}
+.video-box,
+.video-embed {
+  transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+.video-box:hover,
+.video-embed:hover {
+  box-shadow: 0 16px 48px rgba(55,159,175,0.22) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Lesson nav buttons */
+.lesson-nav a,
+.nav-btn {
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.25s ease !important;
+}
+.lesson-nav a:hover,
+.nav-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(55,159,175,0.25) !important;
+}
+
+/* ══════════════════════════════════════════════
+   NOTICE / BONUS PAGES — Card Animations
+══════════════════════════════════════════════ */
+.callout {
+  border-left: 4px solid var(--teal);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.callout:hover {
+  transform: translateX(4px);
+  box-shadow: 4px 0 16px rgba(55,159,175,0.12);
+}
+.warning-box {
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.warning-box:hover {
+  transform: translateX(3px);
+}
+.stamp {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.stamp:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(55,159,175,0.12);
+}
+
+/* ══════════════════════════════════════════════
+   STEP CIRCLES (order.html)
+══════════════════════════════════════════════ */
+.step {
+  transition: background 0.25s ease;
+}
+.step:hover {
+  background: rgba(55,159,175,0.04);
+}
+.step-circle {
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.step:hover .step-circle {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(55,159,175,0.4);
+}
+
+/* ══════════════════════════════════════════════
+   BROCHURE / IMAGE WRAPS
+══════════════════════════════════════════════ */
+.brochure-img,
+.hb-img-wrap,
+img[class*="card-img"] {
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.4s ease !important;
+}
+.brochure-img:hover,
+.hb-img-wrap:hover {
+  transform: translateY(-6px) scale(1.025) !important;
+  box-shadow: 0 24px 56px rgba(55,159,175,0.22) !important;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero h1, .lesson-title { font-size: 32px !important; }
+  .hero p, .lesson-sub   { font-size: 14px !important; }
+  .top-bar { padding: 10px 16px !important; }
+}
