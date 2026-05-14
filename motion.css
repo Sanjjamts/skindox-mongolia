@@ -1,0 +1,252 @@
+/* ═══════════════════════════════════════════════════════
+   SKINDOX Mongolia — motion.css
+   4 premium motion effects: Split Text · Clip-path ·
+   Blob Morphing · Magnetic Button
+   Vanilla CSS only, no libraries.
+═══════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   1. SPLIT TEXT REVEAL
+   Each character flies up from below with rotation
+══════════════════════════════════════════════════════ */
+
+/* Hide original content until JS splits it */
+.st-ready,
+.st-word-ready {
+  overflow: hidden; /* prevent chars from peeking during init */
+}
+
+/* Per-character span */
+.st-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.85em) rotate(6deg);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Per-word span (for section titles) */
+.st-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Triggered state */
+.st-ready.st-visible .st-char {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+.st-word-ready.st-visible .st-word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero title — larger, bolder animation */
+.hero-title .st-char,
+.hero-title strong .st-char {
+  transform: translateY(1.1em) rotate(8deg);
+  transition: opacity 0.60s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.60s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ══════════════════════════════════════════════════════
+   2. CLIP-PATH SCROLL REVEAL
+   Elements wipe upward into view from the bottom
+══════════════════════════════════════════════════════ */
+
+.clip-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.90s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: clip-path;
+}
+
+.clip-reveal.clip-visible {
+  clip-path: inset(0% 0 0 0);
+}
+
+/* Stagger children automatically */
+.clip-reveal:nth-child(2) { transition-delay: 0.08s; }
+.clip-reveal:nth-child(3) { transition-delay: 0.16s; }
+.clip-reveal:nth-child(4) { transition-delay: 0.24s; }
+.clip-reveal:nth-child(5) { transition-delay: 0.32s; }
+.clip-reveal:nth-child(6) { transition-delay: 0.38s; }
+.clip-reveal:nth-child(7) { transition-delay: 0.42s; }
+.clip-reveal:nth-child(8) { transition-delay: 0.44s; }
+
+/* Variant: slide from left (for lesson/notice cards) */
+.clip-reveal-left {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.80s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: clip-path;
+}
+.clip-reveal-left.clip-visible {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ══════════════════════════════════════════════════════
+   3. BLOB MORPHING BACKGROUND
+   Organic liquid shapes in hero sections
+══════════════════════════════════════════════════════ */
+
+.blob-shape {
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: border-radius, transform;
+}
+
+/* Blob A — primary teal, hero right */
+@keyframes blobA {
+  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+         transform: scale(1)    rotate(0deg);   }
+  25%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+         transform: scale(1.08) rotate(5deg);   }
+  60%  { border-radius: 50% 50% 20% 80% / 40% 70% 60% 50%;
+         transform: scale(0.95) rotate(-3deg);  }
+  100% { border-radius: 70% 30% 60% 40% / 60% 40% 70% 30%;
+         transform: scale(1.06) rotate(8deg);   }
+}
+
+/* Blob B — gold accent, hero right */
+@keyframes blobB {
+  0%   { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+         transform: scale(1)    rotate(0deg);   }
+  40%  { border-radius: 70% 30% 40% 60% / 60% 40% 50% 60%;
+         transform: scale(1.12) rotate(-8deg);  }
+  100% { border-radius: 50% 50% 60% 40% / 30% 70% 40% 60%;
+         transform: scale(0.91) rotate(5deg);   }
+}
+
+/* Blob C — subtle glow, hero left */
+@keyframes blobC {
+  0%   { transform: translateX(-50%) scale(1);    }
+  50%  { transform: translateX(-48%) scale(1.18); }
+  100% { transform: translateX(-52%) scale(0.88); }
+}
+
+/* Blob D — bonus/dark sections */
+@keyframes blobD {
+  0%   { border-radius: 55% 45% 65% 35% / 45% 55% 35% 65%;
+         transform: scale(1)    rotate(0deg);   }
+  100% { border-radius: 35% 65% 45% 55% / 65% 35% 55% 45%;
+         transform: scale(1.14) rotate(-12deg); }
+}
+
+/* ══════════════════════════════════════════════════════
+   4. MAGNETIC BUTTON
+   Click ripple + will-change
+══════════════════════════════════════════════════════ */
+
+.magnetic {
+  will-change: transform;
+  position: relative;
+  overflow: hidden; /* for ripple */
+}
+
+/* Click ripple animation */
+@keyframes btnRipple {
+  from {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255,255,255,0.30);
+  animation: btnRipple 0.55s ease-out forwards;
+  z-index: 20;
+}
+
+/* Shine streak on magnetic enter */
+@keyframes magnetShine {
+  from { transform: translateX(-100%) skewX(-20deg); opacity: 0.6; }
+  to   { transform: translateX(200%)  skewX(-20deg); opacity: 0; }
+}
+.magnetic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  transform: translateX(-100%) skewX(-20deg);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.magnetic:hover::after {
+  animation: magnetShine 0.65s ease-out forwards;
+}
+
+/* ══════════════════════════════════════════════════════
+   NOISE TEXTURE OVERLAY (bonus atmosphere)
+   Subtle film grain for Korean beauty aesthetic
+══════════════════════════════════════════════════════ */
+
+.hero::before,
+.lesson-hero::before,
+.bonus-section::before,
+.video-section::before {
+  /* Keep existing ::before but add noise via mix-blend */
+}
+
+/* Grain overlay — appended to hero via JS */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+  animation: grainShift 0.8s steps(2) infinite;
+}
+
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2px, 1px); }
+  50%  { transform: translate(1px, -2px); }
+  75%  { transform: translate(2px, 1px); }
+  100% { transform: translate(-1px, 2px); }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — disable heavy effects on mobile
+══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .blob-shape { filter: blur(32px); }
+  .grain-overlay { opacity: 0.015; }
+  /* Faster animations on mobile */
+  .st-char  { transition-duration: 0.4s !important; }
+  .st-word  { transition-duration: 0.45s !important; }
+  .clip-reveal { transition-duration: 0.65s !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-char, .st-word,
+  .clip-reveal, .clip-reveal-left,
+  .blob-shape, .grain-overlay {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
