@@ -10,17 +10,11 @@
    Each character flies up from below with rotation
 ══════════════════════════════════════════════════════ */
 
-/* Hide original content until JS splits it */
-.st-ready,
-.st-word-ready {
-  overflow: hidden; /* prevent chars from peeking during init */
-}
-
 /* Per-character span */
 .st-char {
   display: inline-block;
   opacity: 0;
-  transform: translateY(0.85em) rotate(6deg);
+  transform: translateY(22px) rotate(4deg);
   transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
@@ -50,7 +44,7 @@
 /* Hero title — larger, bolder animation */
 .hero-title .st-char,
 .hero-title strong .st-char {
-  transform: translateY(1.1em) rotate(8deg);
+  transform: translateY(28px) rotate(6deg);
   transition: opacity 0.60s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.60s cubic-bezier(0.16, 1, 0.3, 1);
 }

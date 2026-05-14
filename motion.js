@@ -113,9 +113,16 @@
           textObs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0 });
 
     document.querySelectorAll('.st-ready, .st-word-ready').forEach(el => textObs.observe(el));
+
+    /* Fallback: ensure all visible text animates even if observer misses */
+    setTimeout(() => {
+      document.querySelectorAll('.st-ready, .st-word-ready').forEach(el => {
+        if (!el.classList.contains('st-visible')) el.classList.add('st-visible');
+      });
+    }, 900);
   });
 
   /* ════════════════════════════════════════════════
@@ -129,7 +136,6 @@
     /* Elements that get the "wipe-up" clip reveal */
     const clipUp = [
       '.product-img',
-      '.hb-img-wrap',
       '.vs-player',
       '.map-placeholder img',
     ];
@@ -184,9 +190,16 @@
           clipObs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
 
     document.querySelectorAll('.clip-reveal, .clip-reveal-left').forEach(el => clipObs.observe(el));
+
+    /* Fallback: ensure above-fold clip elements are revealed */
+    setTimeout(() => {
+      document.querySelectorAll('.clip-reveal, .clip-reveal-left').forEach(el => {
+        if (!el.classList.contains('clip-visible')) el.classList.add('clip-visible');
+      });
+    }, 1100);
   });
 
   /* ════════════════════════════════════════════════
