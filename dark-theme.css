@@ -113,27 +113,56 @@ nav.nav-scrolled {
     rgba(7,17,29,0.88) 100%
   );
 }
-/* Full-width hero: single column */
+/* Full-width hero: single column, full viewport */
 .hero.hero-fullwidth {
   grid-template-columns: 1fr;
   min-height: calc(100vh - 60px);
 }
 .hero.hero-fullwidth .hero-left {
   width: 100%;
+  min-height: calc(100vh - 60px);
   padding: 80px 100px 80px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slideshow images — cover entire hero-left (full screen) */
+.hero.hero-fullwidth .slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Remove the right-edge paper fade */
 .hero-left::after { display: none; }
 
-/* Hero content centered with max-width for large screens */
+/* Hero content max-width for readability */
 .hero.hero-fullwidth .hero-badge,
 .hero.hero-fullwidth .hero-title,
 .hero.hero-fullwidth .hero-tagline,
 .hero.hero-fullwidth .hero-cta-group,
 .hero.hero-fullwidth .slide-label,
 .hero.hero-fullwidth .slide-dots {
-  max-width: 680px;
+  max-width: 620px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Badges — right side, vertically centered */
+.hero-cert-badges {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: auto;
+  bottom: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 3;
 }
 
 /* Badge */
@@ -164,16 +193,7 @@ nav.nav-scrolled {
   margin-top: 4px;
 }
 
-/* Hero certification badges — Pinterest style (absolute left) */
-.hero-cert-badges {
-  position: absolute;
-  left: 18px;
-  bottom: 180px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 3;
-}
+/* Hero certification badges — see full-width hero block below */
 .hero-cert-badge {
   display: flex;
   align-items: center;
@@ -486,7 +506,7 @@ body::before {
   .hero-title { font-size: 52px; }
   .hero-title strong { font-size: 36px; }
   .hero.hero-fullwidth .hero-left { padding: 60px 28px 80px; }
-  .hero-cert-badges { left: 12px; bottom: 120px; }
+  .hero-cert-badges { right: 16px; top: auto; bottom: 100px; transform: none; }
   .hero-cert-badge { width: 62px; height: 62px; font-size: 8px; }
   .hero-cert-badge .cert-num { font-size: 16px; }
 }
