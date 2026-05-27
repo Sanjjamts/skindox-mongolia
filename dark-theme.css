@@ -141,7 +141,7 @@ nav.nav-scrolled {
 .hero.hero-fullwidth .hero-left {
   background: transparent;
   min-height: calc(100vh - 60px);
-  padding: 80px 48px 80px 80px;
+  padding: 0 48px 60px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,26 +174,26 @@ nav.nav-scrolled {
   margin-bottom: 24px;
 }
 
-/* Hero title */
+/* Hero title — larger */
 .hero-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 72px;
+  font-size: 96px;
   font-weight: 700;
-  line-height: 1.0;
+  line-height: 0.95;
   color: var(--ink);
   text-shadow: none;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 0;
 }
 .hero-title strong {
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 38px;
   font-style: normal;
   color: var(--sk);
-  letter-spacing: 0.10em;
+  letter-spacing: 0.14em;
   display: block;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .hero-tagline {
@@ -228,38 +228,6 @@ nav.nav-scrolled {
   color: var(--sk-dark);
 }
 
-/* Cert badges — right edge of left panel */
-.hero-cert-badges {
-  position: absolute;
-  right: -28px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  z-index: 5;
-}
-.hero-cert-badge {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  border: 2px solid rgba(55,159,175,0.40);
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(16px);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  color: var(--sk-dark);
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  box-shadow: 0 4px 20px rgba(55,159,175,0.18),
-              inset 0 1px 0 rgba(255,255,255,0.9);
-  gap: 2px;
-}
-.hero-cert-badge .cert-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--sk); line-height: 1;
-}
 
 /* ── Hero Image Panel (right column) ── */
 .hero-img-panel {
@@ -534,6 +502,62 @@ input:focus, select:focus, textarea:focus {
 ══════════════════════════════════════════════════════ */
 .reveal { opacity: 0; transform: translateY(36px); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════════════════
+   BONUS SECTION — text & bar color overrides (#379faf)
+══════════════════════════════════════════════════════ */
+
+/* "Skindox marketing" title → teal */
+.bonus-section .section-title { color: #379faf !important; }
+
+/* Subtitle below title → teal */
+.bonus-section .section-sub   { color: #379faf !important; opacity: 0.85; }
+
+/* br-card base: light bg (override dark original) */
+.br-card {
+  background: rgba(255,255,255,0.82) !important;
+  border-color: rgba(55,159,175,0.18) !important;
+}
+.br-card.highlight {
+  background: rgba(55,159,175,0.10) !important;
+  border-color: rgba(55,159,175,0.35) !important;
+}
+.br-card.gold {
+  background: rgba(255,255,255,0.82) !important;
+  border-color: rgba(55,159,175,0.25) !important;
+}
+
+/* Rank name text → dark (light bg) */
+.br-name { color: var(--ink) !important; }
+
+/* PV text → teal */
+.br-pv { color: #379faf !important; }
+
+/* Description small text → teal */
+.br-desc { color: #379faf !important; opacity: 0.80; }
+
+/* Цолны бонус bar → #379faf for ALL cards */
+.br-bonus {
+  background: #379faf !important;
+  color: #ffffff !important;
+}
+.br-card.gold .br-bonus {
+  background: #379faf !important;
+  color: #ffffff !important;
+}
+
+/* Bonus info cards (bi-card) */
+.bi-card {
+  background: rgba(255,255,255,0.82) !important;
+  border-color: rgba(55,159,175,0.15) !important;
+}
+/* bi-num big numbers → teal dark */
+.bi-num { color: var(--sk-dark) !important; }
+.bi-card:hover .bi-num { color: var(--sk) !important; }
+
+/* bi-label & bi-desc → teal */
+.bi-label { color: #379faf !important; font-weight: 700; }
+.bi-desc  { color: #379faf !important; opacity: 0.75; }
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
