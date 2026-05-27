@@ -378,6 +378,38 @@
   });
 
   /* ════════════════════════════════════════════════
+     5. HERO SPARKLE STARS
+        Pinterest Korean beauty aesthetic —
+        animated ✦ ✧ ★ scattered in hero
+  ════════════════════════════════════════════════ */
+
+  ready(function () {
+    const field = document.getElementById('heroSparkles');
+    if (!field) return;
+
+    const symbols = ['✦', '✧', '✶', '✸', '⋆', '·'];
+    const count   = window.innerWidth < 768 ? 12 : 22;
+
+    for (let i = 0; i < count; i++) {
+      const el    = document.createElement('span');
+      el.className = 'hero-spark';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+      const size  = (Math.random() * 12 + 8).toFixed(1) + 'px';
+      const left  = (Math.random() * 96 + 2).toFixed(1) + '%';
+      const top   = (Math.random() * 85 + 5).toFixed(1) + '%';
+      const dur   = (Math.random() * 4 + 3).toFixed(2) + 's';
+      const delay = (Math.random() * 5).toFixed(2) + 's';
+
+      el.style.cssText = `
+        --size:${size}; --dur:${dur}; --delay:${delay};
+        left:${left}; top:${top}; font-size:${size};
+      `;
+      field.appendChild(el);
+    }
+  });
+
+  /* ════════════════════════════════════════════════
      BONUS: Smooth nav active link highlight
   ════════════════════════════════════════════════ */
   ready(function () {
