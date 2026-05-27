@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skin Biom Serum — Perribloom · Skindox Mongolia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css"><link rel="stylesheet" href="dark-theme.css">
+<style>
+:root{--brand:#c47daa;--brand-light:#fdf5f9;--brand-dark:#9a5080;--ink:#1a2a2e;--ink-mid:#3d5a61;--paper:#f8fafb;--border:#e8e8e8;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+.top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}.top-bar a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;}.top-bar a:hover{color:white;}.top-bar span{color:rgba(255,255,255,0.25);font-size:13px;}
+.prod-hero{background:linear-gradient(160deg,#001018 0%,#103060 50%,#4a90c4 100%);min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:60px 40px;}
+.prod-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(74,144,196,0.4) 0%,transparent 65%);}
+.prod-hero-inner{display:flex;align-items:center;gap:64px;max-width:1000px;width:100%;position:relative;z-index:1;}
+.prod-hero-img{flex-shrink:0;width:280px;height:360px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.5));}
+.prod-hero-img img{max-height:340px;max-width:260px;object-fit:contain;}
+.prod-hero-text{color:white;}
+.prod-brand-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;background:var(--brand);color:white;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.prod-hero-name{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:400;line-height:1.1;margin-bottom:8px;}
+.prod-hero-sub{font-size:14px;color:rgba(255,255,255,0.60);margin-bottom:20px;font-style:italic;}
+.prod-hero-claim{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.82);max-width:420px;padding:16px 20px;background:rgba(255,255,255,0.08);border-radius:14px;border-left:3px solid #4a90c4;}
+.prod-vol-badge{display:inline-block;margin-top:16px;font-size:12px;font-weight:700;color:var(--brand);background:rgba(196,125,170,0.18);border:1px solid rgba(196,125,170,0.35);padding:4px 14px;border-radius:999px;}
+.section{max-width:860px;margin:0 auto;padding:64px 32px;}
+.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;color:var(--ink);margin-bottom:36px;line-height:1.2;}
+.feature-circles{display:flex;gap:20px;flex-wrap:wrap;}
+.fcircle{flex:1;min-width:180px;background:white;border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;transition:all 0.2s;}
+.fcircle:hover{border-color:var(--brand);box-shadow:0 8px 32px rgba(196,125,170,0.14);transform:translateY(-3px);}
+.fcircle-icon{font-size:32px;margin-bottom:12px;}.fcircle-title{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px;}.fcircle-desc{font-size:12px;color:var(--ink-mid);line-height:1.6;}
+.ingr-section{background:white;padding:64px 0;}.ingr-inner{max-width:860px;margin:0 auto;padding:0 32px;}
+.ingr-item{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:flex-start;padding:28px 0;border-bottom:1px solid var(--border);}.ingr-item:last-child{border-bottom:none;}
+.ingr-num{width:48px;height:48px;border-radius:50%;background:var(--brand);color:white;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ingr-name{font-weight:700;font-size:16px;color:var(--ink);margin-bottom:6px;}.ingr-desc{font-size:13.5px;color:var(--ink-mid);line-height:1.75;}
+.ingr-sub{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}.ingr-tag{font-size:11px;font-weight:600;background:var(--brand-light);color:var(--brand-dark);padding:3px 12px;border-radius:999px;}
+.price-section{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%);padding:64px 32px;text-align:center;color:white;}
+.price-section h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;margin-bottom:32px;}
+.price-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}
+.price-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:16px;padding:20px 32px;text-align:center;min-width:200px;}
+.price-card.highlight{background:white;}.price-card.highlight .pc-label{color:var(--brand);}.price-card.highlight .pc-val{color:var(--brand-dark);}
+.pc-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;color:rgba(255,255,255,0.7);}
+.pc-val{font-size:28px;font-weight:700;color:white;}.pc-cross{font-size:18px;color:rgba(255,255,255,0.45);text-decoration:line-through;}
+.pv-bv-row{display:flex;justify-content:center;gap:12px;margin-bottom:32px;}
+.pv-chip{font-size:13px;font-weight:600;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;}
+.cta-btn{display:inline-block;background:white;color:var(--brand-dark);font-weight:700;font-size:15px;padding:14px 40px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:all 0.15s;}
+.cta-btn:hover{transform:translateY(-2px);}
+@media(max-width:760px){.prod-hero-inner{flex-direction:column;gap:32px;text-align:center;}.prod-hero-img{width:200px;height:260px;}.prod-hero-name{font-size:32px;}.feature-circles{flex-direction:column;}.section{padding:48px 20px;}.ingr-inner{padding:0 20px;}.price-cards{flex-direction:column;align-items:center;}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="index.html">Нүүр хуудас</a><span>/</span><a href="products.html">Бүтээгдэхүүн</a><span>/</span><a href="products-perribloom.html">Perribloom</a><span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Skin Biom Serum</span>
+</div>
+<div class="prod-hero">
+  <div class="prod-hero-inner">
+    <div class="prod-hero-img"><img src="uploads/pb-biome-serum.jpg" alt="Skin Biom Serum" onerror="this.parentNode.style.opacity='0.4'"></div>
+    <div class="prod-hero-text">
+      <div class="prod-brand-tag">✦ PERRIBLOOM · Биом серум</div>
+      <div class="prod-hero-name">Skin Biom<br>Serum</div>
+      <div class="prod-hero-sub">Арьсны биомын серум · 40ml</div>
+      <div class="prod-hero-claim">마이크로 바이옴으로 지키는 피부 장벽. VEGE에서 추출한 조합으로 건강한 피부 밸런스를 이루고, 더블 장벽케어 시스템으로 피부를 보호합니다. Микро биомоор хамгаалдаг арьсны хана — VEGE хандалтаар эрүүл тэнцвэрт арьс.</div>
+      <div class="prod-vol-badge">40ml · Гишүүний үнэ: 182,000₮</div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="sec-eyebrow">Гол онцлогууд</div>
+  <div class="sec-title">Яагаад Skin Biom Serum?</div>
+  <div class="feature-circles">
+    <div class="fcircle"><div class="fcircle-icon">🦠</div><div class="fcircle-title">Микробиомын тэнцвэр</div><div class="fcircle-desc">Арьсны байгалийн микробиомын тэнцвэрийг хамгаалдаг</div></div>
+    <div class="fcircle"><div class="fcircle-icon">🧫</div><div class="fcircle-title">Давхар хананы систем</div><div class="fcircle-desc">STEP1 Пробиотик + STEP2 Пребиотик давхар хамгаалалт</div></div>
+    <div class="fcircle"><div class="fcircle-icon">🥬</div><div class="fcircle-title">VEGE хандалт</div><div class="fcircle-desc">Хүнсний ногооноос гаргасан эрүүл тэнцвэрт найрлага</div></div>
+    <div class="fcircle"><div class="fcircle-icon">⚡</div><div class="fcircle-title">Хүчтэй исгэлтийн энерги</div><div class="fcircle-desc">Олон төрлийн пробиотикийн хүчтэй исгэлтийн хандалт</div></div>
+  </div>
+</div>
+<div class="ingr-section">
+  <div class="ingr-inner">
+    <div class="sec-eyebrow">Үндсэн найрлага</div>
+    <div class="sec-title">Идэвхтэй бодисууд</div>
+    <div class="ingr-item">
+      <div class="ingr-num">1</div>
+      <div class="ingr-body">
+        <div class="ingr-name">Onion Extract-NS — Сонгины хандалт</div>
+        <div class="ingr-desc">피부 관리에 탁월한 양파 추출물로 피부 보습, 진정, 탄력에 효과적입니다. Арьс арчилгаанд гарамгай сонгины хандалт — арьсыг чийгшүүлж, тайвшруулж, уян хатан болгодог.</div>
+        <div class="ingr-sub"><span class="ingr-tag">양파추출물</span><span class="ingr-tag">피부보습</span><span class="ingr-tag">피부진정</span><span class="ingr-tag">피부탄력</span></div>
+      </div>
+    </div>
+    <div class="ingr-item">
+      <div class="ingr-num">2</div>
+      <div class="ingr-body">
+        <div class="ingr-name">TNTN Cabbage Extract-HD — Байцааны хандалт</div>
+        <div class="ingr-desc">깨끗한 밭에서 재배하고 세척 후 고온 정수로 추출한 양배추. Цэвэр талбайд тариалж, угааж, өндөр дулааны цэвэр усаар гаргасан байцааны хандалт.</div>
+        <div class="ingr-sub"><span class="ingr-tag">양배추추출물</span><span class="ingr-tag">피부보습</span><span class="ingr-tag">항산화</span></div>
+      </div>
+    </div>
+    <div class="ingr-item">
+      <div class="ingr-num">3</div>
+      <div class="ingr-body">
+        <div class="ingr-name">Probio Meta G55 — Пробиомета G55</div>
+        <div class="ingr-desc">세계적으로 등록된 강인한 프로바이오틱스. 신선하게 무첨가로 발효액을 추출한 프로바이오메타 G55. Дэлхийд бүртгэлтэй хүчтэй пробиотик. Нэмэлтгүй, сэргэлэн исгэлтийн шүүсийг гаргасан Probio Meta G55.</div>
+        <div class="ingr-sub"><span class="ingr-tag">프로바이오틱스</span><span class="ingr-tag">피부장벽</span><span class="ingr-tag">발효성분</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="price-section">
+  <h2>Үнэ & PV/BV мэдээлэл</h2>
+  <div class="price-cards">
+    <div class="price-card highlight"><div class="pc-label">Гишүүний үнэ</div><div class="pc-val">182,000₮</div></div>
+    <div class="price-card"><div class="pc-label">Гишүүн бус</div><div class="pc-cross">227,500₮</div></div>
+  </div>
+  <div class="pv-bv-row"><span class="pv-chip">PV 69,000</span><span class="pv-chip">BV 31,300</span></div>
+  <a href="index.html#order" class="cta-btn">Гишүүн болж захиалах →</a>
+</div>
+<script src="shared.js"></script>
+</body>
+</html>
