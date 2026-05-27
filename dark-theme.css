@@ -168,47 +168,6 @@ nav.nav-scrolled {
   text-shadow: none;
 }
 
-/* Search bar in hero */
-.hero-search {
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.90);
-  border: 1.5px solid rgba(37,99,235,0.18);
-  border-radius: 14px;
-  padding: 6px 8px 6px 20px;
-  max-width: 440px;
-  width: 100%;
-  box-shadow: 0 4px 24px rgba(37,99,235,0.10);
-  margin: 24px 0 28px;
-  backdrop-filter: blur(12px);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.hero-search:focus-within {
-  border-color: var(--blue);
-  box-shadow: 0 4px 32px rgba(37,99,235,0.18), 0 0 0 3px rgba(37,99,235,0.08);
-}
-.hero-search input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-size: 14px;
-  color: var(--ink);
-  outline: none;
-  font-family: 'DM Sans', sans-serif;
-}
-.hero-search input::placeholder { color: var(--ink-light); }
-.hero-search-btn {
-  width: 40px; height: 40px;
-  background: var(--blue);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s, transform 0.15s;
-  color: white; font-size: 16px;
-}
-.hero-search-btn:hover { background: #1d4ed8; transform: scale(1.05); }
 
 /* CTA buttons */
 .btn-primary {
@@ -274,115 +233,92 @@ nav.nav-scrolled {
   line-height: 1;
 }
 
-/* ── 3D Glass Orb (hero right panel) ── */
-.hero-orb-panel {
+/* ── Hero Image Panel (right column) ── */
+.hero-img-panel {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 40px 60px 40px 20px;
   position: relative;
   overflow: visible;
 }
 
-.hero-orb-wrap {
+.hero-img-wrap {
   position: relative;
-  width: 380px;
-  height: 380px;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 80px rgba(37,99,235,0.18),
+    0 4px 24px rgba(37,99,235,0.10),
+    0 0 0 1px rgba(255,255,255,0.55);
+  animation: heroImgFloat 7s ease-in-out infinite;
+}
+
+@keyframes heroImgFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+.hero-beauty-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 28px;
+}
+
+/* Glass gloss overlay */
+.hero-img-gloss {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.04) 40%,
+    transparent 70%,
+    rgba(37,99,235,0.06) 100%
+  );
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+/* Floating glass info tags */
+.hero-img-tag {
+  position: absolute;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.70);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 4px 20px rgba(37,99,235,0.12);
+  white-space: nowrap;
+  animation: tagFloat 5s ease-in-out infinite;
 }
-
-/* Main glass sphere */
-.hero-orb {
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 35% 30%,
-    rgba(255,255,255,0.95) 0%,
-    rgba(219,234,254,0.80) 30%,
-    rgba(147,197,253,0.60) 55%,
-    rgba(99,102,241,0.35) 75%,
-    rgba(37,99,235,0.20) 100%
-  );
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.6),
-    0 20px 80px rgba(37,99,235,0.25),
-    0 4px 24px rgba(37,99,235,0.15),
-    inset 0 2px 12px rgba(255,255,255,0.9),
-    inset -20px -20px 40px rgba(99,102,241,0.15);
-  backdrop-filter: blur(8px);
-  animation: orbFloat 6s ease-in-out infinite, orbMorph 10s ease-in-out infinite;
-  position: relative;
-  overflow: hidden;
+.hero-img-tag--2 {
+  animation-delay: 2.5s;
+  animation-name: tagFloat2;
 }
+.hero-img-tag:first-of-type { bottom: 28px; left: -16px; }
+.hero-img-tag--2 { top: 32px; right: -16px; }
+.hit-icon { font-size: 14px; }
 
-/* Sheen highlight */
-.hero-orb::before {
-  content: '';
-  position: absolute;
-  top: 12%; left: 18%;
-  width: 38%; height: 28%;
-  background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: rotate(-20deg);
-  pointer-events: none;
+@keyframes tagFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
 }
-
-/* Inner glow */
-.hero-orb::after {
-  content: '';
-  position: absolute;
-  bottom: 15%; right: 12%;
-  width: 28%; height: 22%;
-  background: radial-gradient(ellipse, rgba(147,197,253,0.60) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Orbiting dots */
-.orb-dot {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(37,99,235,0.70);
-  box-shadow: 0 0 8px rgba(37,99,235,0.60);
-  animation: orbDotSpin var(--spin-dur, 8s) linear infinite;
-  animation-delay: var(--spin-delay, 0s);
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%       { transform: translateY(-18px) rotate(2deg); }
-  66%       { transform: translateY(-8px) rotate(-1deg); }
-}
-
-@keyframes orbMorph {
-  0%,100% { border-radius: 50%; }
-  25%     { border-radius: 52% 48% 50% 50% / 50% 52% 48% 50%; }
-  50%     { border-radius: 48% 52% 52% 48% / 52% 48% 52% 48%; }
-  75%     { border-radius: 50% 50% 48% 52% / 48% 50% 50% 52%; }
-}
-
-@keyframes orbDotSpin {
-  from { transform: rotate(0deg) translateX(var(--radius, 170px)) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(var(--radius, 170px)) rotate(-360deg); }
-}
-
-/* Floating glass shards around orb */
-.orb-shard {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85), rgba(147,197,253,0.50));
-  box-shadow: 0 4px 12px rgba(37,99,235,0.18), inset 0 1px 4px rgba(255,255,255,0.8);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.55);
-  animation: shardFloat var(--sf-dur, 5s) ease-in-out infinite;
-  animation-delay: var(--sf-delay, 0s);
-}
-
-@keyframes shardFloat {
-  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  33%       { transform: translate(var(--sx, 8px), var(--sy, -12px)) rotate(15deg) scale(1.08); }
-  66%       { transform: translate(calc(var(--sx, 8px) * -0.5), var(--sy, -12px)) rotate(-8deg) scale(0.95); }
+@keyframes tagFloat2 {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(6px); }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -540,7 +476,7 @@ input:focus, select:focus, textarea:focus {
   .hero.hero-fullwidth {
     grid-template-columns: 1fr;
   }
-  .hero-orb-panel { display: none; }
+  .hero-img-panel { display: none; }
   .hero.hero-fullwidth .hero-left { padding: 60px 28px 80px; }
   .hero-cert-badges { right: 16px; top: auto; bottom: 100px; transform: none; }
   .hero-cert-badge { width: 64px; height: 64px; font-size: 8px; }
