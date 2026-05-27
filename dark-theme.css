@@ -113,9 +113,27 @@ nav.nav-scrolled {
     rgba(7,17,29,0.88) 100%
   );
 }
-/* Remove the right-edge paper fade — paper is now navy */
-.hero-left::after {
-  background: linear-gradient(to right, transparent, var(--navy));
+/* Full-width hero: single column */
+.hero.hero-fullwidth {
+  grid-template-columns: 1fr;
+  min-height: calc(100vh - 60px);
+}
+.hero.hero-fullwidth .hero-left {
+  width: 100%;
+  padding: 80px 100px 80px 100px;
+}
+
+/* Remove the right-edge paper fade */
+.hero-left::after { display: none; }
+
+/* Hero content centered with max-width for large screens */
+.hero.hero-fullwidth .hero-badge,
+.hero.hero-fullwidth .hero-title,
+.hero.hero-fullwidth .hero-tagline,
+.hero.hero-fullwidth .hero-cta-group,
+.hero.hero-fullwidth .slide-label,
+.hero.hero-fullwidth .slide-dots {
+  max-width: 680px;
 }
 
 /* Badge */
@@ -467,4 +485,8 @@ body::before {
   body::before { opacity: 0.22; }
   .hero-title { font-size: 52px; }
   .hero-title strong { font-size: 36px; }
+  .hero.hero-fullwidth .hero-left { padding: 60px 28px 80px; }
+  .hero-cert-badges { left: 12px; bottom: 120px; }
+  .hero-cert-badge { width: 62px; height: 62px; font-size: 8px; }
+  .hero-cert-badge .cert-num { font-size: 16px; }
 }
