@@ -174,26 +174,30 @@ nav.nav-scrolled {
   margin-bottom: 24px;
 }
 
-/* Hero title — larger */
+/* Sparkle stars — hidden */
+.hero-sparkle-field { display: none !important; }
+
+/* Hero title — one line: SKINDOX Mongolia */
 .hero-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 96px;
+  font-size: 80px;
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 1.0;
   color: var(--ink);
   text-shadow: none;
   letter-spacing: -0.02em;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 .hero-title strong {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-  font-size: 38px;
-  font-style: normal;
-  color: var(--sk);
-  letter-spacing: 0.14em;
-  display: block;
-  margin-top: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 80px;
+  font-style: italic;
+  color: #379faf;
+  letter-spacing: -0.01em;
+  display: inline;
+  margin-left: 16px;
 }
 
 .hero-tagline {
