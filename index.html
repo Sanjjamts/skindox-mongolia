@@ -45,26 +45,13 @@
 
 <!-- Hero -->
 <section class="hero hero-fullwidth">
+
+  <!-- Left: text content -->
   <div class="hero-left">
-    <!-- Slideshow зургууд -->
-    <img src="uploads/hero-slide-1.jpg" class="slide-bg active" id="slide-0" alt="Skin Up">
-    <img src="uploads/hero-slide-2.jpg" class="slide-bg" id="slide-1" alt="Perribloom">
-    <img src="uploads/hero-slide-3.jpg" class="slide-bg" id="slide-2" alt="Aros">
-
-    <!-- Slide label -->
-    <div class="slide-label" id="slideLabel">Skin Up · Микробиом арчилгаа</div>
-
-    <!-- Dots -->
-    <div class="slide-dots">
-      <button class="slide-dot active" onclick="goSlide(0)"></button>
-      <button class="slide-dot" onclick="goSlide(1)"></button>
-      <button class="slide-dot" onclick="goSlide(2)"></button>
-    </div>
-
     <!-- Sparkle field -->
     <div class="hero-sparkle-field" id="heroSparkles"></div>
 
-    <!-- Certification badges (Pinterest style) -->
+    <!-- Cert badges right edge -->
     <div class="hero-cert-badges">
       <div class="hero-cert-badge">
         <span class="cert-num">24%</span>
@@ -82,19 +69,41 @@
       <strong>Mongolia</strong>
     </h1>
     <p class="hero-tagline">
-      Гишүүдэд зориулсан албан ёсны портал. Бүтээгдэхүүн, сургалт болон мэдэгдлүүдийг энд авна уу.
+      Гишүүдэд зориулсан албан ёсны портал.<br>Бүтээгдэхүүн, сургалт болон мэдэгдлүүдийг энд авна уу.
     </p>
+
+    <!-- Search bar -->
+    <div class="hero-search">
+      <input type="text" placeholder="Бүтээгдэхүүн хайх…" aria-label="Хайх">
+      <button class="hero-search-btn" aria-label="Хайх">🔍</button>
+    </div>
+
     <div class="hero-cta-group">
       <a href="#products" class="btn-primary">Бүтээгдэхүүн үзэх</a>
       <a href="order.html" class="btn-ghost">Захиалга</a>
     </div>
+  </div>
 
-    <!-- Arrows -->
-    <div class="slide-arrows">
-      <button class="slide-arrow" onclick="prevSlide()">‹</button>
-      <button class="slide-arrow" onclick="nextSlide()">›</button>
+  <!-- Right: 3D glass orb -->
+  <div class="hero-orb-panel">
+    <div class="hero-orb-wrap">
+      <!-- Main orb -->
+      <div class="hero-orb"></div>
+
+      <!-- Orbiting dots -->
+      <div class="orb-dot" style="width:12px;height:12px;--spin-dur:7s;--spin-delay:0s;--radius:175px;top:50%;left:50%;margin:-6px 0 0 -6px;"></div>
+      <div class="orb-dot" style="width:8px;height:8px;--spin-dur:11s;--spin-delay:2s;--radius:185px;top:50%;left:50%;margin:-4px 0 0 -4px;background:rgba(14,165,233,0.65);"></div>
+      <div class="orb-dot" style="width:6px;height:6px;--spin-dur:9s;--spin-delay:4s;--radius:165px;top:50%;left:50%;margin:-3px 0 0 -3px;background:rgba(99,102,241,0.70);"></div>
+
+      <!-- Floating shards -->
+      <div class="orb-shard" style="width:48px;height:48px;top:8%;left:68%;--sf-dur:5s;--sf-delay:0s;--sx:10px;--sy:-14px;"></div>
+      <div class="orb-shard" style="width:32px;height:32px;top:72%;left:15%;--sf-dur:7s;--sf-delay:1.5s;--sx:-8px;--sy:10px;"></div>
+      <div class="orb-shard" style="width:22px;height:22px;top:20%;left:12%;--sf-dur:6s;--sf-delay:3s;--sx:6px;--sy:-8px;"></div>
+      <div class="orb-shard" style="width:38px;height:38px;top:80%;left:72%;--sf-dur:8s;--sf-delay:0.8s;--sx:-10px;--sy:12px;"></div>
+      <div class="orb-shard" style="width:16px;height:16px;top:50%;left:5%;--sf-dur:5.5s;--sf-delay:2.2s;--sx:4px;--sy:-6px;"></div>
     </div>
   </div>
+
 </section>
 
 <!-- Video Section -->
