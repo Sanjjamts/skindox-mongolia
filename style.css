@@ -656,35 +656,39 @@ select option { background: white; }
   display: grid; grid-template-columns: repeat(4,1fr);
   gap: 16px; margin-bottom: 32px;
 }
-.br-card {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
+.br-card,
+.br-card.highlight,
+.br-card.gold {
+  background: #379faf;
+  border: 1px solid rgba(255,255,255,0.20);
   border-radius: 16px; padding: 24px 18px;
   text-align: center;
+  box-shadow: 0 8px 32px rgba(55,159,175,0.25);
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
 }
-.br-card:hover {
-  background: rgba(255,255,255,0.13);
+.br-card:hover,
+.br-card.highlight:hover,
+.br-card.gold:hover {
+  background: #2d8fa0;
   transform: translateY(-6px);
-  border-color: var(--teal);
-  box-shadow: 0 16px 40px rgba(55,159,175,0.2);
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 20px 48px rgba(55,159,175,0.35);
 }
-.br-card.highlight { border-color: var(--teal); background: rgba(55,159,175,0.15); }
-.br-card.gold { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.08); }
-.br-card.gold:hover { border-color: var(--gold); box-shadow: 0 16px 40px rgba(201,168,76,0.2); }
 .br-icon { font-size: 28px; margin-bottom: 10px; }
 .br-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 600; color: white; margin-bottom: 6px;
+  font-size: 20px; font-weight: 600; color: #ffffff; margin-bottom: 6px;
 }
-.br-pv { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--teal-mid); margin-bottom: 10px; }
-.br-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 14px; }
+.br-pv { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+.br-desc { font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 14px; }
 .br-bonus {
-  font-size: 13px; color: white;
-  background: rgba(55,159,175,0.3); border-radius: 20px;
+  font-size: 13px; color: #ffffff;
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.30);
+  border-radius: 20px;
   padding: 4px 14px; display: inline-block;
 }
-.br-card.gold .br-bonus { background: rgba(201,168,76,0.3); color: #ffd080; }
+.br-card.gold .br-bonus { background: rgba(255,255,255,0.22); color: #ffffff; }
 
 /* ── Count-up numbers ── */
 .bonus-info-row {
