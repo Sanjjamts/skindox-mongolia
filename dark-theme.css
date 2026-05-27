@@ -513,37 +513,34 @@ input:focus, select:focus, textarea:focus {
 /* Subtitle below title → teal */
 .bonus-section .section-sub   { color: #379faf !important; opacity: 0.85; }
 
-/* br-card base: light bg (override dark original) */
-.br-card {
-  background: rgba(255,255,255,0.82) !important;
-  border-color: rgba(55,159,175,0.18) !important;
-}
-.br-card.highlight {
-  background: rgba(55,159,175,0.10) !important;
-  border-color: rgba(55,159,175,0.35) !important;
-}
+/* br-card → #379faf background, white text */
+.br-card,
+.br-card.highlight,
 .br-card.gold {
-  background: rgba(255,255,255,0.82) !important;
-  border-color: rgba(55,159,175,0.25) !important;
-}
-
-/* Rank name text → dark (light bg) */
-.br-name { color: var(--ink) !important; }
-
-/* PV text → teal */
-.br-pv { color: #379faf !important; }
-
-/* Description small text → teal */
-.br-desc { color: #379faf !important; opacity: 0.80; }
-
-/* Цолны бонус bar → #379faf for ALL cards */
-.br-bonus {
   background: #379faf !important;
-  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.20) !important;
+  box-shadow: 0 8px 32px rgba(55,159,175,0.25) !important;
 }
+.br-card:hover,
+.br-card.highlight:hover,
+.br-card.gold:hover {
+  background: #2b8a9d !important;
+  border-color: rgba(255,255,255,0.35) !important;
+  box-shadow: 0 16px 48px rgba(55,159,175,0.35) !important;
+  transform: translateY(-6px);
+}
+
+/* All text inside br-card → white */
+.br-name { color: #ffffff !important; }
+.br-pv   { color: rgba(255,255,255,0.85) !important; }
+.br-desc { color: rgba(255,255,255,0.75) !important; opacity: 1 !important; }
+
+/* Цолны бонус bar → white bg, teal text */
+.br-bonus,
 .br-card.gold .br-bonus {
-  background: #379faf !important;
+  background: rgba(255,255,255,0.25) !important;
   color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
 }
 
 /* Bonus info cards (bi-card) */
