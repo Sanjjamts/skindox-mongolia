@@ -7,6 +7,62 @@
 (function () {
   'use strict';
 
+  /* ── INJECT SITE-WIDE NAV BAR (subpages only) ── */
+  if (!document.querySelector('nav')) {
+    const navHTML = `
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="site-nav-logo">
+    <img src="uploads/logo-banner.png" alt="SKINDOX+" onerror="this.style.display='none'">
+    <span>SKINDOX+</span>
+  </a>
+  <ul class="site-nav-links">
+    <li><a href="index.html">Нүүр хуудас</a></li>
+    <li><a href="products.html">Бүтээгдэхүүн</a></li>
+    <li><a href="products-aros.html">Aros</a></li>
+    <li><a href="products-skinup.html">Skin Up</a></li>
+    <li><a href="products-perribloom.html">Perribloom</a></li>
+  </ul>
+  <a href="tel:77002223" class="site-nav-phone">📞 7700-2223</a>
+  <button class="site-nav-hamburger" id="siteNavHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="site-nav-mobile" id="siteNavMobile">
+  <a href="index.html">🏠 Нүүр хуудас</a>
+  <a href="products.html">🛍️ Бүтээгдэхүүн</a>
+  <a href="products-aros.html">Aros</a>
+  <a href="products-skinup.html">Skin Up</a>
+  <a href="products-perribloom.html">Perribloom</a>
+  <a href="tel:77002223">📞 7700-2223</a>
+</div>`;
+    document.body.insertAdjacentHTML('afterbegin', navHTML);
+    document.body.classList.add('has-site-nav');
+
+    const siteNav = document.getElementById('siteNav');
+    window.addEventListener('scroll', () => {
+      siteNav.classList.toggle('sn-scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    const hamburger = document.getElementById('siteNavHamburger');
+    const mobileNav = document.getElementById('siteNavMobile');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('sn-open');
+      mobileNav.classList.toggle('sn-open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('sn-open');
+        hamburger.classList.remove('sn-open');
+      });
+    });
+
+    /* Mark active link */
+    const current = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.site-nav-links a, .site-nav-mobile a').forEach(a => {
+      if (a.getAttribute('href') === current) a.classList.add('sn-active');
+    });
+  }
+
   /* ── TOP BAR GLASS MORPHISM ON SCROLL ── */
   const topBar = document.querySelector('.top-bar');
   if (topBar) {
