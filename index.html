@@ -464,28 +464,65 @@
     <p class="section-label">Мэдээ & Зар</p>
     <h2 class="section-title">Гишүүдэд мэдэгдэх зүйлс</h2>
 
-    <div class="notice-list">
-      <a href="notices/bonus-notice.html" class="notice-item">
-        <span class="notice-badge important">ЧУХАЛ</span>
-        <div>
+    <div class="notice-carousel-wrap">
+      <div class="notice-carousel" id="noticeCarousel">
+
+        <a href="notices/bonus-notice.html" class="notice-item">
+          <div class="notice-item-top">
+            <span class="notice-badge important">ЧУХАЛ</span>
+            <div class="notice-arrow-icon">→</div>
+          </div>
           <div class="notice-title">Скиндокс Албан Мэдээ — Багийн орлогын урамшуулал, идэвхжилтийн шаардлага</div>
           <div class="notice-meta">Бүх гишүүд сар бүрийн 7-нд урамшуулал тооцоолно. Идэвхжилтийн дагуу 50/40 захиалга шаардлагатай.</div>
-        </div>
-      </a>
-      <a href="notices/tips.html" class="notice-item">
-        <span class="notice-badge">ЗӨВЛӨМЖ</span>
-        <div>
+          <div class="notice-date">2025.05.01</div>
+        </a>
+
+        <a href="notices/tips.html" class="notice-item">
+          <div class="notice-item-top">
+            <span class="notice-badge tip">ЗӨВЛӨМЖ</span>
+            <div class="notice-arrow-icon">→</div>
+          </div>
           <div class="notice-title">Захиалга хийх зөв арга — Байнга хийдэг алдаанаас зайлсхийнэ</div>
           <div class="notice-meta">ID дугаараа заавал бичих, цагийн хуваарь дагуу захиалах, оффис дээр очих үед цаг алдахгүй байх зөвлөмж.</div>
-        </div>
-      </a>
-      <a href="notices/compensation-plan.html" class="notice-item">
-        <span class="notice-badge">МЭДЭЭЛЭЛ</span>
-        <div>
+          <div class="notice-date">2025.04.20</div>
+        </a>
+
+        <a href="notices/compensation-plan.html" class="notice-item">
+          <div class="notice-item-top">
+            <span class="notice-badge">МЭДЭЭЛЭЛ</span>
+            <div class="notice-arrow-icon">→</div>
+          </div>
           <div class="notice-title">Скиндокс маркетинг — Цолны систем</div>
           <div class="notice-meta">Power, Master, Polaris, Royal Polaris, Crown Polaris цолнуудын PV/BV шаардлага ба урамшуулал.</div>
-        </div>
-      </a>
+          <div class="notice-date">2025.04.15</div>
+        </a>
+
+        <a href="notices/bonus-notice.html" class="notice-item">
+          <div class="notice-item-top">
+            <span class="notice-badge important">ЧУХАЛ</span>
+            <div class="notice-arrow-icon">→</div>
+          </div>
+          <div class="notice-title">Гишүүний карт шинэчлэлт — Шинэ давуу тал нэмэгдлээ</div>
+          <div class="notice-meta">Гишүүний картын шинэ давуу талуудыг ашиглан илүү их хөнгөлөлт авах боломжтой.</div>
+          <div class="notice-date">2025.04.10</div>
+        </a>
+
+        <a href="notices/tips.html" class="notice-item">
+          <div class="notice-item-top">
+            <span class="notice-badge tip">ЗӨВЛӨМЖ</span>
+            <div class="notice-arrow-icon">→</div>
+          </div>
+          <div class="notice-title">Арьсны арчилгааны зөвлөмж — Улирлын өөрчлөлтөд хэрхэн бэлдэх вэ</div>
+          <div class="notice-meta">Цаг агаарын өөрчлөлтөд тохирсон арьсны арчилгааны дэглэм.</div>
+          <div class="notice-date">2025.04.05</div>
+        </a>
+
+      </div>
+
+      <div class="notice-nav">
+        <button class="notice-nav-btn" id="noticePrev" aria-label="Өмнөх">←</button>
+        <button class="notice-nav-btn" id="noticeNext" aria-label="Дараах">→</button>
+      </div>
     </div>
   </div>
 </section>
@@ -687,5 +724,17 @@
   if (bonusSection) countObserver.observe(bonusSection);
 </script>
 <script src="motion.js"></script>
+<script>
+/* ── NOTICE CAROUSEL ── */
+(function(){
+  const carousel = document.getElementById('noticeCarousel');
+  const prev = document.getElementById('noticePrev');
+  const next = document.getElementById('noticeNext');
+  if (!carousel || !prev || !next) return;
+  const scrollAmt = 300;
+  next.addEventListener('click', () => carousel.scrollBy({ left: scrollAmt, behavior: 'smooth' }));
+  prev.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmt, behavior: 'smooth' }));
+})();
+</script>
 </body>
 </html>
