@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skindeep Overflow Nutrition Cream — Aros · Skindox Mongolia</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="dark-theme.css">
+<link rel="stylesheet" href="shared.css"><link rel="stylesheet" href="dark-theme.css">
 <style>
-:root{--brand:#e8722a;--brand-light:#fff3ec;--brand-dark:#b84800;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--white:#fff;--border:#e8e8e8;}
+:root{--brand:#e8722a;--brand-light:#fff3ec;--brand-dark:#b84800;--ink:#1a2a2e;--ink-mid:#3d5a61;--paper:#f8fafb;--white:#fff;--border:#e8e8e8;}
 *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
-.top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}
-.top-bar a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;}.top-bar a:hover{color:white;}.top-bar span{color:rgba(255,255,255,0.25);font-size:13px;}
+.top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;}.top-bar a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;}.top-bar a:hover{color:white;}.top-bar span{color:rgba(255,255,255,0.25);font-size:13px;}
+.page-banner{width:100%;height:340px;overflow:hidden;position:relative;background:#1a1a1a;}
+.page-banner img{width:100%;height:100%;object-fit:cover;object-position:center;}
 .prod-hero{background:linear-gradient(160deg,#1a1010 0%,#3d1800 50%,#e8722a 100%);min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:60px 40px;}
 .prod-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(232,114,42,0.35) 0%,transparent 65%);}
 .prod-hero-inner{display:flex;align-items:center;gap:64px;max-width:1000px;width:100%;position:relative;z-index:1;}
@@ -30,7 +30,12 @@
 .fcircle{flex:1;min-width:180px;background:white;border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;transition:all 0.2s;}
 .fcircle:hover{border-color:var(--brand);box-shadow:0 8px 32px rgba(232,114,42,0.12);transform:translateY(-3px);}
 .fcircle-icon{font-size:32px;margin-bottom:12px;}.fcircle-title{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:6px;}.fcircle-desc{font-size:12px;color:var(--ink-mid);line-height:1.6;}
-.ingr-section{background:white;padding:64px 0;}
+.ingr-section{background:white;padding:64px 0;position:relative;}
+.botanical-deco{position:absolute;right:0;top:0;width:220px;height:100%;pointer-events:none;overflow:hidden;}
+.deco-img{position:absolute;opacity:0.88;}
+.deco-1{top:20px;right:-15px;width:185px;transform:rotate(-8deg);}
+.deco-2{top:300px;right:-5px;width:155px;transform:rotate(12deg);}
+.deco-3{top:540px;right:-20px;width:170px;transform:rotate(-5deg);}
 .ingr-inner{max-width:860px;margin:0 auto;padding:0 32px;}
 .ingr-list{display:flex;flex-direction:column;gap:0;}
 .ingr-item{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:flex-start;padding:28px 0;border-bottom:1px solid var(--border);}
@@ -51,7 +56,8 @@
 .pv-chip{font-size:13px;font-weight:600;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;}
 .cta-btn{display:inline-block;background:white;color:var(--brand-dark);font-weight:700;font-size:15px;padding:14px 40px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:all 0.15s;}
 .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.28);}
-@media(max-width:760px){.prod-hero-inner{flex-direction:column;gap:32px;text-align:center;}.prod-hero-img{width:200px;height:260px;}.prod-hero-img img{max-height:240px;}.prod-hero-name{font-size:34px;}.feature-circles{flex-direction:column;}.section{padding:48px 20px;}.ingr-inner{padding:0 20px;}.price-cards{flex-direction:column;align-items:center;}}
+@media(max-width:900px){.botanical-deco{display:none;}}
+@media(max-width:760px){.prod-hero-inner{flex-direction:column;gap:32px;text-align:center;}.prod-hero-img{width:200px;height:260px;}.prod-hero-name{font-size:34px;}.feature-circles{flex-direction:column;}.section{padding:48px 20px;}.ingr-inner{padding:0 20px;}.price-cards{flex-direction:column;align-items:center;}.page-banner{height:200px;}}
 </style>
 </head>
 <body>
@@ -61,6 +67,11 @@
   <a href="products-aros.html">Aros</a><span>/</span>
   <span style="color:rgba(255,255,255,0.8)">Nutrition Cream</span>
 </div>
+
+<div class="page-banner">
+  <img src="uploads/aros-nutrition-cream.jpg" alt="Overflow Nutrition Cream" onerror="this.parentNode.style.display='none'">
+</div>
+
 <div class="prod-hero">
   <div class="prod-hero-inner">
     <div class="prod-hero-img">
@@ -70,11 +81,12 @@
       <div class="prod-brand-tag">✦ AROS · Skindeep серийн</div>
       <div class="prod-hero-name">Skindeep Overflow<br>Nutrition Cream</div>
       <div class="prod-hero-sub">Тэжээлийн тос · 50ml</div>
-      <div class="prod-hero-claim">부드럽게 감싸는 피부활성성분이 피부에 촉촉한 윤기를 전달합니다. 촉촉한 수분감과 뿌리깊은 영양감이 조화를 이룬 크림입니다.</div>
+      <div class="prod-hero-claim">Зөөлөн хүрч буй арьсны идэвхт найрлага нь арьсанд чийгтэй гялалзалтыг хүргэдэг. Чийглэг усны мэдрэмж ба гүн тэжээлийн зохицолтой крем.</div>
       <div class="prod-vol-badge">50ml · Гишүүний үнэ: 129,000₮</div>
     </div>
   </div>
 </div>
+
 <div class="section">
   <div class="sec-eyebrow">Гол онцлогууд</div>
   <div class="sec-title">Яагаад Overflow Nutrition Cream?</div>
@@ -85,7 +97,13 @@
     <div class="fcircle"><div class="fcircle-icon">✨</div><div class="fcircle-title">Гүн чийгшилт</div><div class="fcircle-desc">Арьсанд чийгийн тэнцвэрийг удаан хадгалдаг</div></div>
   </div>
 </div>
+
 <div class="ingr-section">
+  <div class="botanical-deco">
+    <img src="uploads/deco-leaf-1.png" class="deco-img deco-1" onerror="this.style.display='none'" alt="">
+    <img src="uploads/deco-leaf-2.png" class="deco-img deco-2" onerror="this.style.display='none'" alt="">
+    <img src="uploads/deco-leaf-3.png" class="deco-img deco-3" onerror="this.style.display='none'" alt="">
+  </div>
   <div class="ingr-inner">
     <div class="sec-eyebrow">Үндсэн найрлага</div>
     <div class="sec-title">Идэвхтэй бодисууд</div>
@@ -93,27 +111,28 @@
       <div class="ingr-item">
         <div class="ingr-num">1</div>
         <div class="ingr-body">
-          <div class="ingr-name">인삼추출물 — Инсамын ханд</div>
-          <div class="ingr-desc">거칠고 민감해진 피부를 진정시키고 피부장벽 강화 및 염증억제에 도움을 줍니다. Арьсыг тайвшруулж, арьсны хана бэхжүүлж, үрэвслийг дарахад тусалдаг.</div>
+          <div class="ingr-name">Инсамын ханд</div>
+          <div class="ingr-desc">Арьсыг тайвшруулж, арьсны хана бэхжүүлж, үрэвслийг дарахад тусалдаг.</div>
         </div>
       </div>
       <div class="ingr-item">
         <div class="ingr-num">2</div>
         <div class="ingr-body">
-          <div class="ingr-name">아미노애씨드콤플렉스 — Амин хүчлийн цогц</div>
-          <div class="ingr-desc">천연보습인자의 주성분으로 아미노콤플렉스가 함유되어 피부에 촉촉함을 선사하고, 피부를 건강하게 지켜줍니다. Байгалийн чийгшүүлэх бодис — арьсыг чийгтэй, эрүүл байлгадаг.</div>
+          <div class="ingr-name">Амин хүчлийн цогц</div>
+          <div class="ingr-desc">Байгалийн чийгшүүлэх бодис — арьсыг чийгтэй, эрүүл байлгадаг.</div>
         </div>
       </div>
       <div class="ingr-item">
         <div class="ingr-num">3</div>
         <div class="ingr-body">
-          <div class="ingr-name">세라마이드엔피 — Серамид NP</div>
-          <div class="ingr-desc">피부각질층에 존재하는 세포간지질의 50%를 차지하는 중요한 성분인 세라마이드엔피를 함유하여 피부노화의 예방 및 피부장벽 강화에 도움을 줍니다. Арьсны эсийн хоорондын тосны 50%-ийг бүрдүүлдэг чухал бүрэлдэхүүн — хөгшрөлт, арьсны ханыг хамгаалдаг.</div>
+          <div class="ingr-name">Серамид NP</div>
+          <div class="ingr-desc">Арьсны эсийн хоорондын тосны 50%-ийг бүрдүүлдэг чухал бүрэлдэхүүн — хөгшрөлт, арьсны ханыг хамгаалдаг.</div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="price-section">
   <h2>Үнэ & PV/BV мэдээлэл</h2>
   <div class="price-cards">
