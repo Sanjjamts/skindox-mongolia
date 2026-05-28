@@ -146,15 +146,14 @@ body.has-site-nav .top-bar { display: none; }
 .prod-hero { overflow: visible !important; }
 .prod-hero-img {
   overflow: visible;
-  width: 480px !important;
-  height: 600px !important;
   filter: drop-shadow(0 36px 64px rgba(0,0,0,0.50));
 }
 .prod-hero-img img {
   transform: rotate(30deg) !important;
   transform-origin: center center;
-  max-height: 580px !important;
-  max-width: 440px !important;
+  height: 600px !important;
+  max-height: none !important;
+  max-width: none !important;
   width: auto !important;
   transition: transform 0.4s ease;
 }
