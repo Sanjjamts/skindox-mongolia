@@ -30,44 +30,42 @@
   top: 0; left: 0; right: 0;
   z-index: 200;
   background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid #d4e8ec;
-  height: 54px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  padding: 0 32px;
+  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .site-nav.sn-scrolled {
-  box-shadow: 0 4px 28px rgba(55,159,175,0.13);
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 4px 32px rgba(55,159,175,0.10), 0 1px 0 rgba(255,255,255,0.6);
+  border-bottom-color: rgba(212,232,236,0.5);
 }
 .site-nav-logo {
   display: flex; align-items: center; gap: 10px;
   text-decoration: none; flex-shrink: 0;
 }
 .site-nav-logo img {
-  height: 28px; width: auto; object-fit: contain;
-}
-.site-nav-logo span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px; font-weight: 600;
-  color: #1a2a2e; letter-spacing: 0.01em;
+  height: 32px; width: auto; object-fit: contain;
 }
 .site-nav-links {
-  display: flex; align-items: center; gap: 2px;
+  display: flex; align-items: center; gap: 0;
   list-style: none;
 }
 .site-nav-links a {
   display: block;
-  padding: 6px 14px;
+  padding: 8px 16px;
   font-size: 13px; font-weight: 500;
   color: #3d5a61;
   text-decoration: none;
   border-radius: 8px;
-  transition: background 0.15s, color 0.15s;
+  transition: all 0.15s;
 }
 .site-nav-links a:hover,
 .site-nav-links a.sn-active {
@@ -78,7 +76,7 @@
   color: #2b7e8d;
   background: #eaf6f8;
   border: 1px solid #d4e8ec;
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: 20px;
   text-decoration: none;
   flex-shrink: 0;
@@ -104,9 +102,7 @@
 .site-nav-hamburger.sn-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-.site-nav-hamburger.sn-open span:nth-child(2) {
-  opacity: 0;
-}
+.site-nav-hamburger.sn-open span:nth-child(2) { opacity: 0; }
 .site-nav-hamburger.sn-open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
@@ -115,7 +111,7 @@
 .site-nav-mobile {
   display: none;
   position: fixed;
-  top: 54px; left: 0; right: 0;
+  top: 60px; left: 0; right: 0;
   background: rgba(255,255,255,0.98);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -127,7 +123,7 @@
 }
 .site-nav-mobile.sn-open { display: flex; }
 .site-nav-mobile a {
-  padding: 12px 28px;
+  padding: 12px 32px;
   font-size: 14px; font-weight: 500;
   color: #3d5a61;
   text-decoration: none;
@@ -135,10 +131,10 @@
   border-bottom: 1px solid rgba(212,232,236,0.4);
 }
 .site-nav-mobile a:last-child { border-bottom: none; }
-.site-nav-mobile a:hover { background: #eaf6f8; }
+.site-nav-mobile a:hover { background: #eaf6f8; color: #2b7e8d; }
 
-/* Offset body & sticky breadcrumb when site-nav is present */
-body.has-site-nav { padding-top: 54px; }
+/* Offset body when site-nav is present */
+body.has-site-nav { padding-top: 60px; }
 body.has-site-nav .top-bar { display: none; }
 
 /* ── PRODUCT DETAIL PAGES — remove banner, tilt hero image ── */
