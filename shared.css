@@ -141,6 +141,24 @@
 body.has-site-nav { padding-top: 54px; }
 body.has-site-nav .top-bar { display: none; }
 
+/* ── PRODUCT DETAIL PAGES — remove banner, tilt hero image ── */
+.page-banner { display: none !important; }
+.prod-hero { overflow: visible !important; }
+.prod-hero-img {
+  overflow: visible;
+  filter: drop-shadow(0 28px 48px rgba(0,0,0,0.45));
+}
+.prod-hero-img img {
+  transform: rotate(30deg) !important;
+  transform-origin: center center;
+  max-height: 300px !important;
+  max-width: 230px !important;
+  transition: transform 0.4s ease;
+}
+.prod-hero-img img:hover {
+  transform: rotate(28deg) scale(1.04) !important;
+}
+
 @media (max-width: 820px) {
   .site-nav-links, .site-nav-phone { display: none; }
   .site-nav-hamburger { display: flex; }
