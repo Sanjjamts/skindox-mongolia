@@ -13,7 +13,6 @@
 <nav class="site-nav" id="siteNav">
   <a href="index.html" class="site-nav-logo">
     <img src="uploads/logo-banner.png" alt="SKINDOX+" onerror="this.style.display='none'">
-    <span>SKINDOX+</span>
   </a>
   <ul class="site-nav-links">
     <li><a href="index.html">Нүүр хуудас</a></li>

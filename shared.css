@@ -139,7 +139,7 @@
 
 /* Offset body & sticky breadcrumb when site-nav is present */
 body.has-site-nav { padding-top: 54px; }
-body.has-site-nav .top-bar { top: 54px; }
+body.has-site-nav .top-bar { display: none; }
 
 @media (max-width: 820px) {
   .site-nav-links, .site-nav-phone { display: none; }
