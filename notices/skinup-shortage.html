@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мэдэгдэл — Skinup Foam & Shield Cream хомсдол · Skindox Mongolia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<style>
+:root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+
+/* Hero */
+.notice-hero{
+  background:linear-gradient(135deg,#8a2010 0%,#c94020 50%,#e87030 100%);
+  padding:72px 32px 56px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.notice-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 30%,rgba(255,180,80,0.25) 0%,transparent 65%);
+}
+.notice-hero-inner{position:relative;z-index:1;}
+.hero-logo{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;}
+.hero-badge{
+  display:inline-block;background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.35);color:white;
+  font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  padding:5px 18px;border-radius:999px;margin-bottom:22px;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:500;color:white;
+  line-height:1.15;margin-bottom:14px;
+}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto;line-height:1.7;}
+.hero-date{margin-top:20px;font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;}
+
+/* Main layout */
+main{max-width:780px;margin:0 auto;padding:64px 32px 96px;}
+
+/* Intro box */
+.intro-box{
+  background:white;border:1px solid var(--border);border-radius:18px;
+  padding:28px 32px;margin-bottom:40px;
+  border-left:4px solid #e05252;
+}
+.intro-box p{font-size:15px;color:var(--ink-mid);line-height:1.85;}
+
+/* Section header */
+.sec-label{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--ink);margin-bottom:24px;line-height:1.25;}
+
+/* Stock list */
+.stock-list{display:flex;flex-direction:column;gap:12px;margin-bottom:40px;}
+.stock-item{
+  background:white;border:1px solid var(--border);border-radius:14px;
+  padding:18px 24px;display:flex;align-items:center;gap:18px;
+}
+.stock-num{
+  width:36px;height:36px;border-radius:50%;background:var(--teal);
+  color:white;font-weight:700;font-size:16px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.stock-name{font-weight:700;font-size:15px;color:var(--ink);}
+.stock-qty{font-size:13px;color:var(--ink-mid);margin-top:3px;}
+
+/* Rule banner */
+.rule-banner{
+  background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);
+  border-radius:18px;padding:24px 32px;margin-bottom:32px;
+  display:flex;align-items:center;gap:20px;color:white;
+}
+.rule-icon{font-size:36px;flex-shrink:0;}
+.rule-text{font-size:15px;line-height:1.65;}
+.rule-text strong{font-size:20px;display:block;margin-bottom:4px;}
+
+/* Split cards */
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;}
+.split-card{
+  background:white;border:1px solid var(--border);border-radius:18px;
+  padding:28px 24px;
+}
+.split-card.highlight{background:#fff8f0;border-color:#f0c080;}
+.split-card-label{
+  font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.split-card.highlight .split-card-label{color:#b85000;}
+.split-card:not(.highlight) .split-card-label{color:var(--teal-dark);}
+.split-card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:14px;line-height:1.3;}
+.split-card-body{font-size:13.5px;color:var(--ink-mid);line-height:1.8;}
+.split-card-body strong{color:var(--ink);font-weight:700;}
+
+/* Summary box */
+.summary-box{
+  background:var(--teal-light);border:1px solid #b5e0e8;
+  border-radius:16px;padding:24px 28px;margin-bottom:40px;
+}
+.summary-box p{font-size:14px;color:var(--ink);line-height:1.85;}
+
+/* Warning */
+.warning-box{
+  background:#fff3f3;border:1px solid #f0b0b0;
+  border-radius:14px;padding:20px 24px;margin-bottom:40px;
+}
+.warning-box p{font-size:13.5px;color:#8a0000;line-height:1.75;}
+
+/* Image banner */
+.img-banner{
+  border-radius:20px;overflow:hidden;margin-bottom:40px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.12);
+}
+.img-banner img{width:100%;display:block;object-fit:cover;}
+
+/* Sign-off */
+.signoff{
+  text-align:center;padding:32px;
+  background:white;border:1px solid var(--border);border-radius:18px;
+}
+.signoff-org{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--teal-dark);margin-bottom:6px;}
+.signoff-date{font-size:13px;color:var(--ink-light);}
+
+@media(max-width:640px){
+  .hero-title{font-size:34px;}
+  .split-grid{grid-template-columns:1fr;}
+  main{padding:40px 18px 72px;}
+  .rule-banner{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="notice-hero">
+  <div class="notice-hero-inner">
+    <div class="hero-logo">✦ SKINDOX MONGOLIA</div>
+    <div class="hero-badge">ЧУХАЛ МЭДЭГДЭЛ</div>
+    <h1 class="hero-title">Мэдэгдэл</h1>
+    <p class="hero-sub">Эрхэм гишүүдийн анхааралд — Skinup Foam болон Skinup Shield Cream хомсдлын талаарх мэдэгдэл</p>
+    <div class="hero-date">2026.05.26</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- Intro -->
+  <div class="intro-box">
+    <p>Давагдашгүй хүчин зүйлийн улмаас <strong>Skinup Foam</strong> буюу Хөөс, <strong>Skinup Shield Cream</strong> буюу Чийгшүүлэгч тос хомсдолд ороод байгаа билээ. Уг бүтээгдэхүүн маш бага буюу доорх тоо хэмжээгээр дахин Монголд буусан бөгөөд нийт гишүүдэд хүссэн хэмжээгээр хүрэлцэх боломжгүй учир доорх зарчмыг баримтлан хүрээмжтэй байдлыг харгалзан, олголт хийгдэхээр боллоо.</p>
+  </div>
+
+  <!-- Banner image -->
+  <div class="img-banner">
+    <img src="../uploads/skinup-shortage-notice.jpg" alt="Мэдэгдэл" onerror="this.parentNode.style.display='none'">
+  </div>
+
+  <!-- Stock -->
+  <div class="sec-label">Нийт нөөц</div>
+  <div class="sec-title">Бараа олгох тоо хэмжээ</div>
+  <div class="stock-list">
+    <div class="stock-item">
+      <div class="stock-num">1</div>
+      <div>
+        <div class="stock-name">Skinup Foam буюу Хөөс</div>
+        <div class="stock-qty">Нийт нөөц: 100 ширхэг</div>
+      </div>
+    </div>
+    <div class="stock-item">
+      <div class="stock-num">2</div>
+      <div>
+        <div class="stock-name">Skinup Shield Cream буюу Чийгшүүлэгч тос</div>
+        <div class="stock-qty">Нийт нөөц: 100 ширхэг</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rule -->
+  <div class="rule-banner">
+    <div class="rule-icon">📋</div>
+    <div class="rule-text">
+      <strong>Бараа олгох шаардлага</strong>
+      1 ID = 1 ширхэг — Нэг гишүүний нэг ID дугаараар нэг ширхэг бүтээгдэхүүн авах боломжтой
+    </div>
+  </div>
+
+  <!-- Split conditions -->
+  <div class="sec-label">Олголтын нөхцөл</div>
+  <div class="sec-title">Гишүүний төрлөөс хамааран</div>
+  <div class="split-grid">
+    <div class="split-card">
+      <div class="split-card-label">Ердийн худалдан авалт</div>
+      <div class="split-card-title">Ердийн худалдан авалттай гишүүд</div>
+      <div class="split-card-body">
+        Ердийн буюу <strong>100% үнээр</strong> худалдан авч, Skinup төрлөөс бусад төрлөөр <strong>1ш бүтээгдэхүүн</strong> ердийн үнээр худалдан авалт нэмэлтээр хамт захиалга хийсэн байх
+      </div>
+    </div>
+    <div class="split-card highlight">
+      <div class="split-card-label">50% худалдан авалт</div>
+      <div class="split-card-title">50/40-ийн худалдан авалттай гишүүд</div>
+      <div class="split-card-body">
+        50%-ын үнээр худалдан авч, Skinup төрлөөс бусад төрлөөр <strong>2ш бүтээгдэхүүн 50%-аар</strong> худалдан авалт нэмэлтээр хамт захиалга хийсэн байх
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-box">
+    <p>Өөрөөр хэлбэл дээрх 2 төрлийн бүтээгдэхүүнээс <strong>5-р сард огт худалдан авалт хийгээгүй</strong> ердийн болон 50%-тай худалдан авалт хийдэг аль ч гишүүнд боломжтой юм.</p>
+  </div>
+
+  <!-- Warning -->
+  <div class="warning-box">
+    <p>⚠️ Хэрэв та 50-иар худалдан авалт хийдэг хэдий ч <strong>ердийн үнээр өмнөх мэдэгдлийн дагуу авсан бол</strong> энэ удаад худалдан авалт хийх боломжгүй юм.</p>
+  </div>
+
+  <!-- Sign-off -->
+  <div class="signoff">
+    <div class="signoff-org">СКИНДОКС МОНГОЛИА</div>
+    <div class="signoff-date">2026.05.26</div>
+  </div>
+
+</main>
+<script src="../shared.js"></script>
+</body>
+</html>
