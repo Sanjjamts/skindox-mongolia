@@ -12,8 +12,17 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
 
-  .top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:50;}
-  .top-bar span{color:rgba(255,255,255,0.85);font-size:13px;font-weight:600;letter-spacing:0.02em;}
+  /* Site header */
+  .site-header{background:#fff;border-bottom:1px solid var(--border);padding:12px 26px;display:flex;
+               align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:50;
+               box-shadow:0 1px 14px rgba(31,95,107,0.07);}
+  .site-logo{display:flex;align-items:center;gap:13px;}
+  .site-logo .seal{height:48px;width:auto;display:block;}
+  .site-lockup{display:flex;flex-direction:column;gap:5px;}
+  .site-lockup .wordmark{height:25px;width:auto;display:block;}
+  .site-lockup .tagline{font-size:9.5px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-light);}
+  .site-phone{font-size:13.5px;font-weight:700;color:var(--teal-dark);text-decoration:none;white-space:nowrap;}
+  .site-phone:hover{color:var(--teal);}
 
   .zs-hero{background:linear-gradient(135deg,#5c1010,#8a2020);padding:56px 24px;text-align:center;}
   .zs-hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:18px;}
@@ -85,6 +94,12 @@
   .zs-loading{font-size:13.5px;color:var(--ink-light);text-align:center;padding:14px;}
 
   @media(max-width:640px){
+    .site-header{padding:10px 16px;}
+    .site-logo{gap:10px;}
+    .site-logo .seal{height:38px;}
+    .site-lockup .wordmark{height:19px;}
+    .site-lockup .tagline{font-size:8px;letter-spacing:0.18em;}
+    .site-phone{font-size:12.5px;}
     .zs-hero h1{font-size:29px;}
     .zs-hero{padding:44px 20px;}
     main{padding:32px 18px 56px;}
@@ -96,9 +111,16 @@
 </head>
 <body>
 
-<div class="top-bar">
-  <span>SKINDOX+ · Гишүүний эрх цуцлагдах эрсдэлтэй ID жагсаалт</span>
-</div>
+<header class="site-header">
+  <div class="site-logo">
+    <img class="seal" src="uploads/logo-stamp.png" alt="SKINDOX — Cosmetic Paradox · Design Your Skin">
+    <span class="site-lockup">
+      <img class="wordmark" src="uploads/logo-banner.png" alt="SKINDOX+">
+      <span class="tagline">Design your Skin</span>
+    </span>
+  </div>
+  <a class="site-phone" href="tel:77002223">📞 7700-2223</a>
+</header>
 
 <div class="zs-hero">
   <div class="zs-hero-badge">📢 Албан Зарлал</div>
