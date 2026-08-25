@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────────────────────
+#  ТҮР ЗУУРЫН ТОХИРГОО — 2026.08.25
+#
+#  Зарлалын хугацаанд cosdox.mn дээр ЗӨВХӨН гишүүний эрх цуцлагдах
+#  эрсдэлтэй ID-ийн хуудас нийтлэгдэнэ. Доор жагсаасан хуудсууд нь
+#  repo дотроо хэвээр байгаа боловч сайт дээр гарахгүй (404 өгнө).
+#
+#  СЭРГЭЭХ (3 алхам):
+#    1. git rm _config.yml
+#    2. git checkout 39061e0 -- index.html
+#    3. git commit -m "Сайтыг сэргээв" ; git push origin main
+#
+#  (39061e0 = сайт бүрэн байсан үеийн сүүлчийн commit)
+# ─────────────────────────────────────────────────────────────
+
+exclude:
+  - compensation.html
+  - order.html
+  - schedule-april.html
+  - products.html
+  - products-aros.html
+  - products-mach.html
+  - products-perribloom.html
+  - products-skinup.html
+  - product-aros-basic-serum.html
+  - product-aros-nutrition-cream.html
+  - product-aros-oil-serum.html
+  - product-aros-toner.html
+  - product-aros-vitamin-serum.html
+  - product-pb-biome-serum.html
+  - product-pb-improvement-serum.html
+  - product-pb-nutrition-cream.html
+  - product-pb-oil-serum.html
+  - product-pb-recovery-serum.html
+  - product-pb-toner.html
+  - product-pb-vitamin-serum.html
+  - product-skinup-bb.html
+  - product-skinup-cream.html
+  - product-skinup-foam.html
+  - product-skinup-peeling-gel.html
+  - product-skinup-sun-gel.html
+  - lessons
+  - notices
+  - tools
