@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гишүүнчлэл түтгэлзүүлэх зарлал — ID шалгах | SKINDOX</title>
+<meta name="description" content="Журмын дагуу 6 сар худалдан авалт хийгээгүй, гишүүнчлэл хасагдах эрсдэлтэй гишүүдийн ID дугаарыг шалгах хуудас.">
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;--danger:#a32020;--danger-soft:#fff3f3;--ok:#1f7a4d;--ok-soft:#f0faf4;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+
+  .top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .top-bar a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;}
+  .top-bar a:hover{color:white;}
+  .top-bar span{color:rgba(255,255,255,0.3);font-size:13px;}
+
+  .zs-hero{background:linear-gradient(135deg,#5c1010,#8a2020);padding:56px 24px;text-align:center;}
+  .zs-hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:18px;}
+  .zs-hero h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:500;color:white;margin-bottom:12px;line-height:1.3;}
+  .zs-hero p{font-size:14.5px;color:rgba(255,255,255,0.75);max-width:640px;margin:0 auto;line-height:1.7;}
+  .zs-hero-stats{display:flex;justify-content:center;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .zs-hero-stat b{display:block;font-size:26px;font-weight:700;color:white;line-height:1.2;}
+  .zs-hero-stat i{font-style:normal;font-size:11.5px;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase;}
+
+  main{max-width:840px;margin:0 auto;padding:44px 24px 72px;}
+  h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);margin:40px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--teal-light);}
+  p{font-size:14.5px;color:var(--ink-mid);line-height:1.8;margin-bottom:12px;}
+  ul{list-style:disc;padding-left:20px;margin:12px 0;}
+  ul li{font-size:14px;color:var(--ink-mid);line-height:1.75;margin-bottom:6px;}
+  .callout{background:var(--teal-light);border-left:4px solid var(--teal);padding:16px 20px;border-radius:0 12px 12px 0;margin:20px 0;font-size:14px;color:var(--ink);line-height:1.7;}
+
+  /* Search card */
+  .zs-card{background:white;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 10px 34px rgba(31,95,107,0.08);}
+  .zs-tabs{display:flex;gap:8px;background:var(--teal-light);padding:5px;border-radius:12px;margin-bottom:22px;}
+  .zs-tab{flex:1;border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--teal-dark);padding:11px 10px;border-radius:9px;cursor:pointer;transition:all .18s;}
+  .zs-tab[aria-selected="true"]{background:white;color:var(--ink);box-shadow:0 2px 10px rgba(31,95,107,0.12);}
+  .zs-label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+  .zs-hint{font-size:12.5px;color:var(--ink-light);line-height:1.6;margin-bottom:14px;}
+  .zs-form{display:flex;gap:10px;flex-wrap:wrap;}
+  .zs-input{flex:1;min-width:200px;font-family:inherit;font-size:16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:2px solid var(--border);border-radius:12px;padding:14px 16px;outline:none;transition:border-color .18s;}
+  .zs-input:focus{border-color:var(--teal);background:white;}
+  .zs-input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-light);}
+  .zs-btn{font-family:inherit;font-size:14.5px;font-weight:700;color:white;background:var(--teal);border:none;border-radius:12px;padding:14px 30px;cursor:pointer;transition:background .18s;}
+  .zs-btn:hover{background:var(--teal-dark);}
+  .zs-err{display:none;margin-top:12px;font-size:13px;font-weight:600;color:var(--danger);}
+  .zs-err.on{display:block;}
+
+  /* Results */
+  .zs-result{margin-top:22px;}
+  .zs-box{border-radius:16px;padding:22px;margin-bottom:16px;}
+  .zs-box.danger{background:var(--danger-soft);border:1.5px solid #f0a0a0;}
+  .zs-box.ok{background:var(--ok-soft);border:1.5px solid #a8dcc0;}
+  .zs-box.neutral{background:white;border:1.5px solid var(--border);}
+  .zs-flag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}
+  .zs-flag.danger{background:var(--danger);color:white;}
+  .zs-flag.ok{background:var(--ok);color:white;}
+  .zs-id{font-size:27px;font-weight:700;letter-spacing:0.05em;color:var(--ink);line-height:1.2;}
+  .zs-name{font-size:15px;font-weight:600;color:var(--ink-mid);margin-top:4px;}
+  .zs-msg{font-size:14px;color:var(--ink-mid);line-height:1.75;margin-top:12px;}
+  .zs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px;}
+  .zs-field{background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:11px;padding:12px 14px;}
+  .zs-field i{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:5px;}
+  .zs-field b{font-size:14px;font-weight:600;color:var(--ink);word-break:break-word;}
+
+  .zs-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:12px;background:white;}
+  table.zs-table{width:100%;border-collapse:collapse;min-width:520px;}
+  table.zs-table th{background:var(--teal);color:white;padding:11px 14px;text-align:left;font-size:12.5px;font-weight:700;white-space:nowrap;}
+  table.zs-table td{padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--border);color:var(--ink-mid);}
+  table.zs-table tr:last-child td{border-bottom:none;}
+  table.zs-table tr:nth-child(even) td{background:var(--paper);}
+  table.zs-table td.idcell{font-weight:700;color:var(--ink);letter-spacing:0.04em;white-space:nowrap;}
+  .zs-count{font-size:14px;font-weight:600;color:var(--ink);margin:16px 0 10px;}
+
+  .stamp{text-align:center;margin:44px 0 0;padding:22px;border:1px solid var(--border);border-radius:14px;background:white;}
+  .zs-loading{font-size:13.5px;color:var(--ink-light);text-align:center;padding:14px;}
+
+  @media(max-width:640px){
+    .zs-hero h1{font-size:29px;}
+    .zs-hero{padding:44px 20px;}
+    main{padding:32px 18px 56px;}
+    .zs-card{padding:20px 17px;border-radius:15px;}
+    .zs-btn{width:100%;}
+    .zs-id{font-size:23px;}
+  }
+</style>
+<link rel="stylesheet" href="motion.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="index.html">← Нүүр хуудас</a>
+  <span>/</span>
+  <span style="color:rgba(255,255,255,0.8)">Гишүүнчлэл түтгэлзүүлэх зарлал</span>
+</div>
+
+<div class="zs-hero">
+  <div class="zs-hero-badge">📢 Албан Зарлал</div>
+  <h1>Гишүүнчлэл түтгэлзүүлэх<br>ID дугаарын жагсаалт</h1>
+  <p>Журмын дагуу сүүлийн <strong>6 сар худалдан авалт хийгээгүй</strong> тул гишүүнчлэл нь түтгэлзэж, хасагдах эрсдэлтэй гишүүдийн ID дугаарыг зарлаж байна. ID дугаараа доор шалгана уу.</p>
+  <div class="zs-hero-stats">
+    <div class="zs-hero-stat"><b id="statTotal">—</b><i>Зарлагдсан ID</i></div>
+    <div class="zs-hero-stat"><b id="statInv">—</b><i>Хамаарах уригч</i></div>
+    <div class="zs-hero-stat"><b id="statDate">—</b><i>Шинэчлэгдсэн</i></div>
+  </div>
+</div>
+
+<main>
+
+  <div class="zs-card">
+    <div class="zs-tabs" role="tablist">
+      <button class="zs-tab" id="tabMember" role="tab" aria-selected="true" aria-controls="paneMember">🔍 ID дугаараар шалгах</button>
+      <button class="zs-tab" id="tabInviter" role="tab" aria-selected="false" aria-controls="paneInviter">👥 Уригчаар хайх</button>
+    </div>
+
+    <!-- Pane 1: search own ID -->
+    <div id="paneMember" role="tabpanel" aria-labelledby="tabMember">
+      <label class="zs-label" for="inpMember">Гишүүний ID дугаар</label>
+      <p class="zs-hint">ID дугаараа <strong>бүтнээр нь</strong> бичнэ үү (жишээ нь: MN1234567, KR23030349). Хэсэгчилсэн хайлт хийгдэхгүй.</p>
+      <form class="zs-form" id="formMember" autocomplete="off">
+        <input class="zs-input" id="inpMember" type="text" inputmode="text" placeholder="ID дугаараа бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Шалгах</button>
+      </form>
+      <div class="zs-err" id="errMember"></div>
+    </div>
+
+    <!-- Pane 2: search by inviter -->
+    <div id="paneInviter" role="tabpanel" aria-labelledby="tabInviter" hidden>
+      <label class="zs-label" for="inpInviter">Уригчийн (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны урьсан гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formInviter" autocomplete="off">
+        <input class="zs-input" id="inpInviter" type="text" inputmode="text" placeholder="Уригчийн ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errInviter"></div>
+    </div>
+
+    <div class="zs-result" id="result"></div>
+  </div>
+
+  <h2>Журмын тайлбар</h2>
+  <ul>
+    <li>Гишүүн сүүлийн <strong>6 сарын хугацаанд ямар нэг худалдан авалт хийгээгүй</strong> тохиолдолд компанийн журмын дагуу гишүүнчлэл нь <strong>түтгэлзэнэ</strong>.</li>
+    <li>Түтгэлзсэн гишүүд энэхүү зарлалд орсон бөгөөд журамд заасан хугацаанд арга хэмжээ аваагүй бол <strong>бүртгэлээс хасагдах эрсдэлтэй</strong>.</li>
+    <li>Гишүүнчлэлээ сэргээхийн тулд <strong>худалдан авалт хийж идэвхжүүлэлтээ хийнэ</strong>. Гүйлгээний утга дээр <strong>ID дугаараа заавал бичнэ</strong>.</li>
+    <li>Энэ жагсаалтад байгаа гишүүд нь <strong>"хасагдах эрсдэлтэй гишүүн"</strong> гэсэн тодотголтой болно.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Уригч нартаа:</strong> "Уригчаар хайх" хэсэгт өөрийн ID дугаараа бичээд, өөрийн урьсан гишүүдээсээ хэн нь эрсдэлтэй байгааг харж, тэдэнтэйгээ холбогдож идэвхжүүлэлт хийлгэнэ үү.
+  </div>
+
+  <h2>Холбоо барих</h2>
+  <p>Асуулт, тодруулга байвал оффисын дугаар <a href="tel:77002223" style="color:var(--teal-dark);font-weight:700;">7700-2223</a> руу холбогдоно уу. Хэрэв өөрийн худалдан авалтын мэдээлэл зөрүүтэй гэж үзвэл баримтаа авчирч оффис дээр хандана уу.</p>
+
+  <div class="stamp">
+    <div style="font-weight:700;font-size:17px;color:var(--teal);margin-bottom:8px;">ИДЭВХЖҮҮЛЭЛТЭЭ ХИЙЖ ГИШҮҮНЧЛЭЛЭЭ ХАДГАЛЪЯ</div>
+    <div style="font-size:13.5px;color:var(--ink-light);">DESIGN YOUR SKIN · SKINDOX BEAUTY COSMETICS Co.Ltd</div>
+  </div>
+
+  <div style="text-align:center;margin-top:30px;">
+    <a href="index.html#notice" style="background:var(--teal);color:white;font-weight:700;font-size:14px;padding:13px 32px;border-radius:10px;text-decoration:none;display:inline-block;">← Мэдэгдэл рүү буцах</a>
+  </div>
+</main>
+
+<script src="zarlal-data.js" defer></script>
+<script>
+(function(){
+  'use strict';
+
+  var byId = new Map();      // memberId -> row
+  var byInviter = new Map(); // inviterId -> [rows]
+  var inviters = [];
+  var ready = false;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var result = $('result');
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  /* ID normalisation: uppercase, drop spaces / dashes / dots */
+  function norm(v){ return String(v || '').toUpperCase().replace(/[\s\-_.]/g, ''); }
+
+  var ID_RE = /^[A-Z]{2}\d{6,9}$/;
+
+  function build(){
+    var d = window.SKINDOX_ZARLAL;
+    if (!d || ready) return ready;
+    inviters = d.inviters;
+    d.rows.forEach(function(r){
+      byId.set(norm(r[0]), r);
+      var iid = norm(inviters[r[3]][0]);
+      if (!byInviter.has(iid)) byInviter.set(iid, []);
+      byInviter.get(iid).push(r);
+    });
+    $('statTotal').textContent = d.total.toLocaleString('en-US');
+    $('statInv').textContent = inviters.length.toLocaleString('en-US');
+    $('statDate').textContent = String(d.updated).replace(/-/g, '.');
+    ready = true;
+    return true;
+  }
+
+  function whenReady(cb){
+    if (build()) { cb(); return; }
+    result.innerHTML = '<div class="zs-loading">Жагсаалт ачаалж байна…</div>';
+    var tries = 0;
+    var t = setInterval(function(){
+      if (build()) { clearInterval(t); result.innerHTML = ''; cb(); }
+      else if (++tries > 100) {
+        clearInterval(t);
+        result.innerHTML = '<div class="zs-box danger"><div class="zs-msg">Жагсаалтыг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</div></div>';
+      }
+    }, 100);
+  }
+
+  /* tabs */
+  function selectTab(which){
+    var m = which === 'member';
+    $('tabMember').setAttribute('aria-selected', m ? 'true' : 'false');
+    $('tabInviter').setAttribute('aria-selected', m ? 'false' : 'true');
+    $('paneMember').hidden = !m;
+    $('paneInviter').hidden = m;
+    result.innerHTML = '';
+    $('errMember').className = 'zs-err';
+    $('errInviter').className = 'zs-err';
+  }
+  $('tabMember').addEventListener('click', function(){ selectTab('member'); });
+  $('tabInviter').addEventListener('click', function(){ selectTab('inviter'); });
+
+  function showErr(el, msg){
+    el.textContent = msg;
+    el.className = msg ? 'zs-err on' : 'zs-err';
+  }
+
+  function fieldsFor(row){
+    var inv = inviters[row[3]];
+    return '<div class="zs-grid">' +
+      '<div class="zs-field"><i>Гишүүний нэр</i><b>' + esc(row[1]) + '</b></div>' +
+      '<div class="zs-field"><i>Элссэн огноо</i><b>' + esc(String(row[2]).replace(/-/g, '.')) + '</b></div>' +
+      '<div class="zs-field"><i>Статус</i><b>Хасагдах эрсдэлтэй</b></div>' +
+      '<div class="zs-field"><i>Уригчийн ID</i><b>' + esc(inv[0]) + '</b></div>' +
+      '<div class="zs-field"><i>Уригчийн нэр</i><b>' + esc(inv[1] || '—') + '</b></div>' +
+      '</div>';
+  }
+
+  /* search 1: exact member ID */
+  $('formMember').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = norm($('inpMember').value);
+    if (!q) { showErr($('errMember'), 'ID дугаараа бичнэ үү.'); return; }
+    if (!ID_RE.test(q)) {
+      showErr($('errMember'), 'ID дугаараа бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030349).');
+      result.innerHTML = '';
+      return;
+    }
+    showErr($('errMember'), '');
+    whenReady(function(){
+      var row = byId.get(q);
+      if (row) {
+        result.innerHTML =
+          '<div class="zs-box danger">' +
+            '<span class="zs-flag danger">⚠ Хасагдах эрсдэлтэй гишүүн</span>' +
+            '<div class="zs-id">' + esc(row[0]) + '</div>' +
+            '<div class="zs-name">' + esc(row[1]) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Журмын дагуу 6 сар худалдан авалт хийгээгүй тул гишүүнчлэл түтгэлзсэн байна. Гишүүнчлэлээ хадгалахын тулд яаралтай идэвхжүүлэлт хийнэ үү.</div>' +
+            fieldsFor(row) +
+          '</div>';
+      } else {
+        var invited = byInviter.get(q);
+        result.innerHTML =
+          '<div class="zs-box ok">' +
+            '<span class="zs-flag ok">✓ Жагсаалтад алга</span>' +
+            '<div class="zs-id">' + esc(q) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад ороогүй байна</strong>. Танай гишүүнчлэлд одоогоор энэ зарлалын хүрээнд асуудал байхгүй.' +
+            (invited ? ' Гэхдээ таны урьсан <strong>' + invited.length + '</strong> гишүүн жагсаалтад байна — "Уригчаар хайх" хэсгээс шалгана уу.' : '') +
+            '</div>' +
+          '</div>';
+      }
+    });
+  });
+
+  /* search 2: by inviter ID */
+  $('formInviter').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = norm($('inpInviter').value);
+    if (!q) { showErr($('errInviter'), 'Уригчийн ID дугаарыг бичнэ үү.'); return; }
+    if (!ID_RE.test(q)) {
+      showErr($('errInviter'), 'ID дугаарыг бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030349).');
+      result.innerHTML = '';
+      return;
+    }
+    showErr($('errInviter'), '');
+    whenReady(function(){
+      var list = byInviter.get(q);
+      var self = byId.get(q);
+      var selfBox = self
+        ? '<div class="zs-box danger"><span class="zs-flag danger">⚠ Таны өөрийн ID жагсаалтад байна</span>' +
+          '<div class="zs-id">' + esc(self[0]) + '</div><div class="zs-name">' + esc(self[1]) + '</div>' +
+          '<div class="zs-msg">Та өөрөө ч мөн хасагдах эрсдэлтэй гишүүдийн жагсаалтад орсон байна. Идэвхжүүлэлтээ хийнэ үү.</div></div>'
+        : '';
+
+      if (!list) {
+        result.innerHTML = selfBox +
+          '<div class="zs-box ok">' +
+            '<span class="zs-flag ok">✓ Урьсан гишүүн алга</span>' +
+            '<div class="zs-id">' + esc(q) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаараар урьсан гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.</div>' +
+          '</div>';
+        return;
+      }
+
+      var inv = inviters[list[0][3]];
+      var rows = list.slice().sort(function(a, b){ return a[2] < b[2] ? -1 : a[2] > b[2] ? 1 : 0; });
+      result.innerHTML = selfBox +
+        '<div class="zs-box neutral">' +
+          '<span class="zs-flag danger">⚠ ' + rows.length + ' гишүүн эрсдэлтэй</span>' +
+          '<div class="zs-id">' + esc(inv[0]) + '</div>' +
+          '<div class="zs-name">' + esc(inv[1] || '—') + '</div>' +
+          '<div class="zs-msg">Таны урьсан гишүүдээс <strong>' + rows.length + '</strong> гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.</div>' +
+          '<div class="zs-count">Хасагдах эрсдэлтэй гишүүд</div>' +
+          '<div class="zs-tablewrap"><table class="zs-table"><thead><tr>' +
+            '<th>#</th><th>Гишүүний ID</th><th>Гишүүний нэр</th><th>Элссэн огноо</th>' +
+          '</tr></thead><tbody>' +
+          rows.map(function(r, i){
+            return '<tr><td>' + (i + 1) + '</td><td class="idcell">' + esc(r[0]) + '</td><td>' +
+              esc(r[1]) + '</td><td>' + esc(String(r[2]).replace(/-/g, '.')) + '</td></tr>';
+          }).join('') +
+          '</tbody></table></div>' +
+        '</div>';
+    });
+  });
+
+  /* fill hero stats as soon as the data file lands */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+})();
+</script>
+<script src="motion.js"></script>
+</body>
+</html>
