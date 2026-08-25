@@ -7,16 +7,13 @@
 <meta name="description" content="Гишүүнчлэлийн гэрээний 13.3-ын дагуу сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй, гишүүний эрх цуцлагдах эрсдэлтэй гишүүдийн ID дугаарыг шалгах хуудас.">
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
 <style>
   :root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;--danger:#a32020;--danger-soft:#fff3f3;--ok:#1f7a4d;--ok-soft:#f0faf4;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
 
-  .top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-  .top-bar a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;}
-  .top-bar a:hover{color:white;}
-  .top-bar span{color:rgba(255,255,255,0.3);font-size:13px;}
+  .top-bar{background:var(--ink);padding:12px 32px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:50;}
+  .top-bar span{color:rgba(255,255,255,0.85);font-size:13px;font-weight:600;letter-spacing:0.02em;}
 
   .zs-hero{background:linear-gradient(135deg,#5c1010,#8a2020);padding:56px 24px;text-align:center;}
   .zs-hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:18px;}
@@ -78,6 +75,12 @@
   table.zs-table td.idcell{font-weight:700;color:var(--ink);letter-spacing:0.04em;white-space:nowrap;}
   .zs-count{font-size:14px;font-weight:600;color:var(--ink);margin:16px 0 10px;}
 
+  /* Full ID list */
+  .zs-idbox{border:1px solid var(--border);border-radius:14px;background:white;max-height:460px;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;box-shadow:inset 0 -14px 18px -14px rgba(31,95,107,0.14);}
+  .zs-idgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;}
+  .zs-idgrid span{font-size:12.5px;font-weight:600;letter-spacing:0.03em;color:var(--ink-mid);background:var(--paper);border:1px solid var(--border);border-radius:7px;padding:7px 4px;text-align:center;white-space:nowrap;}
+  .zs-idgrid span.hit{background:var(--danger);border-color:var(--danger);color:white;}
+
   .stamp{text-align:center;margin:44px 0 0;padding:22px;border:1px solid var(--border);border-radius:14px;background:white;}
   .zs-loading{font-size:13.5px;color:var(--ink-light);text-align:center;padding:14px;}
 
@@ -90,14 +93,11 @@
     .zs-id{font-size:23px;}
   }
 </style>
-<link rel="stylesheet" href="motion.css">
 </head>
 <body>
 
 <div class="top-bar">
-  <a href="index.html">← Нүүр хуудас</a>
-  <span>/</span>
-  <span style="color:rgba(255,255,255,0.8)">Гишүүний эрх цуцлагдах эрсдэлтэй ID жагсаалт</span>
+  <span>SKINDOX+ · Гишүүний эрх цуцлагдах эрсдэлтэй ID жагсаалт</span>
 </div>
 
 <div class="zs-hero">
@@ -105,9 +105,7 @@
   <h1>Гишүүний эрх цуцлагдах<br>эрсдэлтэй ID дугаарын жагсаалт</h1>
   <p>Гишүүнчлэлийн гэрээний <strong>13.3-т</strong> заасны дагуу сүүлийн <strong>6 сарын хугацаанд огт худалдан авалт хийгээгүй</strong> тул <strong>7 дахь сараас гишүүний эрх цуцлагдах</strong> эрсдэлтэй гишүүдийн ID дугаарыг зарлаж байна. ID дугаараа доор шалгана уу.</p>
   <div class="zs-hero-stats">
-    <div class="zs-hero-stat"><b id="statTotal">—</b><i>Зарлагдсан ID</i></div>
-    <div class="zs-hero-stat"><b id="statInv">—</b><i>Хамаарах уригч</i></div>
-    <div class="zs-hero-stat"><b id="statDate">—</b><i>Шинэчлэгдсэн</i></div>
+    <div class="zs-hero-stat"><b id="statDate">—</b><i>Шинэчлэгдсэн огноо</i></div>
   </div>
 </div>
 
@@ -142,6 +140,12 @@
     </div>
 
     <div class="zs-result" id="result"></div>
+  </div>
+
+  <h2>Хасагдах эрсдэлтэй бүх гишүүдийн ID</h2>
+  <p>Доорх жагсаалтад <strong id="allCount">—</strong> ID дугаар байна. Өөрийн ID дугаараа олсон бол дээрх хайлтын хэсэгт бүтнээр нь бичиж шалгахад нэр, элссэн огноо, уригчийн мэдээлэл харагдана.</p>
+  <div class="zs-idbox">
+    <div class="zs-idgrid" id="allIds"><div class="zs-loading">Жагсаалт ачаалж байна…</div></div>
   </div>
 
   <h2>Журмын үндэслэл</h2>
@@ -184,7 +188,7 @@
   </div>
 
   <div style="text-align:center;margin-top:30px;">
-    <a href="index.html#notice" style="background:var(--teal);color:white;font-weight:700;font-size:14px;padding:13px 32px;border-radius:10px;text-decoration:none;display:inline-block;">← Мэдэгдэл рүү буцах</a>
+    <a href="tel:77002223" style="background:var(--teal);color:white;font-weight:700;font-size:14px;padding:13px 32px;border-radius:10px;text-decoration:none;display:inline-block;">📞 7700-2223 руу холбогдох</a>
   </div>
 </main>
 
@@ -212,6 +216,28 @@
 
   var ID_RE = /^[A-Z]{2}\d{6,9}$/;
 
+  /* full list of announced IDs — ID only, no names */
+  function renderAll(d){
+    var ids = d.rows.map(function(r){ return r[0]; }).sort();
+    $('allCount').textContent = ids.length.toLocaleString('en-US');
+    $('allIds').innerHTML = ids.map(function(id){
+      return '<span data-id="' + esc(norm(id)) + '">' + esc(id) + '</span>';
+    }).join('');
+  }
+
+  /* highlight one ID inside the full list and bring it into view */
+  function highlight(q){
+    var prev = $('allIds').querySelector('span.hit');
+    if (prev) prev.className = '';
+    var cell = $('allIds').querySelector('span[data-id="' + q + '"]');
+    if (!cell) return;
+    cell.className = 'hit';
+    /* scroll the list box only — never move the page away from the result */
+    var box = cell.parentNode.parentNode;
+    box.scrollTop += cell.getBoundingClientRect().top - box.getBoundingClientRect().top
+                     - box.clientHeight / 2 + cell.offsetHeight / 2;
+  }
+
   function build(){
     var d = window.SKINDOX_ZARLAL;
     if (!d || ready) return ready;
@@ -222,9 +248,8 @@
       if (!byInviter.has(iid)) byInviter.set(iid, []);
       byInviter.get(iid).push(r);
     });
-    $('statTotal').textContent = d.total.toLocaleString('en-US');
-    $('statInv').textContent = inviters.length.toLocaleString('en-US');
     $('statDate').textContent = String(d.updated).replace(/-/g, '.');
+    renderAll(d);
     ready = true;
     return true;
   }
@@ -285,6 +310,7 @@
     showErr($('errMember'), '');
     whenReady(function(){
       var row = byId.get(q);
+      highlight(q);
       if (row) {
         result.innerHTML =
           '<div class="zs-box danger">' +
@@ -367,6 +393,5 @@
   }
 })();
 </script>
-<script src="motion.js"></script>
 </body>
 </html>
