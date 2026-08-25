@@ -175,7 +175,6 @@
   </div>
 
   <h2>Хасагдах эрсдэлтэй бүх гишүүдийн ID</h2>
-  <p>Доорх жагсаалтад <strong id="allCount">—</strong> ID дугаар байна. Өөрийн ID дугаараа олсон бол дээрх хайлтын хэсэгт бүтнээр нь бичиж шалгахад нэр, элссэн огноо, уригчийн мэдээлэл харагдана.</p>
   <div class="zs-idbox">
     <div class="zs-idgrid" id="allIds"><div class="zs-loading">Жагсаалт ачаалж байна…</div></div>
   </div>
@@ -258,7 +257,6 @@
   /* full list of announced IDs — ID only, no names */
   function renderAll(d){
     var ids = d.rows.map(function(r){ return r[0]; }).sort();
-    $('allCount').textContent = ids.length.toLocaleString('en-US');
     $('allIds').innerHTML = ids.map(function(id){
       return '<span data-id="' + esc(norm(id)) + '">' + esc(id) + '</span>';
     }).join('');
