@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;--danger:#a32020;--danger-soft:#fff3f3;--warn:#a86a12;--warn-soft:#fff7e8;--ok:#1f7a4d;--ok-soft:#f0faf4;--gold:#9d7b1f;}
+  :root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;--danger:#a32020;--danger-soft:#fff3f3;--ok:#1f7a4d;--ok-soft:#f0faf4;--gold:#9d7b1f;}
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
 
@@ -44,62 +44,71 @@
   .zs-hero-stat b{display:block;font-size:26px;font-weight:700;color:white;line-height:1.2;}
   .zs-hero-stat i{font-style:normal;font-size:11.5px;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase;}
 
-  main{max-width:1080px;margin:0 auto;padding:44px 24px 72px;}
+  main{max-width:900px;margin:0 auto;padding:44px 24px 72px;}
   h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);margin:40px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--teal-light);}
   p{font-size:14.5px;color:var(--ink-mid);line-height:1.8;margin-bottom:12px;}
   ul{list-style:disc;padding-left:20px;margin:12px 0;}
   ul li{font-size:14px;color:var(--ink-mid);line-height:1.75;margin-bottom:6px;}
-  .callout{background:var(--teal-light);border-left:4px solid var(--teal);padding:16px 20px;border-radius:0 12px 12px 0;margin:20px 0;font-size:14px;color:var(--ink);line-height:1.7;}
   .warning-box{background:var(--danger-soft);border:1px solid #f0a0a0;border-radius:12px;padding:16px 20px;margin:20px 0;font-size:13.5px;color:#7a0000;line-height:1.75;}
   .zs-quote{background:white;border:1px solid var(--border);border-left:4px solid var(--danger);border-radius:0 12px 12px 0;padding:18px 22px;margin:18px 0;font-size:15px;color:var(--ink);line-height:1.8;}
   .zs-quote b{color:var(--danger);font-weight:700;margin-right:6px;}
 
   /* Summary cards */
-  .ld-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px;}
+  .ld-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px;}
   .ld-sum{background:white;border:1px solid var(--border);border-radius:14px;padding:16px 18px;}
   .ld-sum b{display:block;font-size:26px;font-weight:700;color:var(--ink);line-height:1.2;}
   .ld-sum i{font-style:normal;font-size:11.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-light);}
   .ld-sum.rank b{color:var(--gold);}
 
-  /* Controls */
-  .ld-controls{background:white;border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:18px;
-               box-shadow:0 8px 26px rgba(31,95,107,0.06);}
-  .ld-search{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-  .ld-input{flex:1;min-width:200px;font-family:inherit;font-size:15px;color:var(--ink);background:var(--paper);
-            border:2px solid var(--border);border-radius:12px;padding:12px 15px;outline:none;transition:border-color .18s;}
-  .ld-input:focus{border-color:var(--teal);background:white;}
-  .ld-clear{font-family:inherit;font-size:14px;font-weight:700;color:var(--teal-dark);background:var(--teal-light);
-            border:none;border-radius:12px;padding:12px 22px;cursor:pointer;}
-  .ld-clear:hover{background:#dcf0f3;}
-  .ld-filters{display:flex;gap:18px;flex-wrap:wrap;}
-  .ld-group{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
-  .ld-group > span{font-size:11.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-light);}
-  .ld-chip{font-family:inherit;font-size:12.5px;font-weight:700;color:var(--ink-mid);background:var(--paper);
-           border:1px solid var(--border);border-radius:20px;padding:7px 15px;cursor:pointer;transition:all .16s;}
-  .ld-chip:hover{border-color:var(--teal);color:var(--teal-dark);}
-  .ld-chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:white;}
+  /* Search card */
+  .zs-card{background:white;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 10px 34px rgba(31,95,107,0.08);}
+  .zs-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--teal-light);padding:5px;border-radius:12px;margin-bottom:22px;}
+  .zs-tab{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--teal-dark);padding:11px 7px;border-radius:9px;cursor:pointer;transition:all .18s;line-height:1.35;}
+  .zs-tab[aria-selected="true"]{background:white;color:var(--ink);box-shadow:0 2px 10px rgba(31,95,107,0.12);}
+  .zs-label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+  .zs-hint{font-size:12.5px;color:var(--ink-light);line-height:1.6;margin-bottom:14px;}
+  .zs-form{display:flex;gap:10px;flex-wrap:wrap;}
+  .zs-input{flex:1;min-width:200px;font-family:inherit;font-size:16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:2px solid var(--border);border-radius:12px;padding:14px 16px;outline:none;transition:border-color .18s;}
+  .zs-input:focus{border-color:var(--teal);background:white;}
+  .zs-input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-light);}
+  .zs-btn{font-family:inherit;font-size:14.5px;font-weight:700;color:white;background:var(--teal);border:none;border-radius:12px;padding:14px 30px;cursor:pointer;transition:background .18s;}
+  .zs-btn:hover{background:var(--teal-dark);}
+  .zs-err{display:none;margin-top:12px;font-size:13px;font-weight:600;color:var(--danger);}
+  .zs-err.on{display:block;}
 
-  .ld-count{font-size:13.5px;font-weight:600;color:var(--ink-mid);margin:0 0 10px 2px;}
-  .ld-count b{color:var(--ink);}
+  /* Results */
+  .zs-result{margin-top:22px;}
+  .zs-box{border-radius:16px;padding:22px;margin-bottom:16px;}
+  .zs-box.danger{background:var(--danger-soft);border:1.5px solid #f0a0a0;}
+  .zs-box.ok{background:var(--ok-soft);border:1.5px solid #a8dcc0;}
+  .zs-box.neutral{background:white;border:1.5px solid var(--border);}
+  .zs-flag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}
+  .zs-flag.danger{background:var(--danger);color:white;}
+  .zs-flag.ok{background:var(--ok);color:white;}
+  .zs-id{font-size:27px;font-weight:700;letter-spacing:0.05em;color:var(--ink);line-height:1.2;}
+  .zs-name{font-size:15px;font-weight:600;color:var(--ink-mid);margin-top:4px;}
+  .zs-msg{font-size:14px;color:var(--ink-mid);line-height:1.75;margin-top:12px;}
+  .zs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px;}
+  .zs-field{background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:11px;padding:12px 14px;}
+  .zs-field i{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:5px;}
+  .zs-field b{font-size:14px;font-weight:600;color:var(--ink);word-break:break-word;}
+  .zs-field b .sub{font-size:12.5px;font-weight:500;color:var(--ink-mid);}
+  .zs-count{font-size:14px;font-weight:600;color:var(--ink);margin:16px 0 10px;}
 
-  /* Table */
-  .ld-tablewrap{overflow:auto;max-height:640px;-webkit-overflow-scrolling:touch;border:1px solid var(--border);
-                border-radius:14px;background:white;}
-  table.ld-table{width:100%;border-collapse:collapse;min-width:920px;}
-  table.ld-table th{background:var(--teal);color:white;padding:11px 14px;text-align:left;font-size:12px;font-weight:700;
-                    white-space:nowrap;position:sticky;top:0;z-index:1;}
-  table.ld-table td{padding:11px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--ink-mid);vertical-align:top;}
-  table.ld-table tr:last-child td{border-bottom:none;}
-  table.ld-table tr:nth-child(even) td{background:var(--paper);}
-  table.ld-table td.idcell{font-weight:700;color:var(--ink);letter-spacing:0.03em;white-space:nowrap;}
-  table.ld-table td.namecell{color:var(--ink);font-weight:600;}
-  table.ld-table td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
-  table.ld-table .sub{display:block;font-size:11.5px;color:var(--ink-light);margin-top:2px;}
+  .zs-tablewrap{overflow:auto;max-height:460px;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:12px;background:white;}
+  table.zs-table{width:100%;border-collapse:collapse;min-width:720px;}
+  table.zs-table th{background:var(--teal);color:white;padding:11px 14px;text-align:left;font-size:12.5px;font-weight:700;white-space:nowrap;position:sticky;top:0;z-index:1;}
+  table.zs-table td{padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--border);color:var(--ink-mid);vertical-align:top;}
+  table.zs-table tr:last-child td{border-bottom:none;}
+  table.zs-table tr:nth-child(even) td{background:var(--paper);}
+  table.zs-table td.idcell{font-weight:700;color:var(--ink);letter-spacing:0.04em;white-space:nowrap;}
+  table.zs-table td.namecell{color:var(--ink);font-weight:600;}
+  table.zs-table .sub{display:block;font-size:11.5px;color:var(--ink-light);margin-top:2px;}
   .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.04em;padding:4px 11px;border-radius:20px;white-space:nowrap;}
   .pill.rank{background:#f6efd8;color:var(--gold);}
   .pill.rank.royal{background:#efe3f6;color:#6b3f8c;}
   .pill.rank.crown{background:#fde8e8;color:var(--danger);}
-  .ld-empty{padding:36px 20px;text-align:center;font-size:14px;color:var(--ink-light);}
+  .zs-loading{font-size:13.5px;color:var(--ink-light);text-align:center;padding:14px;}
 
   .stamp{text-align:center;margin:44px 0 0;padding:22px;border:1px solid var(--border);border-radius:14px;background:white;}
   .zs-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px;}
@@ -123,8 +132,11 @@
     .zs-hero h1{font-size:29px;}
     .zs-hero{padding:44px 20px;}
     main{padding:32px 18px 56px;}
-    .ld-controls{padding:16px 15px;}
-    .ld-clear{width:100%;}
+    .zs-card{padding:20px 17px;border-radius:15px;}
+    .zs-tabs{grid-template-columns:repeat(2,1fr);}
+    .zs-tab{font-size:12px;padding:10px 6px;}
+    .zs-btn{width:100%;}
+    .zs-id{font-size:23px;}
   }
 </style>
 </head>
@@ -149,7 +161,7 @@
 <div class="zs-hero">
   <div class="zs-hero-badge">📢 Албан Зарлал</div>
   <h1>Цолтой гишүүдийн<br>эрсдэлийн жагсаалт</h1>
-  <p>Гишүүнчлэлийн гэрээний <strong>12.6-д</strong> заасны дагуу <strong>Polaris, Royal Polaris, Crown Polaris</strong> цолтой гишүүд сүүлийн <strong>3 сарын хугацаанд</strong> өөрийн багтаа 110,000 PV-ээс дээш худалдан авалт хийсэн гишүүн элсүүлээгүй бол <strong>гишүүнчлэл 6 сараар түтгэлзэнэ</strong>. Доорх жагсаалт нь тухайн шаардлагыг хангаагүй байгаа цолтой гишүүдийн мэдээлэл юм.</p>
+  <p>Гишүүнчлэлийн гэрээний <strong>12.6-д</strong> заасны дагуу <strong>Polaris, Royal Polaris, Crown Polaris</strong> цолтой гишүүд сүүлийн <strong>3 сарын хугацаанд</strong> өөрийн багтаа 110,000 PV-ээс дээш худалдан авалт хийсэн гишүүн элсүүлээгүй бол <strong>гишүүнчлэл 6 сараар түтгэлзэнэ</strong>. ID дугаараа доор шалгана уу.</p>
   <div class="zs-hero-stats">
     <div class="zs-hero-stat"><b id="statDate">—</b><i>Шинэчлэгдсэн огноо</i></div>
   </div>
@@ -159,39 +171,59 @@
 
   <div class="ld-summary" id="summary"></div>
 
-  <div class="ld-controls">
-    <form class="ld-search" id="formSearch" autocomplete="off">
-      <input class="ld-input" id="inpSearch" type="text" placeholder="ID дугаар, нэр, уригч, спонсороор хайх…" spellcheck="false">
-      <button class="ld-clear" type="button" id="btnClear">Цэвэрлэх</button>
-    </form>
-    <div class="ld-filters">
-      <div class="ld-group" id="rankFilters">
-        <span>Цол</span>
-        <button class="ld-chip" data-rank="" aria-pressed="true">Бүгд</button>
-      </div>
+  <div class="zs-card">
+    <div class="zs-tabs" role="tablist">
+      <button class="zs-tab" id="tabMember"  role="tab" aria-selected="true"  aria-controls="paneMember">🔍 ID дугаараар шалгах</button>
+      <button class="zs-tab" id="tabInviter" role="tab" aria-selected="false" aria-controls="paneInviter">👥 Уригчаар хайх</button>
+      <button class="zs-tab" id="tabSponsor" role="tab" aria-selected="false" aria-controls="paneSponsor">🤝 Спонсороор хайх</button>
+      <button class="zs-tab" id="tabUpline"  role="tab" aria-selected="false" aria-controls="paneUpline">🔗 Уригчийн уригчаар хайх</button>
     </div>
-  </div>
 
-  <div class="ld-count" id="count">—</div>
+    <!-- Pane 1: search own ID -->
+    <div id="paneMember" role="tabpanel" aria-labelledby="tabMember">
+      <label class="zs-label" for="inpMember">Цолтой гишүүний ID дугаар</label>
+      <p class="zs-hint">ID дугаараа <strong>бүтнээр нь</strong> бичнэ үү (жишээ нь: MN1234567, KR23030158). Хэсэгчилсэн хайлт хийгдэхгүй.</p>
+      <form class="zs-form" id="formMember" autocomplete="off">
+        <input class="zs-input" id="inpMember" type="text" inputmode="text" placeholder="ID дугаараа бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Шалгах</button>
+      </form>
+      <div class="zs-err" id="errMember"></div>
+    </div>
 
-  <div class="ld-tablewrap">
-    <table class="ld-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>ID</th>
-          <th>Нэр</th>
-          <th>Цол</th>
-          <th>Өөрийн ХА дүн</th>
-          <th>Уригч</th>
-          <th>Спонсор</th>
-          <th>Уригчийн уригч</th>
-        </tr>
-      </thead>
-      <tbody id="tbody">
-        <tr><td colspan="8" class="ld-empty">Жагсаалт ачаалж байна…</td></tr>
-      </tbody>
-    </table>
+    <!-- Pane 2: search by direct inviter -->
+    <div id="paneInviter" role="tabpanel" aria-labelledby="tabInviter" hidden>
+      <label class="zs-label" for="inpInviter">Уригчийн (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны шууд урьсан цолтой гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formInviter" autocomplete="off">
+        <input class="zs-input" id="inpInviter" type="text" inputmode="text" placeholder="Уригчийн ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errInviter"></div>
+    </div>
+
+    <!-- Pane 3: search by sponsor -->
+    <div id="paneSponsor" role="tabpanel" aria-labelledby="tabSponsor" hidden>
+      <label class="zs-label" for="inpSponsor">Спонсорын (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таныг спонсороор бүртгүүлсэн цолтой гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formSponsor" autocomplete="off">
+        <input class="zs-input" id="inpSponsor" type="text" inputmode="text" placeholder="Спонсорын ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errSponsor"></div>
+    </div>
+
+    <!-- Pane 4: search by the inviter's inviter -->
+    <div id="paneUpline" role="tabpanel" aria-labelledby="tabUpline" hidden>
+      <label class="zs-label" for="inpUpline">Уригчийн уригчийн (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны урьсан гишүүдийн урьсан цолтой гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formUpline" autocomplete="off">
+        <input class="zs-input" id="inpUpline" type="text" inputmode="text" placeholder="ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errUpline"></div>
+    </div>
+
+    <div class="zs-result" id="result"></div>
   </div>
 
   <h2>Журмын үндэслэл</h2>
@@ -205,8 +237,6 @@
 
   <h2>Юу гэсэн үг вэ?</h2>
   <ul>
-    <li><strong>Идэвхгүй</strong> — сүүлийн 3 сард шинэ гишүүн элсүүлээгүй, өөрийн худалдан авалт ч байхгүй. Хамгийн өндөр эрсдэлтэй бүлэг.</li>
-    <li><strong>Хагас идэвхитэй</strong> — өөрийн худалдан авалт байгаа боловч журамд заасан шаардлагыг бүрэн хангаагүй.</li>
     <li>Гишүүнчлэлийг түдгэлзүүлсэн хугацаанд гишүүн <strong>бүтээгдэхүүн худалдан авах</strong>, <strong>шинэ гишүүн урих</strong>, цахим хуудсанд нэвтрэх, сургалт семинарт оролцох эрх хязгаарлагдана (12.3.1–12.3.4).</li>
     <li>Түдгэлзүүлэхдээ тухайн гишүүн болон түүний <strong>дээд цолтой гишүүний удирдлагын хариуцлагыг</strong> хамтад нь харгалзаж, цолыг түдгэлзүүлэх буюу бууруулах хүртэл арга хэмжээ авч болно (12.4).</li>
     <li>Идэвхжил хийгдээгүй тохиолдолд цолноос үл хамааран <strong>өдрийн орлогын бонус 1 сарын турш бодогдохгүй</strong>.</li>
@@ -242,11 +272,15 @@
      0 id  1 name  2 rank  3 activity  4 ownPV
      5 invId  6 invName  7 sponId  8 sponName  9 upId  10 upName
      11 uplineRoyalCrown  12 directPolaris                          */
+  var INVITER = 5, SPONSOR = 7, UPLINE = 9;
+
   var rows = [];
-  var rank = '';   // '' = all
-  var query = '';
+  var byId = new Map();
+  var buckets = {};
+  var ready = false;
 
   var $ = function(id){ return document.getElementById(id); };
+  var result = $('result');
 
   function esc(s){
     return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
@@ -254,47 +288,23 @@
     });
   }
 
-  function money(n){ return Number(n || 0).toLocaleString('en-US'); }
+  /* ID normalisation: uppercase, drop spaces / dashes / dots */
+  function norm(v){ return String(v || '').toUpperCase().replace(/[\s\-_.]/g, ''); }
+
+  var ID_RE = /^[A-Z]{2}\d{6,9}$/;
 
   function rankClass(r){
-    var s = r.toLowerCase();
+    var s = String(r).toLowerCase();
     if (s.indexOf('crown') > -1) return 'rank crown';
     if (s.indexOf('royal') > -1) return 'rank royal';
     return 'rank';
-  }
-
-  function pairCell(id, name){
-    if (!id && !name) return '—';
-    return esc(id || '—') + (name ? '<span class="sub">' + esc(name) + '</span>' : '');
-  }
-
-  /* build the filter chips from the values actually present in the data */
-  function chips(container, attr, values, current){
-    var el = $(container);
-    values.forEach(function(v){
-      var b = document.createElement('button');
-      b.className = 'ld-chip';
-      b.setAttribute('data-' + attr, v.key);
-      b.setAttribute('aria-pressed', 'false');
-      b.textContent = v.label + ' (' + v.n + ')';
-      el.appendChild(b);
-    });
-    el.addEventListener('click', function(e){
-      var b = e.target.closest('.ld-chip');
-      if (!b) return;
-      [].forEach.call(el.querySelectorAll('.ld-chip'), function(x){
-        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
-      });
-      rank = b.getAttribute('data-rank');
-      render();
-    });
   }
 
   function tally(field){
     var m = new Map();
     rows.forEach(function(r){ m.set(r[field], (m.get(r[field]) || 0) + 1); });
     var out = [];
-    m.forEach(function(n, key){ out.push({ key: key, label: key, n: n }); });
+    m.forEach(function(n, key){ out.push({ label: key, n: n }); });
     out.sort(function(a, b){ return b.n - a.n; });
     return out;
   }
@@ -307,75 +317,216 @@
     $('summary').innerHTML = html;
   }
 
-  function matches(r){
-    if (rank && r[2] !== rank) return false;
-    if (!query) return true;
-    var hay = (r[0] + ' ' + r[1] + ' ' + r[5] + ' ' + r[6] + ' ' + r[7] + ' ' + r[8] + ' ' +
-               r[9] + ' ' + r[10] + ' ' + r[11] + ' ' + r[12]).toLowerCase();
-    return hay.indexOf(query) > -1;
-  }
-
-  function render(){
-    var list = rows.filter(matches);
-    $('count').innerHTML = '<b>' + list.length + '</b> гишүүн харагдаж байна' +
-      (list.length !== rows.length ? ' (нийт ' + rows.length + '-аас)' : '');
-
-    if (!list.length) {
-      $('tbody').innerHTML = '<tr><td colspan="8" class="ld-empty">Хайлтад тохирох гишүүн олдсонгүй.</td></tr>';
-      return;
-    }
-    $('tbody').innerHTML = list.map(function(r, i){
-      return '<tr>' +
-        '<td>' + (i + 1) + '</td>' +
-        '<td class="idcell">' + esc(r[0]) + '</td>' +
-        '<td class="namecell">' + esc(r[1]) +
-          (r[11] ? '<span class="sub">Дээд Royal/Crown: ' + esc(r[11]) + '</span>' : '') +
-        '</td>' +
-        '<td><span class="pill ' + rankClass(r[2]) + '">' + esc(r[2]) + '</span></td>' +
-        '<td class="num">' + money(r[4]) + '</td>' +
-        '<td>' + pairCell(r[5], r[6]) + '</td>' +
-        '<td>' + pairCell(r[7], r[8]) + '</td>' +
-        '<td>' + pairCell(r[9], r[10]) + '</td>' +
-      '</tr>';
-    }).join('');
-  }
-
   function build(){
     var d = window.SKINDOX_LIDER;
-    if (!d || rows.length) return !!rows.length;
+    if (!d || ready) return ready;
     rows = d.rows;
+    [INVITER, SPONSOR, UPLINE].forEach(function(field){ buckets[field] = new Map(); });
+    rows.forEach(function(r){
+      byId.set(norm(r[0]), r);
+      [INVITER, SPONSOR, UPLINE].forEach(function(field){
+        if (!r[field]) return;
+        var key = norm(r[field]);
+        var m = buckets[field];
+        if (!m.has(key)) m.set(key, []);
+        m.get(key).push(r);
+      });
+    });
     $('statDate').textContent = String(d.updated).replace(/-/g, '.');
     summary();
-    chips('rankFilters', 'rank', tally(2));
-    render();
+    ready = true;
     return true;
   }
 
-  $('formSearch').addEventListener('submit', function(e){ e.preventDefault(); });
-  $('inpSearch').addEventListener('input', function(){
-    query = this.value.trim().toLowerCase();
-    if (rows.length) render();
-  });
-  $('btnClear').addEventListener('click', function(){
-    $('inpSearch').value = '';
-    query = '';
-    rank = '';
-    [].forEach.call(document.querySelectorAll('.ld-chip'), function(b){
-      b.setAttribute('aria-pressed', b.getAttribute('data-rank') === '' ? 'true' : 'false');
-    });
-    if (rows.length) render();
-  });
-
-  if (!build()) {
+  function whenReady(cb){
+    if (build()) { cb(); return; }
+    result.innerHTML = '<div class="zs-loading">Жагсаалт ачаалж байна…</div>';
     var tries = 0;
     var t = setInterval(function(){
-      if (build() || ++tries > 100) {
+      if (build()) { clearInterval(t); result.innerHTML = ''; cb(); }
+      else if (++tries > 100) {
         clearInterval(t);
-        if (!rows.length) {
-          $('tbody').innerHTML = '<tr><td colspan="8" class="ld-empty">Жагсаалтыг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</td></tr>';
-        }
+        result.innerHTML = '<div class="zs-box danger"><div class="zs-msg">Жагсаалтыг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</div></div>';
       }
     }, 100);
+  }
+
+  /* ── tabs ── */
+  var TABS = ['Member', 'Inviter', 'Sponsor', 'Upline'];
+
+  function selectTab(which){
+    TABS.forEach(function(name){
+      $('tab' + name).setAttribute('aria-selected', name === which ? 'true' : 'false');
+      $('pane' + name).hidden = name !== which;
+      $('err' + name).className = 'zs-err';
+    });
+    result.innerHTML = '';
+  }
+  TABS.forEach(function(name){
+    $('tab' + name).addEventListener('click', function(){ selectTab(name); });
+  });
+
+  function showErr(el, msg){
+    el.textContent = msg;
+    el.className = msg ? 'zs-err on' : 'zs-err';
+  }
+
+  function pairCell(label, id, name){
+    return '<div class="zs-field"><i>' + label + '</i><b>' +
+           (id ? esc(id) + '<br><span class="sub">' + esc(name || '—') + '</span>' : '—') +
+           '</b></div>';
+  }
+
+  function fieldsFor(r){
+    return '<div class="zs-grid">' +
+      '<div class="zs-field"><i>Гишүүний нэр</i><b>' + esc(r[1]) + '</b></div>' +
+      '<div class="zs-field"><i>Цол</i><b>' + esc(r[2]) + '</b></div>' +
+      '<div class="zs-field"><i>Статус</i><b>Түтгэлзэх эрсдэлтэй</b></div>' +
+      pairCell('Уригч', r[INVITER], r[6]) +
+      pairCell('Спонсор', r[SPONSOR], r[8]) +
+      pairCell('Уригчийн уригч', r[UPLINE], r[10]) +
+      (r[11] ? '<div class="zs-field"><i>Дээд Royal/Crown</i><b>' + esc(r[11]) + '</b></div>' : '') +
+      (r[12] ? '<div class="zs-field"><i>Шууд уригсан Polaris</i><b>' + esc(r[12]) + '</b></div>' : '') +
+      '</div>';
+  }
+
+  function table(list){
+    return '<div class="zs-tablewrap"><table class="zs-table"><thead><tr>' +
+        '<th>#</th><th>ID</th><th>Нэр</th><th>Цол</th><th>Уригч</th><th>Спонсор</th><th>Уригчийн уригч</th>' +
+      '</tr></thead><tbody>' +
+      list.map(function(r, i){
+        function cell(id, name){
+          return id ? esc(id) + '<span class="sub">' + esc(name || '—') + '</span>' : '—';
+        }
+        return '<tr>' +
+          '<td>' + (i + 1) + '</td>' +
+          '<td class="idcell">' + esc(r[0]) + '</td>' +
+          '<td class="namecell">' + esc(r[1]) + '</td>' +
+          '<td><span class="pill ' + rankClass(r[2]) + '">' + esc(r[2]) + '</span></td>' +
+          '<td>' + cell(r[INVITER], r[6]) + '</td>' +
+          '<td>' + cell(r[SPONSOR], r[8]) + '</td>' +
+          '<td>' + cell(r[UPLINE], r[10]) + '</td>' +
+        '</tr>';
+      }).join('') +
+      '</tbody></table></div>';
+  }
+
+  /* ── search 1: exact member ID ── */
+  $('formMember').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = norm($('inpMember').value);
+    if (!q) { showErr($('errMember'), 'ID дугаараа бичнэ үү.'); return; }
+    if (!ID_RE.test(q)) {
+      showErr($('errMember'), 'ID дугаараа бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030158).');
+      result.innerHTML = '';
+      return;
+    }
+    showErr($('errMember'), '');
+    whenReady(function(){
+      var r = byId.get(q);
+      if (r) {
+        result.innerHTML =
+          '<div class="zs-box danger">' +
+            '<span class="zs-flag danger">⚠ Түтгэлзэх эрсдэлтэй цолтой гишүүн</span>' +
+            '<div class="zs-id">' + esc(r[0]) + '</div>' +
+            '<div class="zs-name">' + esc(r[1]) + ' · ' + esc(r[2]) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Сүүлийн 3 сарын хугацаанд журамд заасан шаардлагыг хангасан гишүүн элсүүлээгүй тул Гишүүнчлэлийн гэрээний <strong>12.6</strong>-д заасны дагуу <strong>гишүүнчлэл 6 сараар түтгэлзэх</strong> эрсдэлтэй. Багаа идэвхжүүлж цолоо хадгална уу.</div>' +
+            fieldsFor(r) +
+          '</div>';
+      } else {
+        var n = [INVITER, SPONSOR, UPLINE].map(function(f){
+          var l = buckets[f].get(q);
+          return l ? l.length : 0;
+        });
+        var hint = '';
+        if (n[0]) hint += ' Таны урьсан <strong>' + n[0] + '</strong> цолтой гишүүн жагсаалтад байна.';
+        if (n[1]) hint += ' Таныг спонсороор бүртгүүлсэн <strong>' + n[1] + '</strong> цолтой гишүүн жагсаалтад байна.';
+        if (n[2]) hint += ' Уригчийн уригчаар тань бүртгэлтэй <strong>' + n[2] + '</strong> цолтой гишүүн жагсаалтад байна.';
+        if (hint) hint += ' Дээрх хайлтын хэсгүүдээс шалгана уу.';
+        result.innerHTML =
+          '<div class="zs-box ok">' +
+            '<span class="zs-flag ok">✓ Жагсаалтад алга</span>' +
+            '<div class="zs-id">' + esc(q) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>цолтой гишүүдийн зарлалд ороогүй байна</strong>.' + hint + '</div>' +
+          '</div>';
+      }
+    });
+  });
+
+  /* ── searches 2-4: by inviter / sponsor / upline ── */
+  function relationSearch(cfg){
+    $('form' + cfg.name).addEventListener('submit', function(e){
+      e.preventDefault();
+      var err = $('err' + cfg.name);
+      var q = norm($('inp' + cfg.name).value);
+      if (!q) { showErr(err, cfg.who + '-ийн ID дугаарыг бичнэ үү.'); return; }
+      if (!ID_RE.test(q)) {
+        showErr(err, 'ID дугаарыг бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030158).');
+        result.innerHTML = '';
+        return;
+      }
+      showErr(err, '');
+      whenReady(function(){
+        var list = buckets[cfg.field].get(q);
+        var self = byId.get(q);
+        var selfBox = self
+          ? '<div class="zs-box danger"><span class="zs-flag danger">⚠ Таны өөрийн ID жагсаалтад байна</span>' +
+            '<div class="zs-id">' + esc(self[0]) + '</div>' +
+            '<div class="zs-name">' + esc(self[1]) + ' · ' + esc(self[2]) + '</div>' +
+            '<div class="zs-msg">Та өөрөө ч мөн түтгэлзэх эрсдэлтэй цолтой гишүүдийн жагсаалтад орсон байна. Багаа идэвхжүүлнэ үү.</div></div>'
+          : '';
+
+        if (!list) {
+          result.innerHTML = selfBox +
+            '<div class="zs-box ok">' +
+              '<span class="zs-flag ok">✓ ' + cfg.emptyFlag + '</span>' +
+              '<div class="zs-id">' + esc(q) + '</div>' +
+              '<div class="zs-msg">' + cfg.emptyMsg + '</div>' +
+            '</div>';
+          return;
+        }
+
+        var nameIdx = cfg.field + 1;
+        var who = list[0][nameIdx];
+        result.innerHTML = selfBox +
+          '<div class="zs-box neutral">' +
+            '<span class="zs-flag danger">⚠ ' + list.length + ' цолтой гишүүн эрсдэлтэй</span>' +
+            '<div class="zs-id">' + esc(q) + '</div>' +
+            '<div class="zs-name">' + esc(who || '—') + '</div>' +
+            '<div class="zs-msg">' + cfg.foundMsg.replace('{n}', '<strong>' + list.length + '</strong>') + '</div>' +
+            '<div class="zs-count">Түтгэлзэх эрсдэлтэй цолтой гишүүд</div>' +
+            table(list) +
+          '</div>';
+      });
+    });
+  }
+
+  relationSearch({
+    name: 'Inviter', field: INVITER, who: 'Уригч',
+    emptyFlag: 'Урьсан цолтой гишүүн алга',
+    emptyMsg: 'Энэ ID дугаараар шууд урьсан цолтой гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таны шууд урьсан цолтой гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож багийг нь идэвхжүүлнэ үү.'
+  });
+
+  relationSearch({
+    name: 'Sponsor', field: SPONSOR, who: 'Спонсор',
+    emptyFlag: 'Харьяа цолтой гишүүн алга',
+    emptyMsg: 'Энэ ID дугаарыг спонсороор бүртгүүлсэн цолтой гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таныг спонсороор бүртгүүлсэн цолтой гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож багийг нь идэвхжүүлнэ үү.'
+  });
+
+  relationSearch({
+    name: 'Upline', field: UPLINE, who: 'Уригчийн уригч',
+    emptyFlag: 'Харьяа цолтой гишүүн алга',
+    emptyMsg: 'Энэ ID дугаараар уригчийн уригчаар бүртгэлтэй цолтой гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таны урьсан гишүүдийн урьсан цолтой гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Багийнхантайгаа холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+  });
+
+  /* fill the update date and summary as soon as the data file lands */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
   }
 })();
 </script>
