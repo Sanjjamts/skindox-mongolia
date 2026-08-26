@@ -60,8 +60,6 @@
   .ld-sum b{display:block;font-size:26px;font-weight:700;color:var(--ink);line-height:1.2;}
   .ld-sum i{font-style:normal;font-size:11.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-light);}
   .ld-sum.rank b{color:var(--gold);}
-  .ld-sum.off b{color:var(--danger);}
-  .ld-sum.half b{color:var(--warn);}
 
   /* Controls */
   .ld-controls{background:white;border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:18px;
@@ -101,8 +99,6 @@
   .pill.rank{background:#f6efd8;color:var(--gold);}
   .pill.rank.royal{background:#efe3f6;color:#6b3f8c;}
   .pill.rank.crown{background:#fde8e8;color:var(--danger);}
-  .pill.act-off{background:var(--danger-soft);color:var(--danger);}
-  .pill.act-half{background:var(--warn-soft);color:var(--warn);}
   .ld-empty{padding:36px 20px;text-align:center;font-size:14px;color:var(--ink-light);}
 
   .stamp{text-align:center;margin:44px 0 0;padding:22px;border:1px solid var(--border);border-radius:14px;background:white;}
@@ -173,10 +169,6 @@
         <span>Цол</span>
         <button class="ld-chip" data-rank="" aria-pressed="true">Бүгд</button>
       </div>
-      <div class="ld-group" id="actFilters">
-        <span>Идэвхи</span>
-        <button class="ld-chip" data-act="" aria-pressed="true">Бүгд</button>
-      </div>
     </div>
   </div>
 
@@ -190,7 +182,6 @@
           <th>ID</th>
           <th>Нэр</th>
           <th>Цол</th>
-          <th>Идэвхи</th>
           <th>Өөрийн ХА дүн</th>
           <th>Уригч</th>
           <th>Спонсор</th>
@@ -198,7 +189,7 @@
         </tr>
       </thead>
       <tbody id="tbody">
-        <tr><td colspan="9" class="ld-empty">Жагсаалт ачаалж байна…</td></tr>
+        <tr><td colspan="8" class="ld-empty">Жагсаалт ачаалж байна…</td></tr>
       </tbody>
     </table>
   </div>
@@ -253,7 +244,6 @@
      11 uplineRoyalCrown  12 directPolaris                          */
   var rows = [];
   var rank = '';   // '' = all
-  var act = '';    // '' = all
   var query = '';
 
   var $ = function(id){ return document.getElementById(id); };
@@ -272,7 +262,6 @@
     if (s.indexOf('royal') > -1) return 'rank royal';
     return 'rank';
   }
-  function actClass(a){ return a.indexOf('Идэвхгүй') > -1 ? 'act-off' : 'act-half'; }
 
   function pairCell(id, name){
     if (!id && !name) return '—';
@@ -296,8 +285,7 @@
       [].forEach.call(el.querySelectorAll('.ld-chip'), function(x){
         x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
       });
-      if (attr === 'rank') rank = b.getAttribute('data-rank');
-      else act = b.getAttribute('data-act');
+      rank = b.getAttribute('data-rank');
       render();
     });
   }
@@ -312,21 +300,15 @@
   }
 
   function summary(){
-    var byRank = tally(2), byAct = tally(3);
     var html = '<div class="ld-sum"><b>' + rows.length + '</b><i>Нийт эрсдэлтэй</i></div>';
-    byRank.forEach(function(v){
+    tally(2).forEach(function(v){
       html += '<div class="ld-sum rank"><b>' + v.n + '</b><i>' + esc(v.label) + '</i></div>';
-    });
-    byAct.forEach(function(v){
-      var cls = v.label.indexOf('Идэвхгүй') > -1 ? 'off' : 'half';
-      html += '<div class="ld-sum ' + cls + '"><b>' + v.n + '</b><i>' + esc(v.label) + '</i></div>';
     });
     $('summary').innerHTML = html;
   }
 
   function matches(r){
     if (rank && r[2] !== rank) return false;
-    if (act && r[3] !== act) return false;
     if (!query) return true;
     var hay = (r[0] + ' ' + r[1] + ' ' + r[5] + ' ' + r[6] + ' ' + r[7] + ' ' + r[8] + ' ' +
                r[9] + ' ' + r[10] + ' ' + r[11] + ' ' + r[12]).toLowerCase();
@@ -339,7 +321,7 @@
       (list.length !== rows.length ? ' (нийт ' + rows.length + '-аас)' : '');
 
     if (!list.length) {
-      $('tbody').innerHTML = '<tr><td colspan="9" class="ld-empty">Хайлтад тохирох гишүүн олдсонгүй.</td></tr>';
+      $('tbody').innerHTML = '<tr><td colspan="8" class="ld-empty">Хайлтад тохирох гишүүн олдсонгүй.</td></tr>';
       return;
     }
     $('tbody').innerHTML = list.map(function(r, i){
@@ -350,7 +332,6 @@
           (r[11] ? '<span class="sub">Дээд Royal/Crown: ' + esc(r[11]) + '</span>' : '') +
         '</td>' +
         '<td><span class="pill ' + rankClass(r[2]) + '">' + esc(r[2]) + '</span></td>' +
-        '<td><span class="pill ' + actClass(r[3]) + '">' + esc(r[3]) + '</span></td>' +
         '<td class="num">' + money(r[4]) + '</td>' +
         '<td>' + pairCell(r[5], r[6]) + '</td>' +
         '<td>' + pairCell(r[7], r[8]) + '</td>' +
@@ -366,7 +347,6 @@
     $('statDate').textContent = String(d.updated).replace(/-/g, '.');
     summary();
     chips('rankFilters', 'rank', tally(2));
-    chips('actFilters', 'act', tally(3));
     render();
     return true;
   }
@@ -380,9 +360,8 @@
     $('inpSearch').value = '';
     query = '';
     rank = '';
-    act = '';
     [].forEach.call(document.querySelectorAll('.ld-chip'), function(b){
-      b.setAttribute('aria-pressed', b.getAttribute('data-rank') === '' || b.getAttribute('data-act') === '' ? 'true' : 'false');
+      b.setAttribute('aria-pressed', b.getAttribute('data-rank') === '' ? 'true' : 'false');
     });
     if (rows.length) render();
   });
@@ -393,7 +372,7 @@
       if (build() || ++tries > 100) {
         clearInterval(t);
         if (!rows.length) {
-          $('tbody').innerHTML = '<tr><td colspan="9" class="ld-empty">Жагсаалтыг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</td></tr>';
+          $('tbody').innerHTML = '<tr><td colspan="8" class="ld-empty">Жагсаалтыг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</td></tr>';
         }
       }
     }, 100);
