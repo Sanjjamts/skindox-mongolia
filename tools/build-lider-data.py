@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Excel -> zarlal-lider-data.js
+Excel -> nkekkpn5wc-data.js
 =============================
 Цолтой (Polaris / Royal Polaris / Crown Polaris) гишүүдийн эрсдэлийн
-жагсаалтыг Excel-ээс уншиж, zarlal-lider.html хуудасны өгөгдлийг үүсгэнэ.
+жагсаалтыг Excel-ээс уншиж, nkekkpn5wc.html хуудасны өгөгдлийг үүсгэнэ.
 
 Хэрэглээ:
     py tools/build-lider-data.py "C:\\path\\to\\zarlah member_new lider.xlsx"
@@ -19,7 +19,7 @@ Excel-ийн шаардлага — эхний sheet дээр, 6-р мөр нь 
     P: Уригчийн уригч нэр
 
 Дараа нь:
-    git add zarlal-lider-data.js
+    git add nkekkpn5wc-data.js
     git commit -m "Лидерийн зарлал шинэчлэв"
     git push origin main
 """
@@ -38,7 +38,7 @@ HEADER_ROW = 6
 MISSING = ("", "#N/A", "#N/A!", "#VALUE!", "#REF!", "NONE", "NULL")
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(HERE, "zarlal-lider-data.js")
+OUT = os.path.join(HERE, "nkekkpn5wc-data.js")
 
 
 def clean(v):

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Excel -> zarlal-data.js
+Excel -> rtqfy9q7pd-data.js
 =======================
 Гишүүнчлэл цуцлагдах эрсдэлтэй гишүүдийн жагсаалтыг Excel файлаас уншиж,
-zarlal-shalgah.html хуудсанд хэрэглэгддэг `zarlal-data.js` файлыг үүсгэнэ.
+rtqfy9q7pd.html хуудсанд хэрэглэгддэг `rtqfy9q7pd-data.js` файлыг үүсгэнэ.
 
 Хэрэглээ:
     py tools/build-zarlal-data.py "C:\\path\\to\\zarlah member_new.xlsx"
@@ -18,7 +18,7 @@ Sheet-ийн нэр ямар ч байж болно (эхний sheet-ийг, э
 нэртэйг нь автоматаар олно). Хоосон буюу "#N/A" утгыг холбоосгүй гэж үзнэ.
 
 Дараа нь:
-    git add zarlal-data.js
+    git add rtqfy9q7pd-data.js
     git commit -m "Зарлал шинэчлэв"
     git push origin main
 """
@@ -36,7 +36,7 @@ PREFERRED_SHEETS = ("Зарлах", "Уригчтайгаа", "Зарлах жа
 MISSING = ("", "#N/A", "#N/A!", "#VALUE!", "#REF!", "NONE", "NULL")
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(HERE, "zarlal-data.js")
+OUT = os.path.join(HERE, "rtqfy9q7pd-data.js")
 
 
 def clean(v):

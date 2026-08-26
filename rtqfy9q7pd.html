@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гишүүний эрх цуцлагдах эрсдэлтэй ID жагсаалт | SKINDOX</title>
+<meta name="description" content="Гишүүнчлэлийн гэрээний 13.3-ын дагуу сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй, гишүүний эрх цуцлагдах эрсдэлтэй гишүүдийн ID дугаарыг шалгах хуудас.">
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#379faf;--teal-dark:#2b7e8d;--teal-light:#eaf6f8;--ink:#1a2a2e;--ink-mid:#3d5a61;--ink-light:#7a9ea7;--paper:#f8fafb;--border:#d4e8ec;--danger:#a32020;--danger-soft:#fff3f3;--ok:#1f7a4d;--ok-soft:#f0faf4;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);font-family:'DM Sans',sans-serif;color:var(--ink);}
+
+  /* Site header */
+  .site-header{background:#fff;border-bottom:1px solid var(--border);padding:12px 26px;display:flex;
+               align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:50;
+               box-shadow:0 1px 14px rgba(31,95,107,0.07);}
+  .site-logo{display:flex;align-items:center;gap:13px;}
+  .site-logo .seal{height:48px;width:auto;display:block;}
+  .site-lockup{display:flex;flex-direction:column;gap:5px;}
+  .site-lockup .wordmark{height:25px;width:auto;display:block;}
+  .site-lockup .tagline{font-size:9.5px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:var(--ink-light);}
+  .site-phone{font-size:13.5px;font-weight:700;color:var(--teal-dark);text-decoration:none;white-space:nowrap;}
+  .site-phone:hover{color:var(--teal);}
+
+  /* Section menu */
+  .site-menu{background:#fff;border-bottom:1px solid var(--border);padding:0 26px;display:flex;gap:6px;}
+  .site-menu a{font-size:13.5px;font-weight:700;color:var(--ink-light);text-decoration:none;
+               padding:13px 20px;border-bottom:3px solid transparent;transition:color .18s,border-color .18s;}
+  .site-menu a:hover{color:var(--teal-dark);}
+  .site-menu a.current{color:var(--danger);border-bottom-color:var(--danger);}
+
+  .zs-hero{padding:60px 24px;text-align:center;background-color:#5c1010;
+           background-image:linear-gradient(180deg,rgba(68,9,9,0.74) 0%,rgba(112,20,20,0.78) 50%,rgba(62,8,8,0.90) 100%),
+                            url('uploads/hero-office.jpg');
+           background-size:cover;background-position:center 56%;background-repeat:no-repeat;}
+  .zs-hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:18px;}
+  .zs-hero h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:500;color:white;margin-bottom:12px;line-height:1.3;
+              text-shadow:0 2px 14px rgba(0,0,0,0.35);}
+  .zs-hero p{font-size:14.5px;color:rgba(255,255,255,0.82);max-width:640px;margin:0 auto;line-height:1.7;
+             text-shadow:0 1px 8px rgba(0,0,0,0.3);}
+  .zs-hero-stats{display:flex;justify-content:center;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .zs-hero-stat b{display:block;font-size:26px;font-weight:700;color:white;line-height:1.2;}
+  .zs-hero-stat i{font-style:normal;font-size:11.5px;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase;}
+
+  main{max-width:840px;margin:0 auto;padding:44px 24px 72px;}
+  h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);margin:40px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--teal-light);}
+  p{font-size:14.5px;color:var(--ink-mid);line-height:1.8;margin-bottom:12px;}
+  ul{list-style:disc;padding-left:20px;margin:12px 0;}
+  ul li{font-size:14px;color:var(--ink-mid);line-height:1.75;margin-bottom:6px;}
+  .callout{background:var(--teal-light);border-left:4px solid var(--teal);padding:16px 20px;border-radius:0 12px 12px 0;margin:20px 0;font-size:14px;color:var(--ink);line-height:1.7;}
+  .warning-box{background:var(--danger-soft);border:1px solid #f0a0a0;border-radius:12px;padding:16px 20px;margin:20px 0;font-size:13.5px;color:#7a0000;line-height:1.75;}
+  .zs-quote{background:white;border:1px solid var(--border);border-left:4px solid var(--danger);border-radius:0 12px 12px 0;padding:18px 22px;margin:18px 0;font-size:15px;color:var(--ink);line-height:1.8;}
+  .zs-quote b{color:var(--danger);font-weight:700;margin-right:6px;}
+
+  /* Search card */
+  .zs-card{background:white;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 10px 34px rgba(31,95,107,0.08);}
+  .zs-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--teal-light);padding:5px;border-radius:12px;margin-bottom:22px;}
+  .zs-tab{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--teal-dark);padding:11px 7px;border-radius:9px;cursor:pointer;transition:all .18s;line-height:1.35;}
+  .zs-tab[aria-selected="true"]{background:white;color:var(--ink);box-shadow:0 2px 10px rgba(31,95,107,0.12);}
+  .zs-label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+  .zs-hint{font-size:12.5px;color:var(--ink-light);line-height:1.6;margin-bottom:14px;}
+  .zs-form{display:flex;gap:10px;flex-wrap:wrap;}
+  .zs-input{flex:1;min-width:200px;font-family:inherit;font-size:16px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:2px solid var(--border);border-radius:12px;padding:14px 16px;outline:none;transition:border-color .18s;}
+  .zs-input:focus{border-color:var(--teal);background:white;}
+  .zs-input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-light);}
+  .zs-btn{font-family:inherit;font-size:14.5px;font-weight:700;color:white;background:var(--teal);border:none;border-radius:12px;padding:14px 30px;cursor:pointer;transition:background .18s;}
+  .zs-btn:hover{background:var(--teal-dark);}
+  .zs-err{display:none;margin-top:12px;font-size:13px;font-weight:600;color:var(--danger);}
+  .zs-err.on{display:block;}
+
+  /* Results */
+  .zs-result{margin-top:22px;}
+  .zs-box{border-radius:16px;padding:22px;margin-bottom:16px;}
+  .zs-box.danger{background:var(--danger-soft);border:1.5px solid #f0a0a0;}
+  .zs-box.ok{background:var(--ok-soft);border:1.5px solid #a8dcc0;}
+  .zs-box.neutral{background:white;border:1.5px solid var(--border);}
+  .zs-flag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}
+  .zs-flag.danger{background:var(--danger);color:white;}
+  .zs-flag.ok{background:var(--ok);color:white;}
+  .zs-id{font-size:27px;font-weight:700;letter-spacing:0.05em;color:var(--ink);line-height:1.2;}
+  .zs-name{font-size:15px;font-weight:600;color:var(--ink-mid);margin-top:4px;}
+  .zs-msg{font-size:14px;color:var(--ink-mid);line-height:1.75;margin-top:12px;}
+  .zs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px;}
+  .zs-field{background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:11px;padding:12px 14px;}
+  .zs-field i{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:5px;}
+  .zs-field b{font-size:14px;font-weight:600;color:var(--ink);word-break:break-word;}
+  .zs-field b .sub{font-size:12.5px;font-weight:500;color:var(--ink-mid);}
+
+  .zs-tablewrap{overflow:auto;max-height:460px;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:12px;background:white;}
+  table.zs-table thead th{position:sticky;top:0;z-index:1;}
+  table.zs-table{width:100%;border-collapse:collapse;min-width:520px;}
+  table.zs-table th{background:var(--teal);color:white;padding:11px 14px;text-align:left;font-size:12.5px;font-weight:700;white-space:nowrap;}
+  table.zs-table td{padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--border);color:var(--ink-mid);}
+  table.zs-table tr:last-child td{border-bottom:none;}
+  table.zs-table tr:nth-child(even) td{background:var(--paper);}
+  table.zs-table td.idcell{font-weight:700;color:var(--ink);letter-spacing:0.04em;white-space:nowrap;}
+  .zs-count{font-size:14px;font-weight:600;color:var(--ink);margin:16px 0 10px;}
+
+  /* Full ID list */
+  .zs-idbox{border:1px solid var(--border);border-radius:14px;background:white;max-height:460px;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;box-shadow:inset 0 -14px 18px -14px rgba(31,95,107,0.14);}
+  .zs-idgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;}
+  .zs-idgrid span{font-size:12.5px;font-weight:600;letter-spacing:0.03em;color:var(--ink-mid);background:var(--paper);border:1px solid var(--border);border-radius:7px;padding:7px 4px;text-align:center;white-space:nowrap;}
+  .zs-idgrid span.hit{background:var(--danger);border-color:var(--danger);color:white;}
+
+  /* Bottom call-to-action buttons */
+  .zs-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px;}
+  .zs-cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:14px;font-weight:700;
+              color:white;text-decoration:none;padding:13px 28px;border-radius:10px;transition:background .18s;}
+  .zs-cta-btn svg{width:18px;height:18px;flex-shrink:0;}
+  .zs-cta-btn.phone{background:var(--teal);}
+  .zs-cta-btn.phone:hover{background:var(--teal-dark);}
+  .zs-cta-btn.fb{background:#1877f2;}
+  .zs-cta-btn.fb:hover{background:#0f5fd0;}
+
+  .stamp{text-align:center;margin:44px 0 0;padding:22px;border:1px solid var(--border);border-radius:14px;background:white;}
+  .zs-loading{font-size:13.5px;color:var(--ink-light);text-align:center;padding:14px;}
+
+  @media(max-width:640px){
+    .site-header{padding:10px 16px;}
+    .site-logo{gap:10px;}
+    .site-logo .seal{height:38px;}
+    .site-lockup .wordmark{height:19px;}
+    .site-lockup .tagline{font-size:8px;letter-spacing:0.18em;}
+    .site-phone{font-size:12.5px;}
+    .site-menu{padding:0 12px;}
+    .site-menu a{font-size:13px;padding:12px 15px;}
+    .zs-hero h1{font-size:29px;}
+    .zs-hero{padding:44px 20px;}
+    main{padding:32px 18px 56px;}
+    .zs-card{padding:20px 17px;border-radius:15px;}
+    .zs-tabs{grid-template-columns:repeat(2,1fr);}
+    .zs-tab{font-size:12px;padding:10px 6px;}
+    .zs-btn{width:100%;}
+    .zs-id{font-size:23px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-logo">
+    <img class="seal" src="uploads/logo-stamp.png" alt="SKINDOX — Cosmetic Paradox · Design Your Skin">
+    <span class="site-lockup">
+      <img class="wordmark" src="uploads/logo-banner.png" alt="SKINDOX+">
+      <span class="tagline">Design your Skin</span>
+    </span>
+  </div>
+  <a class="site-phone" href="tel:77002223">📞 7700-2223</a>
+</header>
+
+<!-- Гишүүний хуудас: "Лидер" цэс энд ЗОРИУДААР байхгүй. Зөвхөн лидерийн
+     хуудаснаас гишүүний хуудас руу шилжинэ, эсрэгээр нь биш. -->
+<nav class="site-menu">
+  <a href="rtqfy9q7pd.html" class="current" aria-current="page">Гишүүн</a>
+</nav>
+
+<div class="zs-hero">
+  <div class="zs-hero-badge">📢 Албан Зарлал</div>
+  <h1>Гишүүний эрх цуцлагдах<br>эрсдэлтэй ID дугаарын жагсаалт</h1>
+  <p>Гишүүнчлэлийн гэрээний <strong>13.3-т</strong> заасны дагуу <strong>2026 оны 2 сарын 1-нээс өмнө</strong> гишүүнчлэл үүсгэсэн гишүүд дундаас <strong>6 сарын хугацаанд огт худалдан авалт хийгээгүй</strong> гишүүдийн ID дугаарыг зарлаж байна. 7 дахь сараас буюу <strong>2026 оны 10 дугаар сарын 1-ний өдрөөс гишүүний эрх цуцлагдах</strong> эрсдэлтэй тул та өөрийн ID дугаарыг доорх жагсаалтаас урьдчилан шалгана уу.</p>
+  <div class="zs-hero-stats">
+    <div class="zs-hero-stat"><b id="statDate">—</b><i>Шинэчлэгдсэн огноо</i></div>
+  </div>
+</div>
+
+<main>
+
+  <div class="zs-card">
+    <div class="zs-tabs" role="tablist">
+      <button class="zs-tab" id="tabMember"  role="tab" aria-selected="true"  aria-controls="paneMember">🔍 ID дугаараар шалгах</button>
+      <button class="zs-tab" id="tabInviter" role="tab" aria-selected="false" aria-controls="paneInviter">👥 Уригчаар хайх</button>
+      <button class="zs-tab" id="tabSponsor" role="tab" aria-selected="false" aria-controls="paneSponsor">🤝 Спонсороор хайх</button>
+      <button class="zs-tab" id="tabUpline"  role="tab" aria-selected="false" aria-controls="paneUpline">🔗 Уригчийн уригчаар хайх</button>
+    </div>
+
+    <!-- Pane 1: search own ID -->
+    <div id="paneMember" role="tabpanel" aria-labelledby="tabMember">
+      <label class="zs-label" for="inpMember">Гишүүний ID дугаар</label>
+      <p class="zs-hint">ID дугаараа <strong>бүтнээр нь</strong> бичнэ үү (жишээ нь: MN1234567, KR23030349). Хэсэгчилсэн хайлт хийгдэхгүй.</p>
+      <form class="zs-form" id="formMember" autocomplete="off">
+        <input class="zs-input" id="inpMember" type="text" inputmode="text" placeholder="ID дугаараа бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Шалгах</button>
+      </form>
+      <div class="zs-err" id="errMember"></div>
+    </div>
+
+    <!-- Pane 2: search by direct inviter -->
+    <div id="paneInviter" role="tabpanel" aria-labelledby="tabInviter" hidden>
+      <label class="zs-label" for="inpInviter">Уригчийн (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны шууд урьсан гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formInviter" autocomplete="off">
+        <input class="zs-input" id="inpInviter" type="text" inputmode="text" placeholder="Уригчийн ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errInviter"></div>
+    </div>
+
+    <!-- Pane 3: search by sponsor -->
+    <div id="paneSponsor" role="tabpanel" aria-labelledby="tabSponsor" hidden>
+      <label class="zs-label" for="inpSponsor">Спонсорын (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таныг спонсороор бүртгүүлсэн гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formSponsor" autocomplete="off">
+        <input class="zs-input" id="inpSponsor" type="text" inputmode="text" placeholder="Спонсорын ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errSponsor"></div>
+    </div>
+
+    <!-- Pane 4: search by the inviter's inviter -->
+    <div id="paneUpline" role="tabpanel" aria-labelledby="tabUpline" hidden>
+      <label class="zs-label" for="inpUpline">Уригчийн уригчийн (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны урьсан гишүүдийн урьсан гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formUpline" autocomplete="off">
+        <input class="zs-input" id="inpUpline" type="text" inputmode="text" placeholder="ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errUpline"></div>
+    </div>
+
+    <div class="zs-result" id="result"></div>
+  </div>
+
+  <h2>Хасагдах эрсдэлтэй MEMBER гишүүдийн ID</h2>
+  <div class="zs-idbox">
+    <div class="zs-idgrid" id="allIds"><div class="zs-loading">Жагсаалт ачаалж байна…</div></div>
+  </div>
+
+  <h2>Журмын үндэслэл</h2>
+  <p>Энэхүү зарлал нь <strong>Гишүүнчлэлийн гэрээ</strong>-ний дараах заалтад үндэслэв:</p>
+
+  <blockquote class="zs-quote">
+    <b>13.3.</b> Сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй гишүүнийг <strong>7 дахь сараас гишүүний эрхийг цуцална</strong>.
+  </blockquote>
+
+  <h2>Юу гэсэн үг вэ?</h2>
+  <ul>
+    <li>Сүүлийн <strong>6 сарын хугацаанд огт худалдан авалт хийгээгүй</strong> гишүүний эрх <strong>7 дахь сараас цуцлагдана</strong> (Гишүүнчлэлийн гэрээ 13.3). Энэ жагсаалтад орсон гишүүд яг энэ эрсдэлд байна.</li>
+    <li>Гишүүнчлэлийг түдгэлзүүлсэн хугацаанд гишүүн: <strong>бүтээгдэхүүн худалдан авах эрхгүй</strong>, <strong>шинэ гишүүн урих эрхгүй</strong>, цахим хуудсанд нэвтрэх, сургалт семинарт оролцох эрх хязгаарлагдана (12.3.1–12.3.4).</li>
+    <li>Гишүүнчлэл цуцлагдсан тохиолдолд маркетингийн төлөвлөгөөгөөр бодогдсон <strong>бонус, оноо, шагнал, цолыг ямар ч хэлбэрээр эргүүлэн авах боломжгүй</strong>, шилжүүлэх эрх дуусгавар болно (13.7.1, 13.7.2).</li>
+    <li>Гэрээ дуусгавар болсон гишүүн <strong>дахин 6 сарын дараа</strong> л дахин гишүүнээр элсэх эрхтэй болно (2.10).</li>
+    <li>Гишүүнчлэлийг түдгэлзүүлэх, цуцлах асуудлыг шийдвэрлэхдээ тухайн гишүүний <strong>дээд цолтой гишүүн болон уригчийн удирдлагын хариуцлагыг</strong> хамтад нь харгалзан үзнэ (12.4, 13.5.3).</li>
+  </ul>
+
+  <div class="warning-box">
+    ⚠️ <strong>Эрхээ хадгалахын тулд:</strong> 7 дахь сар эхлэхээс өмнө <strong>худалдан авалт хийж идэвхжүүлэлтээ хийнэ үү</strong>. Гүйлгээний утга дээр <strong>ID дугаараа заавал бичнэ</strong> — ID дугаар бичээгүй гүйлгээг байгууллага хариуцахгүй.
+  </div>
+
+  <div class="callout">
+    <strong>Уригч нартаа:</strong> "Уригчаар хайх" хэсэгт өөрийн ID дугаараа бичээд, урьсан гишүүдээсээ хэн нь эрсдэлтэй байгааг харж, тэдэнтэйгээ холбогдож идэвхжүүлэлт хийлгэнэ үү. Гэрээний 12.4, 13.5.3-т заасны дагуу багийн гишүүний зөрчилд <strong>дээд цолтой гишүүний хариуцлагыг мөн авч үздэг</strong>.
+  </div>
+
+  <div class="stamp">
+    <div style="font-weight:700;font-size:17px;color:var(--teal);margin-bottom:8px;">ИДЭВХЖҮҮЛЭЛТЭЭ ХИЙЖ ГИШҮҮНЧЛЭЛЭЭ ХАДГАЛЪЯ</div>
+    <div style="font-size:13.5px;color:var(--ink-light);">DESIGN YOUR SKIN · SKINDOX BEAUTY COSMETICS Co.Ltd</div>
+  </div>
+
+  <div class="zs-cta">
+    <a class="zs-cta-btn phone" href="tel:77002223">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+      7700-2223 руу холбогдох
+    </a>
+    <a class="zs-cta-btn fb" href="https://www.facebook.com/share/14Zq6vjQtQ9/?mibextid=wwXIfr" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook хуудас руу орох
+    </a>
+  </div>
+</main>
+
+<script src="rtqfy9q7pd-data.js?v=2" defer></script>
+<script>
+(function(){
+  'use strict';
+
+  /* Row layout: [memberId, name, joinDate, inviterIdx, sponsorIdx, uplineIdx]
+     Index -1 means the relationship is unknown for that member.            */
+  var INVITER = 3, SPONSOR = 4, UPLINE = 5;
+
+  var byId = new Map();   // memberId -> row
+  var people = [];        // shared pool of [id, name] for all three relations
+  var buckets = {};       // field -> Map(personId -> [rows])
+  var ready = false;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var result = $('result');
+
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  /* ID normalisation: uppercase, drop spaces / dashes / dots */
+  function norm(v){ return String(v || '').toUpperCase().replace(/[\s\-_.]/g, ''); }
+
+  var ID_RE = /^[A-Z]{2}\d{6,9}$/;
+
+  /* full list of announced IDs — ID only, no names */
+  function renderAll(d){
+    var ids = d.rows.map(function(r){ return r[0]; }).sort();
+    $('allIds').innerHTML = ids.map(function(id){
+      return '<span data-id="' + esc(norm(id)) + '">' + esc(id) + '</span>';
+    }).join('');
+  }
+
+  /* highlight one ID inside the full list and bring it into view */
+  function highlight(q){
+    var prev = $('allIds').querySelector('span.hit');
+    if (prev) prev.className = '';
+    var cell = $('allIds').querySelector('span[data-id="' + q + '"]');
+    if (!cell) return;
+    cell.className = 'hit';
+    /* scroll the list box only — never move the page away from the result */
+    var box = cell.parentNode.parentNode;
+    box.scrollTop += cell.getBoundingClientRect().top - box.getBoundingClientRect().top
+                     - box.clientHeight / 2 + cell.offsetHeight / 2;
+  }
+
+  function build(){
+    var d = window.SKINDOX_ZARLAL;
+    if (!d || ready) return ready;
+    people = d.people;
+    [INVITER, SPONSOR, UPLINE].forEach(function(field){ buckets[field] = new Map(); });
+    d.rows.forEach(function(r){
+      byId.set(norm(r[0]), r);
+      [INVITER, SPONSOR, UPLINE].forEach(function(field){
+        if (r[field] < 0) return;
+        var key = norm(people[r[field]][0]);
+        var m = buckets[field];
+        if (!m.has(key)) m.set(key, []);
+        m.get(key).push(r);
+      });
+    });
+    $('statDate').textContent = String(d.updated).replace(/-/g, '.');
+    renderAll(d);
+    ready = true;
+    return true;
+  }
+
+  function whenReady(cb){
+    if (build()) { cb(); return; }
+    result.innerHTML = '<div class="zs-loading">Жагсаалт ачаалж байна…</div>';
+    var tries = 0;
+    var t = setInterval(function(){
+      if (build()) { clearInterval(t); result.innerHTML = ''; cb(); }
+      else if (++tries > 100) {
+        clearInterval(t);
+        result.innerHTML = '<div class="zs-box danger"><div class="zs-msg">Жагсаалтыг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</div></div>';
+      }
+    }, 100);
+  }
+
+  /* ── tabs ── */
+  var TABS = ['Member', 'Inviter', 'Sponsor', 'Upline'];
+
+  function selectTab(which){
+    TABS.forEach(function(name){
+      $('tab' + name).setAttribute('aria-selected', name === which ? 'true' : 'false');
+      $('pane' + name).hidden = name !== which;
+      $('err' + name).className = 'zs-err';
+    });
+    result.innerHTML = '';
+  }
+  TABS.forEach(function(name){
+    $('tab' + name).addEventListener('click', function(){ selectTab(name); });
+  });
+
+  function showErr(el, msg){
+    el.textContent = msg;
+    el.className = msg ? 'zs-err on' : 'zs-err';
+  }
+
+  function person(row, field){
+    return row[field] >= 0 ? people[row[field]] : null;
+  }
+
+  function personCell(label, p){
+    return '<div class="zs-field"><i>' + label + '</i><b>' +
+           (p ? esc(p[0]) + '<br><span class="sub">' + esc(p[1] || '—') + '</span>' : '—') +
+           '</b></div>';
+  }
+
+  function fieldsFor(row){
+    return '<div class="zs-grid">' +
+      '<div class="zs-field"><i>Гишүүний нэр</i><b>' + esc(row[1]) + '</b></div>' +
+      '<div class="zs-field"><i>Элссэн огноо</i><b>' + esc(String(row[2]).replace(/-/g, '.')) + '</b></div>' +
+      '<div class="zs-field"><i>Статус</i><b>Хасагдах эрсдэлтэй</b></div>' +
+      personCell('Шууд уригч', person(row, INVITER)) +
+      personCell('Спонсор', person(row, SPONSOR)) +
+      personCell('Уригчийн уригч', person(row, UPLINE)) +
+      '</div>';
+  }
+
+  /* ── search 1: exact member ID ── */
+  $('formMember').addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = norm($('inpMember').value);
+    if (!q) { showErr($('errMember'), 'ID дугаараа бичнэ үү.'); return; }
+    if (!ID_RE.test(q)) {
+      showErr($('errMember'), 'ID дугаараа бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030349).');
+      result.innerHTML = '';
+      return;
+    }
+    showErr($('errMember'), '');
+    whenReady(function(){
+      var row = byId.get(q);
+      highlight(q);
+      if (row) {
+        result.innerHTML =
+          '<div class="zs-box danger">' +
+            '<span class="zs-flag danger">⚠ Хасагдах эрсдэлтэй гишүүн</span>' +
+            '<div class="zs-id">' + esc(row[0]) + '</div>' +
+            '<div class="zs-name">' + esc(row[1]) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй тул Гишүүнчлэлийн гэрээний <strong>13.3</strong>-ын дагуу <strong>2026 оны 10 дугаар сарын 1-ний өдрөөс гишүүний эрх цуцлагдах</strong> эрсдэлтэй. Эрхээ хадгалахын тулд яаралтай худалдан авалт хийж идэвхжүүлэлтээ хийнэ үү.</div>' +
+            fieldsFor(row) +
+          '</div>';
+      } else {
+        var also = [INVITER, SPONSOR, UPLINE].map(function(f){
+          var list = buckets[f].get(q);
+          return list ? list.length : 0;
+        });
+        var hint = '';
+        if (also[0]) hint += ' Таны урьсан <strong>' + also[0] + '</strong> гишүүн жагсаалтад байна.';
+        if (also[1]) hint += ' Таныг спонсороор бүртгүүлсэн <strong>' + also[1] + '</strong> гишүүн жагсаалтад байна.';
+        if (also[2]) hint += ' Уригчийн уригчаар тань бүртгэлтэй <strong>' + also[2] + '</strong> гишүүн жагсаалтад байна.';
+        if (hint) hint += ' Дээрх хайлтын хэсгүүдээс шалгана уу.';
+        result.innerHTML =
+          '<div class="zs-box ok">' +
+            '<span class="zs-flag ok">✓ Жагсаалтад алга</span>' +
+            '<div class="zs-id">' + esc(q) + '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад ороогүй байна</strong>. Танай гишүүнчлэлд одоогоор энэ зарлалын хүрээнд асуудал байхгүй.' + hint + '</div>' +
+          '</div>';
+      }
+    });
+  });
+
+  /* ── searches 2-4: by inviter / sponsor / upline ── */
+  function relationSearch(cfg){
+    $('form' + cfg.name).addEventListener('submit', function(e){
+      e.preventDefault();
+      var err = $('err' + cfg.name);
+      var q = norm($('inp' + cfg.name).value);
+      if (!q) { showErr(err, cfg.who + '-ийн ID дугаарыг бичнэ үү.'); return; }
+      if (!ID_RE.test(q)) {
+        showErr(err, 'ID дугаарыг бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030349).');
+        result.innerHTML = '';
+        return;
+      }
+      showErr(err, '');
+      whenReady(function(){
+        var list = buckets[cfg.field].get(q);
+        var self = byId.get(q);
+        var selfBox = self
+          ? '<div class="zs-box danger"><span class="zs-flag danger">⚠ Таны өөрийн ID жагсаалтад байна</span>' +
+            '<div class="zs-id">' + esc(self[0]) + '</div><div class="zs-name">' + esc(self[1]) + '</div>' +
+            '<div class="zs-msg">Та өөрөө ч мөн эрсдэлтэй гишүүдийн жагсаалтад орсон байна. Гэрээний 13.3-ын дагуу 2026 оны 10 дугаар сарын 1-ний өдрөөс эрх нь цуцлагдах тул яаралтай идэвхжүүлэлтээ хийнэ үү.</div></div>'
+          : '';
+
+        if (!list) {
+          result.innerHTML = selfBox +
+            '<div class="zs-box ok">' +
+              '<span class="zs-flag ok">✓ ' + cfg.emptyFlag + '</span>' +
+              '<div class="zs-id">' + esc(q) + '</div>' +
+              '<div class="zs-msg">' + cfg.emptyMsg + '</div>' +
+            '</div>';
+          return;
+        }
+
+        var who = people[list[0][cfg.field]];
+        var rows = list.slice().sort(function(a, b){ return a[2] < b[2] ? -1 : a[2] > b[2] ? 1 : 0; });
+        result.innerHTML = selfBox +
+          '<div class="zs-box neutral">' +
+            '<span class="zs-flag danger">⚠ ' + rows.length + ' гишүүн эрсдэлтэй</span>' +
+            '<div class="zs-id">' + esc(who[0]) + '</div>' +
+            '<div class="zs-name">' + esc(who[1] || '—') + '</div>' +
+            '<div class="zs-msg">' + cfg.foundMsg.replace('{n}', '<strong>' + rows.length + '</strong>') + '</div>' +
+            '<div class="zs-count">Хасагдах эрсдэлтэй гишүүд</div>' +
+            '<div class="zs-tablewrap"><table class="zs-table"><thead><tr>' +
+              '<th>#</th><th>Гишүүний ID</th><th>Гишүүний нэр</th><th>Элссэн огноо</th>' +
+            '</tr></thead><tbody>' +
+            rows.map(function(r, i){
+              return '<tr><td>' + (i + 1) + '</td><td class="idcell">' + esc(r[0]) + '</td><td>' +
+                esc(r[1]) + '</td><td>' + esc(String(r[2]).replace(/-/g, '.')) + '</td></tr>';
+            }).join('') +
+            '</tbody></table></div>' +
+          '</div>';
+      });
+    });
+  }
+
+  relationSearch({
+    name: 'Inviter', field: INVITER, who: 'Уригч',
+    emptyFlag: 'Урьсан гишүүн алга',
+    emptyMsg: 'Энэ ID дугаараар шууд урьсан гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таны шууд урьсан гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+  });
+
+  relationSearch({
+    name: 'Sponsor', field: SPONSOR, who: 'Спонсор',
+    emptyFlag: 'Харьяа гишүүн алга',
+    emptyMsg: 'Энэ ID дугаарыг спонсороор бүртгүүлсэн гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таныг спонсороор бүртгүүлсэн гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+  });
+
+  relationSearch({
+    name: 'Upline', field: UPLINE, who: 'Уригчийн уригч',
+    emptyFlag: 'Харьяа гишүүн алга',
+    emptyMsg: 'Энэ ID дугаараар уригчийн уригчаар бүртгэлтэй гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таны урьсан гишүүдийн урьсан гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Багийнхантайгаа холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+  });
+
+  /* fill the update date and the full list as soon as the data file lands */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+})();
+</script>
+</body>
+</html>
