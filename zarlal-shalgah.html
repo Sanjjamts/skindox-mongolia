@@ -49,8 +49,8 @@
 
   /* Search card */
   .zs-card{background:white;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 10px 34px rgba(31,95,107,0.08);}
-  .zs-tabs{display:flex;gap:8px;background:var(--teal-light);padding:5px;border-radius:12px;margin-bottom:22px;}
-  .zs-tab{flex:1;border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--teal-dark);padding:11px 10px;border-radius:9px;cursor:pointer;transition:all .18s;}
+  .zs-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--teal-light);padding:5px;border-radius:12px;margin-bottom:22px;}
+  .zs-tab{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--teal-dark);padding:11px 7px;border-radius:9px;cursor:pointer;transition:all .18s;line-height:1.35;}
   .zs-tab[aria-selected="true"]{background:white;color:var(--ink);box-shadow:0 2px 10px rgba(31,95,107,0.12);}
   .zs-label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px;}
   .zs-hint{font-size:12.5px;color:var(--ink-light);line-height:1.6;margin-bottom:14px;}
@@ -79,8 +79,10 @@
   .zs-field{background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);border-radius:11px;padding:12px 14px;}
   .zs-field i{display:block;font-style:normal;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:5px;}
   .zs-field b{font-size:14px;font-weight:600;color:var(--ink);word-break:break-word;}
+  .zs-field b .sub{font-size:12.5px;font-weight:500;color:var(--ink-mid);}
 
-  .zs-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:12px;background:white;}
+  .zs-tablewrap{overflow:auto;max-height:460px;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:12px;background:white;}
+  table.zs-table thead th{position:sticky;top:0;z-index:1;}
   table.zs-table{width:100%;border-collapse:collapse;min-width:520px;}
   table.zs-table th{background:var(--teal);color:white;padding:11px 14px;text-align:left;font-size:12.5px;font-weight:700;white-space:nowrap;}
   table.zs-table td{padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--border);color:var(--ink-mid);}
@@ -119,6 +121,8 @@
     .zs-hero{padding:44px 20px;}
     main{padding:32px 18px 56px;}
     .zs-card{padding:20px 17px;border-radius:15px;}
+    .zs-tabs{grid-template-columns:repeat(2,1fr);}
+    .zs-tab{font-size:12px;padding:10px 6px;}
     .zs-btn{width:100%;}
     .zs-id{font-size:23px;}
   }
@@ -150,8 +154,10 @@
 
   <div class="zs-card">
     <div class="zs-tabs" role="tablist">
-      <button class="zs-tab" id="tabMember" role="tab" aria-selected="true" aria-controls="paneMember">🔍 ID дугаараар шалгах</button>
+      <button class="zs-tab" id="tabMember"  role="tab" aria-selected="true"  aria-controls="paneMember">🔍 ID дугаараар шалгах</button>
       <button class="zs-tab" id="tabInviter" role="tab" aria-selected="false" aria-controls="paneInviter">👥 Уригчаар хайх</button>
+      <button class="zs-tab" id="tabSponsor" role="tab" aria-selected="false" aria-controls="paneSponsor">🤝 Спонсороор хайх</button>
+      <button class="zs-tab" id="tabUpline"  role="tab" aria-selected="false" aria-controls="paneUpline">🔗 Уригчийн уригчаар хайх</button>
     </div>
 
     <!-- Pane 1: search own ID -->
@@ -165,15 +171,37 @@
       <div class="zs-err" id="errMember"></div>
     </div>
 
-    <!-- Pane 2: search by inviter -->
+    <!-- Pane 2: search by direct inviter -->
     <div id="paneInviter" role="tabpanel" aria-labelledby="tabInviter" hidden>
       <label class="zs-label" for="inpInviter">Уригчийн (таны) ID дугаар</label>
-      <p class="zs-hint">ID дугаараа бичихэд <strong>таны урьсан гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны шууд урьсан гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
       <form class="zs-form" id="formInviter" autocomplete="off">
         <input class="zs-input" id="inpInviter" type="text" inputmode="text" placeholder="Уригчийн ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
         <button class="zs-btn" type="submit">Хайх</button>
       </form>
       <div class="zs-err" id="errInviter"></div>
+    </div>
+
+    <!-- Pane 3: search by sponsor -->
+    <div id="paneSponsor" role="tabpanel" aria-labelledby="tabSponsor" hidden>
+      <label class="zs-label" for="inpSponsor">Спонсорын (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таныг спонсороор бүртгүүлсэн гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formSponsor" autocomplete="off">
+        <input class="zs-input" id="inpSponsor" type="text" inputmode="text" placeholder="Спонсорын ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errSponsor"></div>
+    </div>
+
+    <!-- Pane 4: search by the inviter's inviter -->
+    <div id="paneUpline" role="tabpanel" aria-labelledby="tabUpline" hidden>
+      <label class="zs-label" for="inpUpline">Уригчийн уригчийн (таны) ID дугаар</label>
+      <p class="zs-hint">ID дугаараа бичихэд <strong>таны урьсан гишүүдийн урьсан гишүүдээс</strong> энэ зарлалд орсон гишүүдийн жагсаалт харагдана.</p>
+      <form class="zs-form" id="formUpline" autocomplete="off">
+        <input class="zs-input" id="inpUpline" type="text" inputmode="text" placeholder="ID дугаарыг бүтнээр бичнэ үү" spellcheck="false" maxlength="20">
+        <button class="zs-btn" type="submit">Хайх</button>
+      </form>
+      <div class="zs-err" id="errUpline"></div>
     </div>
 
     <div class="zs-result" id="result"></div>
@@ -225,14 +253,18 @@
   </div>
 </main>
 
-<script src="zarlal-data.js" defer></script>
+<script src="zarlal-data.js?v=2" defer></script>
 <script>
 (function(){
   'use strict';
 
-  var byId = new Map();      // memberId -> row
-  var byInviter = new Map(); // inviterId -> [rows]
-  var inviters = [];
+  /* Row layout: [memberId, name, joinDate, inviterIdx, sponsorIdx, uplineIdx]
+     Index -1 means the relationship is unknown for that member.            */
+  var INVITER = 3, SPONSOR = 4, UPLINE = 5;
+
+  var byId = new Map();   // memberId -> row
+  var people = [];        // shared pool of [id, name] for all three relations
+  var buckets = {};       // field -> Map(personId -> [rows])
   var ready = false;
 
   var $ = function(id){ return document.getElementById(id); };
@@ -273,12 +305,17 @@
   function build(){
     var d = window.SKINDOX_ZARLAL;
     if (!d || ready) return ready;
-    inviters = d.inviters;
+    people = d.people;
+    [INVITER, SPONSOR, UPLINE].forEach(function(field){ buckets[field] = new Map(); });
     d.rows.forEach(function(r){
       byId.set(norm(r[0]), r);
-      var iid = norm(inviters[r[3]][0]);
-      if (!byInviter.has(iid)) byInviter.set(iid, []);
-      byInviter.get(iid).push(r);
+      [INVITER, SPONSOR, UPLINE].forEach(function(field){
+        if (r[field] < 0) return;
+        var key = norm(people[r[field]][0]);
+        var m = buckets[field];
+        if (!m.has(key)) m.set(key, []);
+        m.get(key).push(r);
+      });
     });
     $('statDate').textContent = String(d.updated).replace(/-/g, '.');
     renderAll(d);
@@ -299,37 +336,48 @@
     }, 100);
   }
 
-  /* tabs */
+  /* ── tabs ── */
+  var TABS = ['Member', 'Inviter', 'Sponsor', 'Upline'];
+
   function selectTab(which){
-    var m = which === 'member';
-    $('tabMember').setAttribute('aria-selected', m ? 'true' : 'false');
-    $('tabInviter').setAttribute('aria-selected', m ? 'false' : 'true');
-    $('paneMember').hidden = !m;
-    $('paneInviter').hidden = m;
+    TABS.forEach(function(name){
+      $('tab' + name).setAttribute('aria-selected', name === which ? 'true' : 'false');
+      $('pane' + name).hidden = name !== which;
+      $('err' + name).className = 'zs-err';
+    });
     result.innerHTML = '';
-    $('errMember').className = 'zs-err';
-    $('errInviter').className = 'zs-err';
   }
-  $('tabMember').addEventListener('click', function(){ selectTab('member'); });
-  $('tabInviter').addEventListener('click', function(){ selectTab('inviter'); });
+  TABS.forEach(function(name){
+    $('tab' + name).addEventListener('click', function(){ selectTab(name); });
+  });
 
   function showErr(el, msg){
     el.textContent = msg;
     el.className = msg ? 'zs-err on' : 'zs-err';
   }
 
+  function person(row, field){
+    return row[field] >= 0 ? people[row[field]] : null;
+  }
+
+  function personCell(label, p){
+    return '<div class="zs-field"><i>' + label + '</i><b>' +
+           (p ? esc(p[0]) + '<br><span class="sub">' + esc(p[1] || '—') + '</span>' : '—') +
+           '</b></div>';
+  }
+
   function fieldsFor(row){
-    var inv = inviters[row[3]];
     return '<div class="zs-grid">' +
       '<div class="zs-field"><i>Гишүүний нэр</i><b>' + esc(row[1]) + '</b></div>' +
       '<div class="zs-field"><i>Элссэн огноо</i><b>' + esc(String(row[2]).replace(/-/g, '.')) + '</b></div>' +
       '<div class="zs-field"><i>Статус</i><b>Хасагдах эрсдэлтэй</b></div>' +
-      '<div class="zs-field"><i>Уригчийн ID</i><b>' + esc(inv[0]) + '</b></div>' +
-      '<div class="zs-field"><i>Уригчийн нэр</i><b>' + esc(inv[1] || '—') + '</b></div>' +
+      personCell('Шууд уригч', person(row, INVITER)) +
+      personCell('Спонсор', person(row, SPONSOR)) +
+      personCell('Уригчийн уригч', person(row, UPLINE)) +
       '</div>';
   }
 
-  /* search 1: exact member ID */
+  /* ── search 1: exact member ID ── */
   $('formMember').addEventListener('submit', function(e){
     e.preventDefault();
     var q = norm($('inpMember').value);
@@ -349,75 +397,105 @@
             '<span class="zs-flag danger">⚠ Хасагдах эрсдэлтэй гишүүн</span>' +
             '<div class="zs-id">' + esc(row[0]) + '</div>' +
             '<div class="zs-name">' + esc(row[1]) + '</div>' +
-            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй тул Гишүүнчлэлийн гэрээний <strong>13.3</strong>-ын дагуу <strong>7 дахь сараас гишүүний эрх цуцлагдах</strong> эрсдэлтэй. Эрхээ хадгалахын тулд яаралтай худалдан авалт хийж идэвхжүүлэлтээ хийнэ үү.</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй тул Гишүүнчлэлийн гэрээний <strong>13.3</strong>-ын дагуу <strong>2026 оны 10 дугаар сарын 1-ний өдрөөс гишүүний эрх цуцлагдах</strong> эрсдэлтэй. Эрхээ хадгалахын тулд яаралтай худалдан авалт хийж идэвхжүүлэлтээ хийнэ үү.</div>' +
             fieldsFor(row) +
           '</div>';
       } else {
-        var invited = byInviter.get(q);
+        var also = [INVITER, SPONSOR, UPLINE].map(function(f){
+          var list = buckets[f].get(q);
+          return list ? list.length : 0;
+        });
+        var hint = '';
+        if (also[0]) hint += ' Таны урьсан <strong>' + also[0] + '</strong> гишүүн жагсаалтад байна.';
+        if (also[1]) hint += ' Таныг спонсороор бүртгүүлсэн <strong>' + also[1] + '</strong> гишүүн жагсаалтад байна.';
+        if (also[2]) hint += ' Уригчийн уригчаар тань бүртгэлтэй <strong>' + also[2] + '</strong> гишүүн жагсаалтад байна.';
+        if (hint) hint += ' Дээрх хайлтын хэсгүүдээс шалгана уу.';
         result.innerHTML =
           '<div class="zs-box ok">' +
             '<span class="zs-flag ok">✓ Жагсаалтад алга</span>' +
             '<div class="zs-id">' + esc(q) + '</div>' +
-            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад ороогүй байна</strong>. Танай гишүүнчлэлд одоогоор энэ зарлалын хүрээнд асуудал байхгүй.' +
-            (invited ? ' Гэхдээ таны урьсан <strong>' + invited.length + '</strong> гишүүн жагсаалтад байна — "Уригчаар хайх" хэсгээс шалгана уу.' : '') +
-            '</div>' +
+            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад ороогүй байна</strong>. Танай гишүүнчлэлд одоогоор энэ зарлалын хүрээнд асуудал байхгүй.' + hint + '</div>' +
           '</div>';
       }
     });
   });
 
-  /* search 2: by inviter ID */
-  $('formInviter').addEventListener('submit', function(e){
-    e.preventDefault();
-    var q = norm($('inpInviter').value);
-    if (!q) { showErr($('errInviter'), 'Уригчийн ID дугаарыг бичнэ үү.'); return; }
-    if (!ID_RE.test(q)) {
-      showErr($('errInviter'), 'ID дугаарыг бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030349).');
-      result.innerHTML = '';
-      return;
-    }
-    showErr($('errInviter'), '');
-    whenReady(function(){
-      var list = byInviter.get(q);
-      var self = byId.get(q);
-      var selfBox = self
-        ? '<div class="zs-box danger"><span class="zs-flag danger">⚠ Таны өөрийн ID жагсаалтад байна</span>' +
-          '<div class="zs-id">' + esc(self[0]) + '</div><div class="zs-name">' + esc(self[1]) + '</div>' +
-          '<div class="zs-msg">Та өөрөө ч мөн эрсдэлтэй гишүүдийн жагсаалтад орсон байна. Гэрээний 13.3-ын дагуу 7 дахь сараас эрх нь цуцлагдах тул яаралтай идэвхжүүлэлтээ хийнэ үү.</div></div>'
-        : '';
-
-      if (!list) {
-        result.innerHTML = selfBox +
-          '<div class="zs-box ok">' +
-            '<span class="zs-flag ok">✓ Урьсан гишүүн алга</span>' +
-            '<div class="zs-id">' + esc(q) + '</div>' +
-            '<div class="zs-msg">Энэ ID дугаараар урьсан гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.</div>' +
-          '</div>';
+  /* ── searches 2-4: by inviter / sponsor / upline ── */
+  function relationSearch(cfg){
+    $('form' + cfg.name).addEventListener('submit', function(e){
+      e.preventDefault();
+      var err = $('err' + cfg.name);
+      var q = norm($('inp' + cfg.name).value);
+      if (!q) { showErr(err, cfg.who + '-ийн ID дугаарыг бичнэ үү.'); return; }
+      if (!ID_RE.test(q)) {
+        showErr(err, 'ID дугаарыг бүтнээр, зөв хэлбэрээр бичнэ үү (жишээ: MN1234567, KR23030349).');
+        result.innerHTML = '';
         return;
       }
+      showErr(err, '');
+      whenReady(function(){
+        var list = buckets[cfg.field].get(q);
+        var self = byId.get(q);
+        var selfBox = self
+          ? '<div class="zs-box danger"><span class="zs-flag danger">⚠ Таны өөрийн ID жагсаалтад байна</span>' +
+            '<div class="zs-id">' + esc(self[0]) + '</div><div class="zs-name">' + esc(self[1]) + '</div>' +
+            '<div class="zs-msg">Та өөрөө ч мөн эрсдэлтэй гишүүдийн жагсаалтад орсон байна. Гэрээний 13.3-ын дагуу 2026 оны 10 дугаар сарын 1-ний өдрөөс эрх нь цуцлагдах тул яаралтай идэвхжүүлэлтээ хийнэ үү.</div></div>'
+          : '';
 
-      var inv = inviters[list[0][3]];
-      var rows = list.slice().sort(function(a, b){ return a[2] < b[2] ? -1 : a[2] > b[2] ? 1 : 0; });
-      result.innerHTML = selfBox +
-        '<div class="zs-box neutral">' +
-          '<span class="zs-flag danger">⚠ ' + rows.length + ' гишүүн эрсдэлтэй</span>' +
-          '<div class="zs-id">' + esc(inv[0]) + '</div>' +
-          '<div class="zs-name">' + esc(inv[1] || '—') + '</div>' +
-          '<div class="zs-msg">Таны урьсан гишүүдээс <strong>' + rows.length + '</strong> гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.</div>' +
-          '<div class="zs-count">Хасагдах эрсдэлтэй гишүүд</div>' +
-          '<div class="zs-tablewrap"><table class="zs-table"><thead><tr>' +
-            '<th>#</th><th>Гишүүний ID</th><th>Гишүүний нэр</th><th>Элссэн огноо</th>' +
-          '</tr></thead><tbody>' +
-          rows.map(function(r, i){
-            return '<tr><td>' + (i + 1) + '</td><td class="idcell">' + esc(r[0]) + '</td><td>' +
-              esc(r[1]) + '</td><td>' + esc(String(r[2]).replace(/-/g, '.')) + '</td></tr>';
-          }).join('') +
-          '</tbody></table></div>' +
-        '</div>';
+        if (!list) {
+          result.innerHTML = selfBox +
+            '<div class="zs-box ok">' +
+              '<span class="zs-flag ok">✓ ' + cfg.emptyFlag + '</span>' +
+              '<div class="zs-id">' + esc(q) + '</div>' +
+              '<div class="zs-msg">' + cfg.emptyMsg + '</div>' +
+            '</div>';
+          return;
+        }
+
+        var who = people[list[0][cfg.field]];
+        var rows = list.slice().sort(function(a, b){ return a[2] < b[2] ? -1 : a[2] > b[2] ? 1 : 0; });
+        result.innerHTML = selfBox +
+          '<div class="zs-box neutral">' +
+            '<span class="zs-flag danger">⚠ ' + rows.length + ' гишүүн эрсдэлтэй</span>' +
+            '<div class="zs-id">' + esc(who[0]) + '</div>' +
+            '<div class="zs-name">' + esc(who[1] || '—') + '</div>' +
+            '<div class="zs-msg">' + cfg.foundMsg.replace('{n}', '<strong>' + rows.length + '</strong>') + '</div>' +
+            '<div class="zs-count">Хасагдах эрсдэлтэй гишүүд</div>' +
+            '<div class="zs-tablewrap"><table class="zs-table"><thead><tr>' +
+              '<th>#</th><th>Гишүүний ID</th><th>Гишүүний нэр</th><th>Элссэн огноо</th>' +
+            '</tr></thead><tbody>' +
+            rows.map(function(r, i){
+              return '<tr><td>' + (i + 1) + '</td><td class="idcell">' + esc(r[0]) + '</td><td>' +
+                esc(r[1]) + '</td><td>' + esc(String(r[2]).replace(/-/g, '.')) + '</td></tr>';
+            }).join('') +
+            '</tbody></table></div>' +
+          '</div>';
+      });
     });
+  }
+
+  relationSearch({
+    name: 'Inviter', field: INVITER, who: 'Уригч',
+    emptyFlag: 'Урьсан гишүүн алга',
+    emptyMsg: 'Энэ ID дугаараар шууд урьсан гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таны шууд урьсан гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
   });
 
-  /* fill hero stats as soon as the data file lands */
+  relationSearch({
+    name: 'Sponsor', field: SPONSOR, who: 'Спонсор',
+    emptyFlag: 'Харьяа гишүүн алга',
+    emptyMsg: 'Энэ ID дугаарыг спонсороор бүртгүүлсэн гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таныг спонсороор бүртгүүлсэн гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+  });
+
+  relationSearch({
+    name: 'Upline', field: UPLINE, who: 'Уригчийн уригч',
+    emptyFlag: 'Харьяа гишүүн алга',
+    emptyMsg: 'Энэ ID дугаараар уригчийн уригчаар бүртгэлтэй гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
+    foundMsg: 'Таны урьсан гишүүдийн урьсан гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Багийнхантайгаа холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+  });
+
+  /* fill the update date and the full list as soon as the data file lands */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', build);
   } else {
