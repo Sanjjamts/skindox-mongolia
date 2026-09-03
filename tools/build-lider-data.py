@@ -2,21 +2,22 @@
 # -*- coding: utf-8 -*-
 """
 Excel -> nkekkpn5wc-data.js
-=============================
+===========================
 Цолтой (Polaris / Royal Polaris / Crown Polaris) гишүүдийн эрсдэлийн
 жагсаалтыг Excel-ээс уншиж, nkekkpn5wc.html хуудасны өгөгдлийг үүсгэнэ.
 
 Хэрэглээ:
-    py tools/build-lider-data.py "C:\\path\\to\\zarlah member_new lider.xlsx"
+    py tools/build-lider-data.py "C:\\path\\to\\lider.xlsx"
 
-Excel-ийн шаардлага — эхний sheet дээр, 6-р мөр нь толгой, 7-р мөрөөс өгөгдөл.
-Багана нь (A баганад мөрийн дугаар байна):
-    B: ID                       C: Name                    D: Status (цол)
-    E: Өөрийн ХА дүн            F: Уригчийн ХА үнийн дүн   G: Шууд урилгын PV
-    H: Идэвхи                   I: Уригч/уригчийн уригч ROYAL,CROWN
-    J: Шууд уригч Polaris       K: Уригчийн ID             L: Уригч
-    M: Спонсрын ID              N: Спонсор                 O: Уригчийн уригч ID
-    P: Уригчийн уригч нэр
+Excel-ийн шаардлага — эхний sheet дээр толгойн мөр нь "ID", "Name" гэсэн
+багана агуулсан байх (ихэвчлэн 6-р мөр; дээр нь нэгтгэлийн хүснэгт байж
+болно). Багануудыг ДУГААРААР нь биш НЭРЭЭР нь олдог тул шинэ багана
+дунд нь нэмэгдсэн ч ажиллана. Хэрэглэдэг баганууд:
+    ID · Name · Status · Идэвхи · Өөрийн ХА дүн
+    Уригчийн ID · Уригч · Спонсрын ID · Спонсор
+    Уригчийн уригч ID · Уригчийн уригч нэр
+    Уригч, уригчийн уригч ROYAL,CROWN · Шууд уригч Polaris
+Хоосон буюу "#N/A" утгыг холбоосгүй гэж үзнэ.
 
 Дараа нь:
     git add nkekkpn5wc-data.js
@@ -34,8 +35,24 @@ import sys
 
 import openpyxl
 
-HEADER_ROW = 6
 MISSING = ("", "#N/A", "#N/A!", "#VALUE!", "#REF!", "NONE", "NULL")
+
+# Гаралтын талбар -> Excel-ийн толгойн нэр (жижиг үсгээр, хэсэгчилсэн тааруулалт)
+COLUMNS = [
+    ("id",        "id"),
+    ("name",      "name"),
+    ("rank",      "status"),
+    ("activity",  "идэвхи"),
+    ("ownpv",     "өөрийн ха дүн"),
+    ("inv_id",    "уригчийн id"),
+    ("inv_name",  "уригч"),
+    ("spon_id",   "спонсрын id"),
+    ("spon_name", "спонсор"),
+    ("up_id",     "уригчийн уригч id"),
+    ("up_name",   "уригчийн уригч нэр"),
+    ("royal",     "уригч, уригчийн уригч royal"),
+    ("polaris",   "шууд уригч polaris"),
+]
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(HERE, "nkekkpn5wc-data.js")
@@ -56,6 +73,33 @@ def num(v):
         return 0
 
 
+def find_header(ws):
+    """Return (row index, {header text -> column index}) for the data header row."""
+    for row in ws.iter_rows(min_row=1, max_row=30):
+        cells = {clean(c.value).lower(): c.column - 1 for c in row if c.value is not None}
+        if "id" in cells and "name" in cells:
+            return row[0].row, cells
+    raise SystemExit('ERROR: "ID" болон "Name" багана бүхий толгойн мөр олдсонгүй.')
+
+
+def resolve(headers):
+    """Map each output field to a column index, longest header match first."""
+    out = {}
+    for field, want in COLUMNS:
+        hit = None
+        for text, idx in headers.items():
+            if text == want:
+                hit = idx
+                break
+            if text.startswith(want) and hit is None:
+                hit = idx
+        out[field] = hit
+    for field in ("id", "name", "rank", "activity"):
+        if out[field] is None:
+            raise SystemExit('ERROR: "%s" талбарт тохирох багана олдсонгүй.' % field)
+    return out
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__)
@@ -64,27 +108,31 @@ def main():
 
     wb = openpyxl.load_workbook(src, data_only=True)
     ws = wb.worksheets[0]
-    print('Sheet: "%s"' % ws.title)
+    header_row, headers = find_header(ws)
+    col = resolve(headers)
+    print('Sheet: "%s" | толгойн мөр: %d' % (ws.title, header_row))
+
+    def get(row, field):
+        i = col[field]
+        return clean(row[i]) if i is not None and i < len(row) else ""
+
+    def link(row, id_field, name_field):
+        pid = get(row, id_field)
+        return ("", "") if blank(pid) else (pid, get(row, name_field))
 
     rows = []
-    for r in ws.iter_rows(min_row=HEADER_ROW + 1, values_only=True):
-        if not r or not r[1]:
+    for r in ws.iter_rows(min_row=header_row + 1, values_only=True):
+        if not r or col["id"] >= len(r) or not r[col["id"]]:
             continue
-        c = list(r) + [None] * (16 - len(r))
+        inv = link(r, "inv_id", "inv_name")
+        spon = link(r, "spon_id", "spon_name")
+        up = link(r, "up_id", "up_name")
+        own = col["ownpv"]
         rows.append([
-            clean(c[1]),                                  # 0 ID
-            clean(c[2]),                                  # 1 нэр
-            clean(c[3]),                                  # 2 цол
-            clean(c[7]),                                  # 3 идэвхи
-            num(c[4]),                                    # 4 өөрийн ХА дүн
-            "" if blank(clean(c[10])) else clean(c[10]),  # 5 уригчийн ID
-            clean(c[11]),                                 # 6 уригчийн нэр
-            "" if blank(clean(c[12])) else clean(c[12]),  # 7 спонсорын ID
-            clean(c[13]),                                 # 8 спонсорын нэр
-            "" if blank(clean(c[14])) else clean(c[14]),  # 9 уригчийн уригч ID
-            clean(c[15]),                                 # 10 уригчийн уригч нэр
-            clean(c[8]),                                  # 11 дээд Royal/Crown
-            clean(c[9]),                                  # 12 шууд уригсан Polaris
+            get(r, "id"), get(r, "name"), get(r, "rank"), get(r, "activity"),
+            num(r[own]) if own is not None and own < len(r) else 0,
+            inv[0], inv[1], spon[0], spon[1], up[0], up[1],
+            get(r, "royal"), get(r, "polaris"),
         ])
 
     dupes = len(rows) - len(set(r[0] for r in rows))
@@ -104,6 +152,8 @@ def main():
     print("OK -> %s (%d bytes, %d гишүүн)" % (OUT, os.path.getsize(OUT), len(rows)))
     print("   цол:", dict(collections.Counter(r[2] for r in rows)))
     print("   идэвхи:", dict(collections.Counter(r[3] for r in rows)))
+    print("   уригчтай: %d | спонсортой: %d | уригчийн уригчтай: %d"
+          % (sum(1 for r in rows if r[5]), sum(1 for r in rows if r[7]), sum(1 for r in rows if r[9])))
     return 0
 
 
