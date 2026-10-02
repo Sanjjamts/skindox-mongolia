@@ -26,10 +26,25 @@
 
   /* full list of announced IDs — ID only, no names */
   function renderAll(d){
+    if (!d.rows.length) {
+      $('allIds').innerHTML = '<div class="zs-loading">Жагсаалт хараахан нийтлэгдээгүй байна. Мэдээлэл бэлэн болмогц энд орно.</div>';
+      return;
+    }
     var ids = d.rows.map(function(r){ return r[0]; }).sort();
     $('allIds').innerHTML = ids.map(function(id){
       return '<span data-id="' + esc(norm(id)) + '">' + esc(id) + '</span>';
     }).join('');
+  }
+
+  /* true while the page is published but its list has not been filled in yet */
+  function empty(){ return ready && !rows0; }
+  var rows0 = 0;
+
+  function emptyBox(){
+    return '<div class="zs-box neutral">' +
+             '<span class="zs-flag ok">⏳ Мэдээлэл хүлээгдэж байна</span>' +
+             '<div class="zs-msg">Энэ жагсаалт хараахан нийтлэгдээгүй байна. Мэдээлэл бэлэн болмогц энэ хуудсанд орох тул дараа дахин шалгана уу.</div>' +
+           '</div>';
   }
 
   /* highlight one ID inside the full list and bring it into view */
@@ -60,7 +75,8 @@
         m.get(key).push(r);
       });
     });
-    $('statDate').textContent = String(d.updated).replace(/-/g, '.');
+    $('statDate').textContent = d.rows.length ? String(d.updated).replace(/-/g, '.') : '—';
+    rows0 = d.rows.length;
     renderAll(d);
     ready = true;
     return true;
@@ -136,6 +152,7 @@
     }
     showErr($('errMember'), '');
     whenReady(function(){
+      if (empty()) { result.innerHTML = emptyBox(); return; }
       var row = byId.get(q);
       highlight(q);
       if (row) {
@@ -181,6 +198,7 @@
       }
       showErr(err, '');
       whenReady(function(){
+        if (empty()) { result.innerHTML = emptyBox(); return; }
         var list = buckets[cfg.field].get(q);
         var self = byId.get(q);
         var selfBox = self
