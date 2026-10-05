@@ -10,6 +10,24 @@
   var buckets = {};       // field -> Map(personId -> [rows])
   var ready = false;
 
+  /* Result wording. A page may override any of these by defining
+     window.SKINDOX_TEXT before this script loads — the at-risk lists keep
+     the defaults, the grace-period list replaces them with its own.      */
+  var T = {
+    status:     'Хасагдах эрсдэлтэй',
+    foundFlag:  '⚠ Хасагдах эрсдэлтэй гишүүн',
+    foundMsg:   'Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй тул Гишүүнчлэлийн гэрээний <strong>13.3</strong>-ын дагуу <strong>2026 оны 10 дугаар сарын 1-ний өдрөөс гишүүний эрх цуцлагдах</strong> эрсдэлтэй. Эрхээ хадгалахын тулд яаралтай худалдан авалт хийж идэвхжүүлэлтээ хийнэ үү.',
+    noneFlag:   '✓ Жагсаалтад алга',
+    noneMsg:    'Энэ ID дугаар <strong>зарлагдсан жагсаалтад ороогүй байна</strong>. Танай гишүүнчлэлд одоогоор энэ зарлалын хүрээнд асуудал байхгүй.',
+    selfFlag:   '⚠ Таны өөрийн ID жагсаалтад байна',
+    selfMsg:    'Та өөрөө ч мөн эрсдэлтэй гишүүдийн жагсаалтад орсон байна. Гэрээний 13.3-ын дагуу 2026 оны 10 дугаар сарын 1-ний өдрөөс эрх нь цуцлагдах тул яаралтай идэвхжүүлэлтээ хийнэ үү.',
+    relFlag:    '⚠ {n} гишүүн эрсдэлтэй',
+    relCount:   'Хасагдах эрсдэлтэй гишүүд',
+    relTone:    'danger',
+    listName:   'зарлагдсан жагсаалтад'
+  };
+  (function(o){ for (var k in o) if (o.hasOwnProperty(k)) T[k] = o[k]; })(window.SKINDOX_TEXT || {});
+
   var $ = function(id){ return document.getElementById(id); };
   var result = $('result');
 
@@ -133,7 +151,7 @@
       '<div class="zs-field"><i>Гишүүний нэр</i><b>' + esc(row[1]) + '</b></div>' +
       '<div class="zs-field"><i>Элссэн огноо</i><b>' + esc(String(row[2]).replace(/-/g, '.')) + '</b></div>' +
       (tier(row) ? '<div class="zs-field"><i>Ангилал</i><b>' + esc(tier(row)) + '</b></div>' : '') +
-      '<div class="zs-field"><i>Статус</i><b>Хасагдах эрсдэлтэй</b></div>' +
+      '<div class="zs-field"><i>Статус</i><b>' + esc(T.status) + '</b></div>' +
       personCell('Шууд уригч', person(row, INVITER)) +
       personCell('Спонсор', person(row, SPONSOR)) +
       personCell('Уригчийн уригч', person(row, UPLINE)) +
@@ -157,11 +175,11 @@
       highlight(q);
       if (row) {
         result.innerHTML =
-          '<div class="zs-box danger">' +
-            '<span class="zs-flag danger">⚠ Хасагдах эрсдэлтэй гишүүн</span>' +
+          '<div class="zs-box ' + T.relTone + '">' +
+            '<span class="zs-flag ' + T.relTone + '">' + T.foundFlag + '</span>' +
             '<div class="zs-id">' + esc(row[0]) + '</div>' +
             '<div class="zs-name">' + esc(row[1]) + '</div>' +
-            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад байна</strong>. Сүүлийн 6 сарын хугацаанд огт худалдан авалт хийгээгүй тул Гишүүнчлэлийн гэрээний <strong>13.3</strong>-ын дагуу <strong>2026 оны 10 дугаар сарын 1-ний өдрөөс гишүүний эрх цуцлагдах</strong> эрсдэлтэй. Эрхээ хадгалахын тулд яаралтай худалдан авалт хийж идэвхжүүлэлтээ хийнэ үү.</div>' +
+            '<div class="zs-msg">' + T.foundMsg + '</div>' +
             fieldsFor(row) +
           '</div>';
       } else {
@@ -176,9 +194,9 @@
         if (hint) hint += ' Дээрх хайлтын хэсгүүдээс шалгана уу.';
         result.innerHTML =
           '<div class="zs-box ok">' +
-            '<span class="zs-flag ok">✓ Жагсаалтад алга</span>' +
+            '<span class="zs-flag ok">' + T.noneFlag + '</span>' +
             '<div class="zs-id">' + esc(q) + '</div>' +
-            '<div class="zs-msg">Энэ ID дугаар <strong>зарлагдсан жагсаалтад ороогүй байна</strong>. Танай гишүүнчлэлд одоогоор энэ зарлалын хүрээнд асуудал байхгүй.' + hint + '</div>' +
+            '<div class="zs-msg">' + T.noneMsg + hint + '</div>' +
           '</div>';
       }
     });
@@ -202,9 +220,9 @@
         var list = buckets[cfg.field].get(q);
         var self = byId.get(q);
         var selfBox = self
-          ? '<div class="zs-box danger"><span class="zs-flag danger">⚠ Таны өөрийн ID жагсаалтад байна</span>' +
+          ? '<div class="zs-box ' + T.relTone + '"><span class="zs-flag ' + T.relTone + '">' + T.selfFlag + '</span>' +
             '<div class="zs-id">' + esc(self[0]) + '</div><div class="zs-name">' + esc(self[1]) + '</div>' +
-            '<div class="zs-msg">Та өөрөө ч мөн эрсдэлтэй гишүүдийн жагсаалтад орсон байна. Гэрээний 13.3-ын дагуу 2026 оны 10 дугаар сарын 1-ний өдрөөс эрх нь цуцлагдах тул яаралтай идэвхжүүлэлтээ хийнэ үү.</div></div>'
+            '<div class="zs-msg">' + T.selfMsg + '</div></div>'
           : '';
 
         if (!list) {
@@ -222,11 +240,11 @@
         var hasTier = rows.some(function(r){ return tier(r); });
         result.innerHTML = selfBox +
           '<div class="zs-box neutral">' +
-            '<span class="zs-flag danger">⚠ ' + rows.length + ' гишүүн эрсдэлтэй</span>' +
+            '<span class="zs-flag ' + T.relTone + '">' + T.relFlag.replace('{n}', rows.length) + '</span>' +
             '<div class="zs-id">' + esc(who[0]) + '</div>' +
             '<div class="zs-name">' + esc(who[1] || '—') + '</div>' +
             '<div class="zs-msg">' + cfg.foundMsg.replace('{n}', '<strong>' + rows.length + '</strong>') + '</div>' +
-            '<div class="zs-count">Хасагдах эрсдэлтэй гишүүд</div>' +
+            '<div class="zs-count">' + esc(T.relCount) + '</div>' +
             '<div class="zs-tablewrap"><table class="zs-table"><thead><tr>' +
               '<th>#</th><th>Гишүүний ID</th><th>Гишүүний нэр</th>' +
               (hasTier ? '<th>Ангилал</th>' : '') + '<th>Элссэн огноо</th>' +
@@ -245,22 +263,22 @@
   relationSearch({
     name: 'Inviter', field: INVITER, who: 'Уригч',
     emptyFlag: 'Урьсан гишүүн алга',
-    emptyMsg: 'Энэ ID дугаараар шууд урьсан гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
-    foundMsg: 'Таны шууд урьсан гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+    emptyMsg: 'Энэ ID дугаараар шууд урьсан гишүүдээс <strong>' + T.listName + ' орсон нь алга байна</strong>.',
+    foundMsg: 'Таны шууд урьсан гишүүдээс {n} гишүүн ' + T.listName + ' орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
   });
 
   relationSearch({
     name: 'Sponsor', field: SPONSOR, who: 'Спонсор',
     emptyFlag: 'Харьяа гишүүн алга',
-    emptyMsg: 'Энэ ID дугаарыг спонсороор бүртгүүлсэн гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
-    foundMsg: 'Таныг спонсороор бүртгүүлсэн гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+    emptyMsg: 'Энэ ID дугаарыг спонсороор бүртгүүлсэн гишүүдээс <strong>' + T.listName + ' орсон нь алга байна</strong>.',
+    foundMsg: 'Таныг спонсороор бүртгүүлсэн гишүүдээс {n} гишүүн ' + T.listName + ' орсон байна. Тэдэнтэй холбогдож идэвхжүүлэлт хийлгэнэ үү.'
   });
 
   relationSearch({
     name: 'Upline', field: UPLINE, who: 'Уригчийн уригч',
     emptyFlag: 'Харьяа гишүүн алга',
-    emptyMsg: 'Энэ ID дугаараар уригчийн уригчаар бүртгэлтэй гишүүдээс <strong>зарлагдсан жагсаалтад орсон нь алга байна</strong>.',
-    foundMsg: 'Таны урьсан гишүүдийн урьсан гишүүдээс {n} гишүүн зарлагдсан жагсаалтад орсон байна. Багийнхантайгаа холбогдож идэвхжүүлэлт хийлгэнэ үү.'
+    emptyMsg: 'Энэ ID дугаараар уригчийн уригчаар бүртгэлтэй гишүүдээс <strong>' + T.listName + ' орсон нь алга байна</strong>.',
+    foundMsg: 'Таны урьсан гишүүдийн урьсан гишүүдээс {n} гишүүн ' + T.listName + ' орсон байна. Багийнхантайгаа холбогдож идэвхжүүлэлт хийлгэнэ үү.'
   });
 
   /* fill the update date and the full list as soon as the data file lands */
