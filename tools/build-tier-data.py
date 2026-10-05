@@ -11,9 +11,8 @@ Excel -> <slug>-data.js  (Гишүүн / Бизнес / Мастер хуудс�
     py tools/build-tier-data.py <excel> <slug> <sheet> [<sheet> ...]
 
 Жишээ:
-    py tools/build-tier-data.py "гишүүд.xlsx" rtqfy9q7pd Member
-    py tools/build-tier-data.py "гишүүд.xlsx" sb8nhuuzep "Full member" Start
-    py tools/build-tier-data.py "гишүүд.xlsx" ywufhhbsci Master
+    py tools/build-tier-data.py "гишүүд.xlsx" vuejkqg69x "Start,Full member,Master"
+    py tools/build-tier-data.py "гишүүд.xlsx" vuejkqg69x "Full member" Start
 
 Багануудыг НЭРЭЭР нь олдог (1-р мөр толгой). Хэрэглэдэг баганууд:
     membership number · name · registration date · Name Position
